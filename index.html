@@ -363,13 +363,16 @@ function buildMensaje(){
   const extra=document.getElementById('personal-extra').value.trim();
   if(!tipo&&!dir&&moviles.length===0) return null;
   let lineas=[];
-  if(moviles.length>0&&tipo) lineas.push(`Sale ${moviles.join(' y ')} por ${tipo.toLowerCase()}${dir?' en '+dir:''}`);
-  else if(moviles.length>0) lineas.push(`Sale ${moviles.join(' y ')}${dir?' hacia '+dir:''}`);
-  else if(tipo) lineas.push(`Servicio: ${tipo}${dir?' en '+dir:''}`);
-  if(gradoCargo&&nombreCargo) lineas.push(`A cargo ${gradoCargo} ${nombreCargo}`);
-  if(gradoChofer&&nombreChofer) lineas.push(`Chofer ${gradoChofer} ${nombreChofer}`);
-  if(extra) extra.split('\n').forEach(l=>{if(l.trim()) lineas.push(l.trim());});
-  if(numServ) lineas.push(`Servicio ${numServ}`);
+  lineas.push('🚒 *BOMBEROS CAÑUELAS*');
+  lineas.push('━━━━━━━━━━━━━━━━━━━━');
+  if(moviles.length>0) lineas.push(`🚨 *Móvil/es:* ${moviles.join(' — ')}`);
+  if(tipo) lineas.push(`🔥 *Tipo:* ${tipo}`);
+  if(dir) lineas.push(`📍 *Lugar:* ${dir}`);
+  lineas.push('━━━━━━━━━━━━━━━━━━━━');
+  if(gradoCargo&&nombreCargo) lineas.push(`👨‍🚒 *A cargo:* ${gradoCargo} ${nombreCargo}`);
+  if(gradoChofer&&nombreChofer) lineas.push(`🚗 *Chofer:* ${gradoChofer} ${nombreChofer}`);
+  if(extra) extra.split('\n').forEach(l=>{if(l.trim()) lineas.push(`👤 ${l.trim()}`);});
+  if(numServ){lineas.push('━━━━━━━━━━━━━━━━━━━━');lineas.push(`📋 *Servicio N° ${numServ}*`);}
   return lineas.join('\n');
 }
 
