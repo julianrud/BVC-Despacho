@@ -156,23 +156,289 @@
         <label>Tipo de servicio</label>
         <select id="tipo-servicio" onchange="chkOtroTipo()">
           <option value="">— Seleccionar —</option>
-          <option>Incendio de vivienda</option>
-          <option>Incendio de vehículo</option>
-          <option>Incendio de campo / pastizal</option>
-          <option>Incendio de comercio</option>
-          <option>Incendio de galpón / depósito</option>
-          <option>Accidente de tránsito</option>
-          <option>Rescate vehicular</option>
-          <option>Rescate en altura</option>
-          <option>Inundación / anegamiento</option>
-          <option>Fuga de gas</option>
-          <option>Alerta por CO</option>
-          <option>Caída de árbol</option>
-          <option>Persona atrapada</option>
-          <option>Apoyo a emergencia médica</option>
-          <option>Alarma activada</option>
-          <option>Rescate animal</option>
-          <option>Otro</option>
+          <optgroup label="01 INCENDIO — EDILICIO">
+            <option>01-1 Vivienda individual</option>
+            <option>01-2 Vivienda multifamiliar</option>
+            <option>01-3 Edificio de más de 3 pisos</option>
+            <option>01-4 Vivienda precaria</option>
+            <option>01-5 Edificio público</option>
+            <option>01-6 Comercio</option>
+            <option>01-7 Galería comercial</option>
+            <option>01-8 Oficina</option>
+            <option>01-9 Supermercado mayorista</option>
+            <option>01-10 Hoteles</option>
+            <option>01-11 Quincho</option>
+            <option>01-12 Gimnasio</option>
+            <option>01-13 Hospital</option>
+            <option>01-14 Centro de salud</option>
+            <option>01-15 Clínica/Sanatorio</option>
+            <option>01-16 Escuela</option>
+            <option>01-17 Cine</option>
+            <option>01-18 Teatro</option>
+            <option>01-19 Estadios</option>
+            <option>01-20 Panaderías/Confiterías</option>
+            <option>01-21 Bares/Pub</option>
+            <option>01-22 Restaurant</option>
+            <option>01-23 Templos/Iglesias</option>
+            <option>01-24 Garages</option>
+            <option>01-25 Depósitos públicos</option>
+            <option>01-26 Cuarteles militares</option>
+            <option>01-27 Dependencias policiales</option>
+            <option>01-28 Industrias</option>
+            <option>01-29 Laboratorios</option>
+            <option>01-30 Plantas nucleares</option>
+            <option>01-31 Talleres</option>
+            <option>01-32 Logísticas</option>
+            <option>01-33 Droguerías</option>
+            <option>01-34 Farmacias</option>
+            <option>01-35 Viveros</option>
+            <option>01-36 Obra en construcción</option>
+            <option>01-37 Obrador</option>
+            <option>01-38 Sede sindical</option>
+            <option>01-39 Locales bailables</option>
+            <option>01-40 Depósito/Galpón</option>
+            <option>01-41 Hogar de niños/Geriátricos</option>
+            <option>01-42 Entidad bancaria</option>
+            <option>01-43 Cajeros automáticos</option>
+            <option>01-44 Stud/Caballeriza</option>
+            <option>01-45 Establecimiento agrícola</option>
+            <option>01-46 Establecimiento ganadero</option>
+            <option>01-47 Establecimiento avícola</option>
+            <option>01-48 Dependencias portuarias</option>
+            <option>01-49 Astilleros</option>
+            <option>01-50 Guarderías náuticas</option>
+            <option>01-51 Aeropuertos</option>
+            <option>01-52 Aero clubes</option>
+            <option>01-53 Depósitos ferroviarios</option>
+            <option>01-54 Molino harinero</option>
+            <option>01-55 Edilicio (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — ELÉCTRICO">
+            <option>01-56 Tablero eléctrico</option>
+            <option>01-57 Tendido eléctrico</option>
+            <option>01-58 Usina eléctrica</option>
+            <option>01-59 Sub estación eléctrica</option>
+            <option>01-60 Transformador</option>
+            <option>01-61 Poste de luz</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — AGRÍCOLA">
+            <option>01-62 Fardos</option>
+            <option>01-63 Rollos</option>
+            <option>01-64 Silos</option>
+            <option>01-65 Silos bolsa</option>
+            <option>01-66 Silos de forrajes</option>
+            <option>01-67 Secadora de silos</option>
+            <option>01-68 Tambos</option>
+            <option>01-69 Agrícola (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — VEHICULAR">
+            <option>01-70 Maquinaria vial</option>
+            <option>01-71 Maquinaria agrícola</option>
+            <option>01-72 Automóvil</option>
+            <option>01-73 Pick up</option>
+            <option>01-74 Micro ómnibus</option>
+            <option>01-75 Mini bus</option>
+            <option>01-76 Camión</option>
+            <option>01-77 Camión de cargas gral.</option>
+            <option>01-78 Camión cisterna</option>
+            <option>01-79 Cargas especiales</option>
+            <option>01-80 Camión militar</option>
+            <option>01-81 Casas rodantes</option>
+            <option>01-82 Tractor vehículo utilitario</option>
+            <option>01-83 Vehículos agrícolas</option>
+            <option>01-84 Formación ferroviaria</option>
+            <option>01-85 Motocicleta</option>
+            <option>01-86 Vehicular (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — NÁUTICO">
+            <option>01-87 Embarcación en gral.</option>
+            <option>01-88 Incendio de buques</option>
+            <option>01-89 Náutico (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — AERONAVE">
+            <option>01-90 Avión en gral.</option>
+            <option>01-91 Helicópteros</option>
+            <option>01-92 Helicópteros militares</option>
+            <option>01-93 Globos aerostáticos</option>
+            <option>01-94 Aeronave (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — HIDROCARBURO">
+            <option>01-95 Oleoducto</option>
+            <option>01-96 Gaseoducto</option>
+            <option>01-97 Poliducto</option>
+            <option>01-98 Depósito de combustibles</option>
+            <option>01-99 Estación de servicio</option>
+            <option>01-100 Planta reguladora de gas</option>
+            <option>01-101 Garrafa/Estación de carga</option>
+            <option>01-102 Hidrocarburo (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — MISCELÁNEAS">
+            <option>01-103 Carpa/Gazebo</option>
+            <option>01-104 Pirotecnia</option>
+            <option>01-105 Caldera</option>
+            <option>01-106 Basural</option>
+            <option>01-107 Contenedor</option>
+            <option>01-108 Cesto de basura</option>
+            <option>01-109 Misceláneas (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — VARIOS">
+            <option>01-110 Falsa alarma</option>
+            <option>01-111 Servicio sin efecto</option>
+            <option>01-112 Varios (otros)</option>
+          </optgroup>
+          <optgroup label="02 AUXILIO — TRASLADO">
+            <option>02-1 Traslado de accidentado</option>
+            <option>02-2 Salvamento de accidentado</option>
+            <option>02-3 Parturienta</option>
+            <option>02-4 Traslado (otros)</option>
+          </optgroup>
+          <optgroup label="02 AUXILIO — RESCATE">
+            <option>02-5 Rescate de persona</option>
+            <option>02-6 Rescate en gral.</option>
+            <option>02-7 Recuperación de cadáver</option>
+            <option>02-8 Persona atrapada en ascensor</option>
+            <option>02-9 Rescate (otros)</option>
+          </optgroup>
+          <optgroup label="02 AUXILIO — ACCIDENTE">
+            <option>02-10 Accidente ciclista</option>
+            <option>02-11 Accidente motociclista</option>
+            <option>02-12 Accidente vehicular</option>
+            <option>02-13 Accidente aéreo</option>
+            <option>02-14 Accidente náutico</option>
+            <option>02-15 Accidente ferroviario</option>
+            <option>02-16 Accidente ecuestre</option>
+            <option>02-17 Accidente (otros)</option>
+          </optgroup>
+          <optgroup label="02 AUXILIO — CATÁSTROFE">
+            <option>02-18 Derrumbes</option>
+            <option>02-19 Inundaciones</option>
+            <option>02-20 Voladuras de techos</option>
+            <option>02-21 Catástrofe (otros)</option>
+          </optgroup>
+          <optgroup label="02 AUXILIO — AMENAZA">
+            <option>02-22 Artefacto explosivo</option>
+            <option>02-23 Amenaza (otros)</option>
+          </optgroup>
+          <optgroup label="03 ESPECIALES — SERVICIO">
+            <option>03-1 Traslado de enfermo</option>
+            <option>03-2 Traslado de incapacitado</option>
+            <option>03-3 Suministro medicamentos</option>
+            <option>03-4 Donación sangre</option>
+            <option>03-5 Especiales (otros)</option>
+          </optgroup>
+          <optgroup label="03 ESPECIALES — APOYO">
+            <option>03-6 Apoyo a fuerzas de seguridad</option>
+            <option>03-7 Apoyo a centros de salud</option>
+            <option>03-8 Apoyo a municipalidades</option>
+            <option>03-9 Apoyo a reparticiones públicas</option>
+            <option>03-10 Apoyo (otros)</option>
+          </optgroup>
+          <optgroup label="03 ESPECIALES — TAREA">
+            <option>03-11 Desagotes</option>
+            <option>03-12 Escombramiento</option>
+            <option>03-13 Apuntalamiento</option>
+            <option>03-14 Remoción</option>
+            <option>03-15 Remolques</option>
+            <option>03-16 Colocación de driza</option>
+            <option>03-17 Búsqueda de personas</option>
+            <option>03-18 Búsqueda de animal</option>
+            <option>03-19 Limpieza de calles y rutas</option>
+            <option>03-20 Balizamiento</option>
+            <option>03-21 Árbol caído</option>
+            <option>03-22 Escape de gas</option>
+            <option>03-23 Tarea (otros)</option>
+            <option>03-24 Suministro de agua</option>
+          </optgroup>
+          <optgroup label="04 DESASTRES">
+            <option>04-1 Defensa civil</option>
+            <option>04-2 Desastres (otros)</option>
+          </optgroup>
+          <optgroup label="05 COLABORACIÓN — MATERIAL">
+            <option>05-1 Con autobomba</option>
+            <option>05-2 Con cisterna</option>
+            <option>05-3 Con escalera mecánica</option>
+            <option>05-4 Con hidroelevador</option>
+            <option>05-5 Con ambulancia</option>
+            <option>05-6 Con lancha autopropulsada</option>
+            <option>05-7 Con vehículo polvero</option>
+            <option>05-8 Con espumígero</option>
+            <option>05-9 Con equipo mat. peligrosos</option>
+            <option>05-10 Con transporte personal</option>
+            <option>05-11 Material (otros)</option>
+          </optgroup>
+          <optgroup label="05 COLABORACIÓN — PERSONAL">
+            <option>05-12 Con personal bomberos</option>
+            <option>05-13 Con escuadra de comunicaciones</option>
+            <option>05-13 Con escuadra de rescate en alturas</option>
+            <option>05-14 Con escuadra de rescate acuático y buceo</option>
+            <option>05-14 Con escuadra de radioactivos y explosivos</option>
+            <option>05-15 Con escuadra de primeros auxilios</option>
+            <option>05-15 Con escuadra de incendios forestales</option>
+            <option>05-16 Con escuadra de incendio y rescate aeronáut.</option>
+            <option>05-17 Con escuadra de incendio y rescate naval</option>
+            <option>05-18 Personal (otros)</option>
+          </optgroup>
+          <optgroup label="05 COLABORACIÓN — EQUIPO">
+            <option>05-19 Con equipo de salvamento</option>
+            <option>05-20 Con equipo de rescate</option>
+            <option>05-21 Con motobomba</option>
+            <option>05-22 Con usina móvil</option>
+            <option>05-23 Con generador</option>
+            <option>05-24 Con E.R.A.</option>
+            <option>05-25 Con equipo de remoción escombros</option>
+            <option>05-26 Con mangas de incendios</option>
+            <option>05-27 Equipo (otros)</option>
+          </optgroup>
+          <optgroup label="06 GUARDIAS — PREVENTIVA">
+            <option>06-1 Guardia de prevención</option>
+            <option>06-2 Guardia de emergencia</option>
+            <option>06-3 Descenso de helicóptero</option>
+            <option>06-4 Guardia operativa</option>
+            <option>06-5 Preventiva (otros)</option>
+          </optgroup>
+          <optgroup label="06 GUARDIAS — INTERNA">
+            <option>06-6 Guardia de honor</option>
+            <option>06-7 Orden interno</option>
+            <option>06-8 Guardia</option>
+            <option>06-9 Interna (otros)</option>
+          </optgroup>
+          <optgroup label="10 INCIDENTES QUÍMICOS">
+            <option>10-1 Incendio mat-pel</option>
+            <option>10-2 Derrame mat-pel</option>
+            <option>10-3 Explosiones</option>
+            <option>10-4 Prevención por mat-pel</option>
+            <option>10-5 Químicos (otros)</option>
+            <option>10-6 Escape de gas</option>
+          </optgroup>
+          <optgroup label="11 FORESTAL — PASTIZAL">
+            <option>11-1 Pastizales</option>
+            <option>11-2 Matorrales</option>
+            <option>11-3 Campos</option>
+            <option>11-4 Pajonales</option>
+            <option>11-5 Bañados</option>
+            <option>11-6 Banquinas</option>
+            <option>11-7 Pastizal (otros)</option>
+          </optgroup>
+          <optgroup label="11 FORESTAL — FORESTACIÓN">
+            <option>11-8 Monte</option>
+            <option>11-9 Islas</option>
+            <option>11-10 Cerros montañas</option>
+            <option>11-11 Reserva natural</option>
+            <option>11-12 Parques nacionales</option>
+            <option>11-13 Rastrojo</option>
+            <option>11-14 Sembradíos</option>
+            <option>11-15 Forestación (otros)</option>
+          </optgroup>
+          <optgroup label="11 FORESTAL — INTERFACE">
+            <option>11-16 Incendio de interface</option>
+            <option>11-17 Interface (otros)</option>
+          </optgroup>
+          <optgroup label="99 OTROS — INTERNO">
+            <option>99-1 Reunión general</option>
+            <option>99-2 Capacitación interna</option>
+            <option>99-3 Orden interno</option>
+            <option>99-4 Jefatura</option>
+          </optgroup>
         </select>
       </div>
       <div id="otro-tipo-wrap" style="display:none">
