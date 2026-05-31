@@ -947,6 +947,10 @@ function buildMensaje(){
   if(moviles.length>0) lineas.push(`🚨 *Móvil/es:* ${moviles.join(' — ')}`);
   if(tipo) lineas.push(`🔥 *Tipo:* ${tipo}`);
   if(dir) lineas.push(`📍 *Lugar:* ${dir}`);
+  if(dir){
+    const mapsUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(dir+', Cañuelas, Buenos Aires, Argentina');
+    lineas.push(`🗺 *Mapa:* ${mapsUrl}`);
+  }
   lineas.push('━━━━━━━━━━━━━━━━━━━━');
   if(gradoCargo&&nombreCargo) lineas.push(`👨‍🚒 *A cargo:* ${gradoCargo} ${nombreCargo}`);
   if(gradoChofer&&nombreChofer) lineas.push(`🚗 *Chofer:* ${gradoChofer} ${nombreChofer}`);
