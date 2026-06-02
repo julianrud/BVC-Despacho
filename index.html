@@ -1489,7 +1489,13 @@ function cargarServicio(id){
   mostrarToast('↑ Mensaje cargado en vista previa');
 }
 async function limpiarTodo(){
-  if(!confirm('¿Limpiar todo el historial?'))return;
+  const clave = prompt('🔒 Ingresá la clave de seguridad para limpiar el historial:');
+  if(clave === null) return;
+  if(clave !== 'BVC2026'){
+    mostrarToast('⛔ Clave incorrecta');
+    return;
+  }
+  if(!confirm('¿Confirmar limpieza total del historial?')) return;
   try {
     await Promise.all(servicios.filter(s=>s._docId).map(s=>deleteDoc(doc(db,'servicios',s._docId))));
     mostrarToast('✓ Historial eliminado');
