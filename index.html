@@ -465,18 +465,9 @@
     <div class="seccion-body">
       <div class="fila-dos">
         <div>
-          <label>Grado — A cargo</label>
-          <select id="grado-cargo">
-            <option value="">— Grado —</option>
-            <option>OF. Auxiliar</option><option>Ayudante Mayor</option><option>Ayudante Principal</option>
-            <option>Ayudante de 1°</option><option>Ayudante</option><option>Subayudante</option>
-            <option>Bombero</option>
-          </select>
-        </div>
-        <div>
-          <label>Nombre — A cargo</label>
-          <select id="nombre-cargo">
-            <option value="">— Seleccionar —</option>
+          <label>A cargo</label>
+          <select id="nombre-cargo" onchange="autoGrado(this,'grado-cargo')">
+<option value="">— Seleccionar —</option>
             <option>Coronel, Pablo</option>
             <option>Gimenez, Jonatan</option>
             <option>Ortiz, Hernan</option>
@@ -565,21 +556,16 @@
             <option>Lopez, Facundo</option>
           </select>
         </div>
+        <div>
+          <label>Grado</label>
+          <input type="text" id="grado-cargo" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
+        </div>
       </div>
       <div class="fila-dos">
         <div>
-          <label>Grado — Chofer</label>
-          <select id="grado-chofer">
-            <option value="">— Grado —</option>
-            <option>OF. Auxiliar</option><option>Ayudante Mayor</option><option>Ayudante Principal</option>
-            <option>Ayudante de 1°</option><option>Ayudante</option><option>Subayudante</option>
-            <option>Bombero</option>
-          </select>
-        </div>
-        <div>
-          <label>Nombre — Chofer</label>
-          <select id="nombre-chofer">
-            <option value="">— Seleccionar —</option>
+          <label>Chofer</label>
+          <select id="nombre-chofer" onchange="autoGrado(this,'grado-chofer')">
+<option value="">— Seleccionar —</option>
             <option>Coronel, Pablo</option>
             <option>Gimenez, Jonatan</option>
             <option>Ortiz, Hernan</option>
@@ -668,50 +654,499 @@
             <option>Lopez, Facundo</option>
           </select>
         </div>
-      </div>
-      <div class="fila-dos">
         <div>
-          <label>Grado — Componente 1</label>
-          <select id="grado-comp1">
-            <option value="">— Grado —</option>
-            <option>OF. Auxiliar</option><option>Ayudante Mayor</option><option>Ayudante Principal</option>
-            <option>Ayudante de 1°</option><option>Ayudante</option><option>Subayudante</option>
-            <option>Bombero</option>
-          </select>
-        </div>
-        <div>
-          <label>Nombre — Componente 1</label>
-          <select id="nombre-comp1"><option value="">— Seleccionar —</option><option>Coronel, Pablo</option><option>Gimenez, Jonatan</option><option>Ortiz, Hernan</option><option>Cocini, Maximiliano</option><option>Vicente, Guillermo</option><option>Benigni, Jonatan</option><option>Larrosa, Maximiliano</option><option>Geiser, Eduardo</option><option>Bonavita, Damian</option><option>Toledo, Emiliano</option><option>Mansilla, Mailen</option><option>Lopez, Maximiliano</option><option>Cordovero, Pablo</option><option>Giacobino, Sebastian</option><option>Matrelo, Nicolas</option><option>Peralta, Jose Luis</option><option>Ludueña, Osvaldo</option><option>Ferrer, Juan Carlos</option><option>Bordon, Jose</option><option>Bugari, Alex</option><option>Antonio, Agustina</option><option>Maidana, Sebastian</option><option>Sanchez, Tamara</option><option>Tellechea, Milagros</option><option>Martinez, Silvio</option><option>Yuli, Luis Alberto</option><option>García, Juan Pablo</option><option>Amuchastegui, Daniel</option><option>Rosas, Luis</option><option>Rosas, Pedro</option><option>Jaime, Mauro</option><option>Domínguez, Cristian</option><option>Rodríguez, Sebastián</option><option>Tellechea, Leonardo</option><option>Barragan, Javier</option><option>Bohler, Damian</option><option>Ferrandi, Mauro</option><option>Velozo, Javier</option><option>Rasquetti, Marcos</option><option>Montovio, Mariano</option><option>Salerno, Yamila</option><option>Bugari, Dylan</option><option>Silva, Jonathan</option><option>Roldan, Nicolas</option><option>Piñeiro, Daniel</option><option>Brito, Franco</option><option>Antilef, Jorge</option><option>Cardiello, Elias</option><option>Mujica, Sabrina</option><option>Higa, Nestor</option><option>Coronel, Camila</option><option>Rivero Lodoli, Jorge</option><option>Cordovero, Tomas</option><option>Bordon, Nestor</option><option>Lopez, Matias</option><option>Monzon, Alejandra</option><option>Guillermo, Daiana</option><option>Perez Loayza, Fiamma</option><option>Colchado, Lucas</option><option>Smith, Cecilia</option><option>Stur, Gaston</option><option>Ovelar, Gretel Mayra</option><option>Tojo, Fernando</option><option>Avalos, Melania</option><option>Rios, Camila</option><option>Diaz, Samira</option><option>Mujica, Alexander</option><option>Rodriguez, Sol Morena</option><option>Maidana, Facundo</option><option>Quest, Estefania</option><option>Guercio, Oscar</option><option>Risso, Tobias</option><option>Fernandez, Oscar</option><option>Leyva, Veronica</option><option>Loseco, Ezequiel</option><option>Mancilla, Lucas</option><option>Fernandez, Facundo</option><option>Villalba, Mariana</option><option>Rosas, Federico</option><option>Hipolito, Ailen</option><option>Valenzuela, Joel</option><option>Cabanillas, Jonathan</option><option>Piedra, Emanuel</option><option>Tito, Bruno</option><option>Suarez, Facundo</option><option>Lopez, Facundo</option></select>
+          <label>Grado</label>
+          <input type="text" id="grado-chofer" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
         </div>
       </div>
       <div class="fila-dos">
         <div>
-          <label>Grado — Componente 2</label>
-          <select id="grado-comp2">
-            <option value="">— Grado —</option>
-            <option>OF. Auxiliar</option><option>Ayudante Mayor</option><option>Ayudante Principal</option>
-            <option>Ayudante de 1°</option><option>Ayudante</option><option>Subayudante</option>
-            <option>Bombero</option>
+          <label>Componente 1</label>
+          <select id="nombre-comp1" onchange="autoGrado(this,'grado-comp1')">
+<option value="">— Seleccionar —</option>
+            <option>Coronel, Pablo</option>
+            <option>Gimenez, Jonatan</option>
+            <option>Ortiz, Hernan</option>
+            <option>Cocini, Maximiliano</option>
+            <option>Vicente, Guillermo</option>
+            <option>Benigni, Jonatan</option>
+            <option>Larrosa, Maximiliano</option>
+            <option>Geiser, Eduardo</option>
+            <option>Bonavita, Damian</option>
+            <option>Toledo, Emiliano</option>
+            <option>Mansilla, Mailen</option>
+            <option>Lopez, Maximiliano</option>
+            <option>Cordovero, Pablo</option>
+            <option>Giacobino, Sebastian</option>
+            <option>Matrelo, Nicolas</option>
+            <option>Peralta, Jose Luis</option>
+            <option>Ludueña, Osvaldo</option>
+            <option>Ferrer, Juan Carlos</option>
+            <option>Bordon, Jose</option>
+            <option>Bugari, Alex</option>
+            <option>Antonio, Agustina</option>
+            <option>Maidana, Sebastian</option>
+            <option>Sanchez, Tamara</option>
+            <option>Tellechea, Milagros</option>
+            <option>Martinez, Silvio</option>
+            <option>Yuli, Luis Alberto</option>
+            <option>García, Juan Pablo</option>
+            <option>Amuchastegui, Daniel</option>
+            <option>Rosas, Luis</option>
+            <option>Rosas, Pedro</option>
+            <option>Jaime, Mauro</option>
+            <option>Domínguez, Cristian</option>
+            <option>Rodríguez, Sebastián</option>
+            <option>Tellechea, Leonardo</option>
+            <option>Barragan, Javier</option>
+            <option>Bohler, Damian</option>
+            <option>Ferrandi, Mauro</option>
+            <option>Velozo, Javier</option>
+            <option>Rasquetti, Marcos</option>
+            <option>Montovio, Mariano</option>
+            <option>Salerno, Yamila</option>
+            <option>Bugari, Dylan</option>
+            <option>Silva, Jonathan</option>
+            <option>Roldan, Nicolas</option>
+            <option>Piñeiro, Daniel</option>
+            <option>Brito, Franco</option>
+            <option>Antilef, Jorge</option>
+            <option>Cardiello, Elias</option>
+            <option>Mujica, Sabrina</option>
+            <option>Higa, Nestor</option>
+            <option>Coronel, Camila</option>
+            <option>Rivero Lodoli, Jorge</option>
+            <option>Cordovero, Tomas</option>
+            <option>Bordon, Nestor</option>
+            <option>Lopez, Matias</option>
+            <option>Monzon, Alejandra</option>
+            <option>Guillermo, Daiana</option>
+            <option>Perez Loayza, Fiamma</option>
+            <option>Colchado, Lucas</option>
+            <option>Smith, Cecilia</option>
+            <option>Stur, Gaston</option>
+            <option>Ovelar, Gretel Mayra</option>
+            <option>Tojo, Fernando</option>
+            <option>Avalos, Melania</option>
+            <option>Rios, Camila</option>
+            <option>Diaz, Samira</option>
+            <option>Mujica, Alexander</option>
+            <option>Rodriguez, Sol Morena</option>
+            <option>Maidana, Facundo</option>
+            <option>Quest, Estefania</option>
+            <option>Guercio, Oscar</option>
+            <option>Risso, Tobias</option>
+            <option>Fernandez, Oscar</option>
+            <option>Leyva, Veronica</option>
+            <option>Loseco, Ezequiel</option>
+            <option>Mancilla, Lucas</option>
+            <option>Fernandez, Facundo</option>
+            <option>Villalba, Mariana</option>
+            <option>Rosas, Federico</option>
+            <option>Hipolito, Ailen</option>
+            <option>Valenzuela, Joel</option>
+            <option>Cabanillas, Jonathan</option>
+            <option>Piedra, Emanuel</option>
+            <option>Tito, Bruno</option>
+            <option>Suarez, Facundo</option>
+            <option>Lopez, Facundo</option>
           </select>
         </div>
         <div>
-          <label>Nombre — Componente 2</label>
-          <select id="nombre-comp2"><option value="">— Seleccionar —</option><option>Coronel, Pablo</option><option>Gimenez, Jonatan</option><option>Ortiz, Hernan</option><option>Cocini, Maximiliano</option><option>Vicente, Guillermo</option><option>Benigni, Jonatan</option><option>Larrosa, Maximiliano</option><option>Geiser, Eduardo</option><option>Bonavita, Damian</option><option>Toledo, Emiliano</option><option>Mansilla, Mailen</option><option>Lopez, Maximiliano</option><option>Cordovero, Pablo</option><option>Giacobino, Sebastian</option><option>Matrelo, Nicolas</option><option>Peralta, Jose Luis</option><option>Ludueña, Osvaldo</option><option>Ferrer, Juan Carlos</option><option>Bordon, Jose</option><option>Bugari, Alex</option><option>Antonio, Agustina</option><option>Maidana, Sebastian</option><option>Sanchez, Tamara</option><option>Tellechea, Milagros</option><option>Martinez, Silvio</option><option>Yuli, Luis Alberto</option><option>García, Juan Pablo</option><option>Amuchastegui, Daniel</option><option>Rosas, Luis</option><option>Rosas, Pedro</option><option>Jaime, Mauro</option><option>Domínguez, Cristian</option><option>Rodríguez, Sebastián</option><option>Tellechea, Leonardo</option><option>Barragan, Javier</option><option>Bohler, Damian</option><option>Ferrandi, Mauro</option><option>Velozo, Javier</option><option>Rasquetti, Marcos</option><option>Montovio, Mariano</option><option>Salerno, Yamila</option><option>Bugari, Dylan</option><option>Silva, Jonathan</option><option>Roldan, Nicolas</option><option>Piñeiro, Daniel</option><option>Brito, Franco</option><option>Antilef, Jorge</option><option>Cardiello, Elias</option><option>Mujica, Sabrina</option><option>Higa, Nestor</option><option>Coronel, Camila</option><option>Rivero Lodoli, Jorge</option><option>Cordovero, Tomas</option><option>Bordon, Nestor</option><option>Lopez, Matias</option><option>Monzon, Alejandra</option><option>Guillermo, Daiana</option><option>Perez Loayza, Fiamma</option><option>Colchado, Lucas</option><option>Smith, Cecilia</option><option>Stur, Gaston</option><option>Ovelar, Gretel Mayra</option><option>Tojo, Fernando</option><option>Avalos, Melania</option><option>Rios, Camila</option><option>Diaz, Samira</option><option>Mujica, Alexander</option><option>Rodriguez, Sol Morena</option><option>Maidana, Facundo</option><option>Quest, Estefania</option><option>Guercio, Oscar</option><option>Risso, Tobias</option><option>Fernandez, Oscar</option><option>Leyva, Veronica</option><option>Loseco, Ezequiel</option><option>Mancilla, Lucas</option><option>Fernandez, Facundo</option><option>Villalba, Mariana</option><option>Rosas, Federico</option><option>Hipolito, Ailen</option><option>Valenzuela, Joel</option><option>Cabanillas, Jonathan</option><option>Piedra, Emanuel</option><option>Tito, Bruno</option><option>Suarez, Facundo</option><option>Lopez, Facundo</option></select>
+          <label>Grado</label>
+          <input type="text" id="grado-comp1" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
         </div>
       </div>
       <div class="fila-dos">
         <div>
-          <label>Grado — Componente 3</label>
-          <select id="grado-comp3">
-            <option value="">— Grado —</option>
-            <option>OF. Auxiliar</option><option>Ayudante Mayor</option><option>Ayudante Principal</option>
-            <option>Ayudante de 1°</option><option>Ayudante</option><option>Subayudante</option>
-            <option>Bombero</option>
+          <label>Componente 2</label>
+          <select id="nombre-comp2" onchange="autoGrado(this,'grado-comp2')">
+<option value="">— Seleccionar —</option>
+            <option>Coronel, Pablo</option>
+            <option>Gimenez, Jonatan</option>
+            <option>Ortiz, Hernan</option>
+            <option>Cocini, Maximiliano</option>
+            <option>Vicente, Guillermo</option>
+            <option>Benigni, Jonatan</option>
+            <option>Larrosa, Maximiliano</option>
+            <option>Geiser, Eduardo</option>
+            <option>Bonavita, Damian</option>
+            <option>Toledo, Emiliano</option>
+            <option>Mansilla, Mailen</option>
+            <option>Lopez, Maximiliano</option>
+            <option>Cordovero, Pablo</option>
+            <option>Giacobino, Sebastian</option>
+            <option>Matrelo, Nicolas</option>
+            <option>Peralta, Jose Luis</option>
+            <option>Ludueña, Osvaldo</option>
+            <option>Ferrer, Juan Carlos</option>
+            <option>Bordon, Jose</option>
+            <option>Bugari, Alex</option>
+            <option>Antonio, Agustina</option>
+            <option>Maidana, Sebastian</option>
+            <option>Sanchez, Tamara</option>
+            <option>Tellechea, Milagros</option>
+            <option>Martinez, Silvio</option>
+            <option>Yuli, Luis Alberto</option>
+            <option>García, Juan Pablo</option>
+            <option>Amuchastegui, Daniel</option>
+            <option>Rosas, Luis</option>
+            <option>Rosas, Pedro</option>
+            <option>Jaime, Mauro</option>
+            <option>Domínguez, Cristian</option>
+            <option>Rodríguez, Sebastián</option>
+            <option>Tellechea, Leonardo</option>
+            <option>Barragan, Javier</option>
+            <option>Bohler, Damian</option>
+            <option>Ferrandi, Mauro</option>
+            <option>Velozo, Javier</option>
+            <option>Rasquetti, Marcos</option>
+            <option>Montovio, Mariano</option>
+            <option>Salerno, Yamila</option>
+            <option>Bugari, Dylan</option>
+            <option>Silva, Jonathan</option>
+            <option>Roldan, Nicolas</option>
+            <option>Piñeiro, Daniel</option>
+            <option>Brito, Franco</option>
+            <option>Antilef, Jorge</option>
+            <option>Cardiello, Elias</option>
+            <option>Mujica, Sabrina</option>
+            <option>Higa, Nestor</option>
+            <option>Coronel, Camila</option>
+            <option>Rivero Lodoli, Jorge</option>
+            <option>Cordovero, Tomas</option>
+            <option>Bordon, Nestor</option>
+            <option>Lopez, Matias</option>
+            <option>Monzon, Alejandra</option>
+            <option>Guillermo, Daiana</option>
+            <option>Perez Loayza, Fiamma</option>
+            <option>Colchado, Lucas</option>
+            <option>Smith, Cecilia</option>
+            <option>Stur, Gaston</option>
+            <option>Ovelar, Gretel Mayra</option>
+            <option>Tojo, Fernando</option>
+            <option>Avalos, Melania</option>
+            <option>Rios, Camila</option>
+            <option>Diaz, Samira</option>
+            <option>Mujica, Alexander</option>
+            <option>Rodriguez, Sol Morena</option>
+            <option>Maidana, Facundo</option>
+            <option>Quest, Estefania</option>
+            <option>Guercio, Oscar</option>
+            <option>Risso, Tobias</option>
+            <option>Fernandez, Oscar</option>
+            <option>Leyva, Veronica</option>
+            <option>Loseco, Ezequiel</option>
+            <option>Mancilla, Lucas</option>
+            <option>Fernandez, Facundo</option>
+            <option>Villalba, Mariana</option>
+            <option>Rosas, Federico</option>
+            <option>Hipolito, Ailen</option>
+            <option>Valenzuela, Joel</option>
+            <option>Cabanillas, Jonathan</option>
+            <option>Piedra, Emanuel</option>
+            <option>Tito, Bruno</option>
+            <option>Suarez, Facundo</option>
+            <option>Lopez, Facundo</option>
           </select>
         </div>
         <div>
-          <label>Nombre — Componente 3</label>
-          <select id="nombre-comp3"><option value="">— Seleccionar —</option><option>Coronel, Pablo</option><option>Gimenez, Jonatan</option><option>Ortiz, Hernan</option><option>Cocini, Maximiliano</option><option>Vicente, Guillermo</option><option>Benigni, Jonatan</option><option>Larrosa, Maximiliano</option><option>Geiser, Eduardo</option><option>Bonavita, Damian</option><option>Toledo, Emiliano</option><option>Mansilla, Mailen</option><option>Lopez, Maximiliano</option><option>Cordovero, Pablo</option><option>Giacobino, Sebastian</option><option>Matrelo, Nicolas</option><option>Peralta, Jose Luis</option><option>Ludueña, Osvaldo</option><option>Ferrer, Juan Carlos</option><option>Bordon, Jose</option><option>Bugari, Alex</option><option>Antonio, Agustina</option><option>Maidana, Sebastian</option><option>Sanchez, Tamara</option><option>Tellechea, Milagros</option><option>Martinez, Silvio</option><option>Yuli, Luis Alberto</option><option>García, Juan Pablo</option><option>Amuchastegui, Daniel</option><option>Rosas, Luis</option><option>Rosas, Pedro</option><option>Jaime, Mauro</option><option>Domínguez, Cristian</option><option>Rodríguez, Sebastián</option><option>Tellechea, Leonardo</option><option>Barragan, Javier</option><option>Bohler, Damian</option><option>Ferrandi, Mauro</option><option>Velozo, Javier</option><option>Rasquetti, Marcos</option><option>Montovio, Mariano</option><option>Salerno, Yamila</option><option>Bugari, Dylan</option><option>Silva, Jonathan</option><option>Roldan, Nicolas</option><option>Piñeiro, Daniel</option><option>Brito, Franco</option><option>Antilef, Jorge</option><option>Cardiello, Elias</option><option>Mujica, Sabrina</option><option>Higa, Nestor</option><option>Coronel, Camila</option><option>Rivero Lodoli, Jorge</option><option>Cordovero, Tomas</option><option>Bordon, Nestor</option><option>Lopez, Matias</option><option>Monzon, Alejandra</option><option>Guillermo, Daiana</option><option>Perez Loayza, Fiamma</option><option>Colchado, Lucas</option><option>Smith, Cecilia</option><option>Stur, Gaston</option><option>Ovelar, Gretel Mayra</option><option>Tojo, Fernando</option><option>Avalos, Melania</option><option>Rios, Camila</option><option>Diaz, Samira</option><option>Mujica, Alexander</option><option>Rodriguez, Sol Morena</option><option>Maidana, Facundo</option><option>Quest, Estefania</option><option>Guercio, Oscar</option><option>Risso, Tobias</option><option>Fernandez, Oscar</option><option>Leyva, Veronica</option><option>Loseco, Ezequiel</option><option>Mancilla, Lucas</option><option>Fernandez, Facundo</option><option>Villalba, Mariana</option><option>Rosas, Federico</option><option>Hipolito, Ailen</option><option>Valenzuela, Joel</option><option>Cabanillas, Jonathan</option><option>Piedra, Emanuel</option><option>Tito, Bruno</option><option>Suarez, Facundo</option><option>Lopez, Facundo</option></select>
+          <label>Grado</label>
+          <input type="text" id="grado-comp2" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
+        </div>
+      </div>
+      <div class="fila-dos">
+        <div>
+          <label>Componente 3</label>
+          <select id="nombre-comp3" onchange="autoGrado(this,'grado-comp3')">
+<option value="">— Seleccionar —</option>
+            <option>Coronel, Pablo</option>
+            <option>Gimenez, Jonatan</option>
+            <option>Ortiz, Hernan</option>
+            <option>Cocini, Maximiliano</option>
+            <option>Vicente, Guillermo</option>
+            <option>Benigni, Jonatan</option>
+            <option>Larrosa, Maximiliano</option>
+            <option>Geiser, Eduardo</option>
+            <option>Bonavita, Damian</option>
+            <option>Toledo, Emiliano</option>
+            <option>Mansilla, Mailen</option>
+            <option>Lopez, Maximiliano</option>
+            <option>Cordovero, Pablo</option>
+            <option>Giacobino, Sebastian</option>
+            <option>Matrelo, Nicolas</option>
+            <option>Peralta, Jose Luis</option>
+            <option>Ludueña, Osvaldo</option>
+            <option>Ferrer, Juan Carlos</option>
+            <option>Bordon, Jose</option>
+            <option>Bugari, Alex</option>
+            <option>Antonio, Agustina</option>
+            <option>Maidana, Sebastian</option>
+            <option>Sanchez, Tamara</option>
+            <option>Tellechea, Milagros</option>
+            <option>Martinez, Silvio</option>
+            <option>Yuli, Luis Alberto</option>
+            <option>García, Juan Pablo</option>
+            <option>Amuchastegui, Daniel</option>
+            <option>Rosas, Luis</option>
+            <option>Rosas, Pedro</option>
+            <option>Jaime, Mauro</option>
+            <option>Domínguez, Cristian</option>
+            <option>Rodríguez, Sebastián</option>
+            <option>Tellechea, Leonardo</option>
+            <option>Barragan, Javier</option>
+            <option>Bohler, Damian</option>
+            <option>Ferrandi, Mauro</option>
+            <option>Velozo, Javier</option>
+            <option>Rasquetti, Marcos</option>
+            <option>Montovio, Mariano</option>
+            <option>Salerno, Yamila</option>
+            <option>Bugari, Dylan</option>
+            <option>Silva, Jonathan</option>
+            <option>Roldan, Nicolas</option>
+            <option>Piñeiro, Daniel</option>
+            <option>Brito, Franco</option>
+            <option>Antilef, Jorge</option>
+            <option>Cardiello, Elias</option>
+            <option>Mujica, Sabrina</option>
+            <option>Higa, Nestor</option>
+            <option>Coronel, Camila</option>
+            <option>Rivero Lodoli, Jorge</option>
+            <option>Cordovero, Tomas</option>
+            <option>Bordon, Nestor</option>
+            <option>Lopez, Matias</option>
+            <option>Monzon, Alejandra</option>
+            <option>Guillermo, Daiana</option>
+            <option>Perez Loayza, Fiamma</option>
+            <option>Colchado, Lucas</option>
+            <option>Smith, Cecilia</option>
+            <option>Stur, Gaston</option>
+            <option>Ovelar, Gretel Mayra</option>
+            <option>Tojo, Fernando</option>
+            <option>Avalos, Melania</option>
+            <option>Rios, Camila</option>
+            <option>Diaz, Samira</option>
+            <option>Mujica, Alexander</option>
+            <option>Rodriguez, Sol Morena</option>
+            <option>Maidana, Facundo</option>
+            <option>Quest, Estefania</option>
+            <option>Guercio, Oscar</option>
+            <option>Risso, Tobias</option>
+            <option>Fernandez, Oscar</option>
+            <option>Leyva, Veronica</option>
+            <option>Loseco, Ezequiel</option>
+            <option>Mancilla, Lucas</option>
+            <option>Fernandez, Facundo</option>
+            <option>Villalba, Mariana</option>
+            <option>Rosas, Federico</option>
+            <option>Hipolito, Ailen</option>
+            <option>Valenzuela, Joel</option>
+            <option>Cabanillas, Jonathan</option>
+            <option>Piedra, Emanuel</option>
+            <option>Tito, Bruno</option>
+            <option>Suarez, Facundo</option>
+            <option>Lopez, Facundo</option>
+          </select>
+        </div>
+        <div>
+          <label>Grado</label>
+          <input type="text" id="grado-comp3" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
+        </div>
+      </div>
+      <div class="fila-dos">
+        <div>
+          <label>Componente 4</label>
+          <select id="nombre-comp4" onchange="autoGrado(this,'grado-comp4')">
+<option value="">— Seleccionar —</option>
+            <option>Coronel, Pablo</option>
+            <option>Gimenez, Jonatan</option>
+            <option>Ortiz, Hernan</option>
+            <option>Cocini, Maximiliano</option>
+            <option>Vicente, Guillermo</option>
+            <option>Benigni, Jonatan</option>
+            <option>Larrosa, Maximiliano</option>
+            <option>Geiser, Eduardo</option>
+            <option>Bonavita, Damian</option>
+            <option>Toledo, Emiliano</option>
+            <option>Mansilla, Mailen</option>
+            <option>Lopez, Maximiliano</option>
+            <option>Cordovero, Pablo</option>
+            <option>Giacobino, Sebastian</option>
+            <option>Matrelo, Nicolas</option>
+            <option>Peralta, Jose Luis</option>
+            <option>Ludueña, Osvaldo</option>
+            <option>Ferrer, Juan Carlos</option>
+            <option>Bordon, Jose</option>
+            <option>Bugari, Alex</option>
+            <option>Antonio, Agustina</option>
+            <option>Maidana, Sebastian</option>
+            <option>Sanchez, Tamara</option>
+            <option>Tellechea, Milagros</option>
+            <option>Martinez, Silvio</option>
+            <option>Yuli, Luis Alberto</option>
+            <option>García, Juan Pablo</option>
+            <option>Amuchastegui, Daniel</option>
+            <option>Rosas, Luis</option>
+            <option>Rosas, Pedro</option>
+            <option>Jaime, Mauro</option>
+            <option>Domínguez, Cristian</option>
+            <option>Rodríguez, Sebastián</option>
+            <option>Tellechea, Leonardo</option>
+            <option>Barragan, Javier</option>
+            <option>Bohler, Damian</option>
+            <option>Ferrandi, Mauro</option>
+            <option>Velozo, Javier</option>
+            <option>Rasquetti, Marcos</option>
+            <option>Montovio, Mariano</option>
+            <option>Salerno, Yamila</option>
+            <option>Bugari, Dylan</option>
+            <option>Silva, Jonathan</option>
+            <option>Roldan, Nicolas</option>
+            <option>Piñeiro, Daniel</option>
+            <option>Brito, Franco</option>
+            <option>Antilef, Jorge</option>
+            <option>Cardiello, Elias</option>
+            <option>Mujica, Sabrina</option>
+            <option>Higa, Nestor</option>
+            <option>Coronel, Camila</option>
+            <option>Rivero Lodoli, Jorge</option>
+            <option>Cordovero, Tomas</option>
+            <option>Bordon, Nestor</option>
+            <option>Lopez, Matias</option>
+            <option>Monzon, Alejandra</option>
+            <option>Guillermo, Daiana</option>
+            <option>Perez Loayza, Fiamma</option>
+            <option>Colchado, Lucas</option>
+            <option>Smith, Cecilia</option>
+            <option>Stur, Gaston</option>
+            <option>Ovelar, Gretel Mayra</option>
+            <option>Tojo, Fernando</option>
+            <option>Avalos, Melania</option>
+            <option>Rios, Camila</option>
+            <option>Diaz, Samira</option>
+            <option>Mujica, Alexander</option>
+            <option>Rodriguez, Sol Morena</option>
+            <option>Maidana, Facundo</option>
+            <option>Quest, Estefania</option>
+            <option>Guercio, Oscar</option>
+            <option>Risso, Tobias</option>
+            <option>Fernandez, Oscar</option>
+            <option>Leyva, Veronica</option>
+            <option>Loseco, Ezequiel</option>
+            <option>Mancilla, Lucas</option>
+            <option>Fernandez, Facundo</option>
+            <option>Villalba, Mariana</option>
+            <option>Rosas, Federico</option>
+            <option>Hipolito, Ailen</option>
+            <option>Valenzuela, Joel</option>
+            <option>Cabanillas, Jonathan</option>
+            <option>Piedra, Emanuel</option>
+            <option>Tito, Bruno</option>
+            <option>Suarez, Facundo</option>
+            <option>Lopez, Facundo</option>
+          </select>
+        </div>
+        <div>
+          <label>Grado</label>
+          <input type="text" id="grado-comp4" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
+        </div>
+      </div>
+      <div class="fila-dos">
+        <div>
+          <label>Componente 5</label>
+          <select id="nombre-comp5" onchange="autoGrado(this,'grado-comp5')">
+<option value="">— Seleccionar —</option>
+            <option>Coronel, Pablo</option>
+            <option>Gimenez, Jonatan</option>
+            <option>Ortiz, Hernan</option>
+            <option>Cocini, Maximiliano</option>
+            <option>Vicente, Guillermo</option>
+            <option>Benigni, Jonatan</option>
+            <option>Larrosa, Maximiliano</option>
+            <option>Geiser, Eduardo</option>
+            <option>Bonavita, Damian</option>
+            <option>Toledo, Emiliano</option>
+            <option>Mansilla, Mailen</option>
+            <option>Lopez, Maximiliano</option>
+            <option>Cordovero, Pablo</option>
+            <option>Giacobino, Sebastian</option>
+            <option>Matrelo, Nicolas</option>
+            <option>Peralta, Jose Luis</option>
+            <option>Ludueña, Osvaldo</option>
+            <option>Ferrer, Juan Carlos</option>
+            <option>Bordon, Jose</option>
+            <option>Bugari, Alex</option>
+            <option>Antonio, Agustina</option>
+            <option>Maidana, Sebastian</option>
+            <option>Sanchez, Tamara</option>
+            <option>Tellechea, Milagros</option>
+            <option>Martinez, Silvio</option>
+            <option>Yuli, Luis Alberto</option>
+            <option>García, Juan Pablo</option>
+            <option>Amuchastegui, Daniel</option>
+            <option>Rosas, Luis</option>
+            <option>Rosas, Pedro</option>
+            <option>Jaime, Mauro</option>
+            <option>Domínguez, Cristian</option>
+            <option>Rodríguez, Sebastián</option>
+            <option>Tellechea, Leonardo</option>
+            <option>Barragan, Javier</option>
+            <option>Bohler, Damian</option>
+            <option>Ferrandi, Mauro</option>
+            <option>Velozo, Javier</option>
+            <option>Rasquetti, Marcos</option>
+            <option>Montovio, Mariano</option>
+            <option>Salerno, Yamila</option>
+            <option>Bugari, Dylan</option>
+            <option>Silva, Jonathan</option>
+            <option>Roldan, Nicolas</option>
+            <option>Piñeiro, Daniel</option>
+            <option>Brito, Franco</option>
+            <option>Antilef, Jorge</option>
+            <option>Cardiello, Elias</option>
+            <option>Mujica, Sabrina</option>
+            <option>Higa, Nestor</option>
+            <option>Coronel, Camila</option>
+            <option>Rivero Lodoli, Jorge</option>
+            <option>Cordovero, Tomas</option>
+            <option>Bordon, Nestor</option>
+            <option>Lopez, Matias</option>
+            <option>Monzon, Alejandra</option>
+            <option>Guillermo, Daiana</option>
+            <option>Perez Loayza, Fiamma</option>
+            <option>Colchado, Lucas</option>
+            <option>Smith, Cecilia</option>
+            <option>Stur, Gaston</option>
+            <option>Ovelar, Gretel Mayra</option>
+            <option>Tojo, Fernando</option>
+            <option>Avalos, Melania</option>
+            <option>Rios, Camila</option>
+            <option>Diaz, Samira</option>
+            <option>Mujica, Alexander</option>
+            <option>Rodriguez, Sol Morena</option>
+            <option>Maidana, Facundo</option>
+            <option>Quest, Estefania</option>
+            <option>Guercio, Oscar</option>
+            <option>Risso, Tobias</option>
+            <option>Fernandez, Oscar</option>
+            <option>Leyva, Veronica</option>
+            <option>Loseco, Ezequiel</option>
+            <option>Mancilla, Lucas</option>
+            <option>Fernandez, Facundo</option>
+            <option>Villalba, Mariana</option>
+            <option>Rosas, Federico</option>
+            <option>Hipolito, Ailen</option>
+            <option>Valenzuela, Joel</option>
+            <option>Cabanillas, Jonathan</option>
+            <option>Piedra, Emanuel</option>
+            <option>Tito, Bruno</option>
+            <option>Suarez, Facundo</option>
+            <option>Lopez, Facundo</option>
+          </select>
+        </div>
+        <div>
+          <label>Grado</label>
+          <input type="text" id="grado-comp5" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
         </div>
       </div>
     </div>
@@ -823,7 +1258,46 @@ function crearTorta(id, labels, data, colors){
     }
   });
 }
-// ── FIREBASE ──
+// ── DICCIONARIO GRADOS ──
+const PERSONAL = {
+  'Coronel, Pablo':'OF. Auxiliar','Gimenez, Jonatan':'OF. Auxiliar','Ortiz, Hernan':'OF. Auxiliar',
+  'Cocini, Maximiliano':'Ayudante Mayor','Vicente, Guillermo':'Ayudante Mayor','Benigni, Jonatan':'Ayudante Mayor',
+  'Larrosa, Maximiliano':'Ayudante Mayor','Geiser, Eduardo':'Ayudante Mayor',
+  'Bonavita, Damian':'Ayudante Principal','Toledo, Emiliano':'Ayudante Principal','Mansilla, Mailen':'Ayudante Principal',
+  'Lopez, Maximiliano':'Ayudante de 1°','Cordovero, Pablo':'Ayudante de 1°','Giacobino, Sebastian':'Ayudante de 1°',
+  'Matrelo, Nicolas':'Ayudante de 1°','Peralta, Jose Luis':'Ayudante de 1°','Ludueña, Osvaldo':'Ayudante de 1°',
+  'Ferrer, Juan Carlos':'Ayudante','Bordon, Jose':'Ayudante','Bugari, Alex':'Ayudante',
+  'Antonio, Agustina':'Subayudante','Maidana, Sebastian':'Subayudante','Sanchez, Tamara':'Subayudante',
+  'Tellechea, Milagros':'Subayudante','Martinez, Silvio':'Subayudante',
+  'Yuli, Luis Alberto':'Bombero','García, Juan Pablo':'Bombero','Amuchastegui, Daniel':'Bombero',
+  'Rosas, Luis':'Bombero','Rosas, Pedro':'Bombero','Jaime, Mauro':'Bombero','Domínguez, Cristian':'Bombero',
+  'Rodríguez, Sebastián':'Bombero','Tellechea, Leonardo':'Bombero','Barragan, Javier':'Bombero',
+  'Bohler, Damian':'Bombero','Ferrandi, Mauro':'Bombero','Velozo, Javier':'Bombero',
+  'Rasquetti, Marcos':'Bombero','Montovio, Mariano':'Bombero','Salerno, Yamila':'Bombero',
+  'Bugari, Dylan':'Bombero','Silva, Jonathan':'Bombero','Roldan, Nicolas':'Bombero',
+  'Piñeiro, Daniel':'Bombero','Brito, Franco':'Bombero','Antilef, Jorge':'Bombero',
+  'Cardiello, Elias':'Bombero','Mujica, Sabrina':'Bombero','Higa, Nestor':'Bombero',
+  'Coronel, Camila':'Bombero','Rivero Lodoli, Jorge':'Bombero','Cordovero, Tomas':'Bombero',
+  'Bordon, Nestor':'Bombero','Lopez, Matias':'Bombero','Monzon, Alejandra':'Bombero',
+  'Guillermo, Daiana':'Bombero','Perez Loayza, Fiamma':'Bombero','Colchado, Lucas':'Bombero',
+  'Smith, Cecilia':'Bombero','Stur, Gaston':'Bombero','Ovelar, Gretel Mayra':'Bombero',
+  'Tojo, Fernando':'Bombero','Avalos, Melania':'Bombero','Rios, Camila':'Bombero',
+  'Diaz, Samira':'Bombero','Mujica, Alexander':'Bombero','Rodriguez, Sol Morena':'Bombero',
+  'Maidana, Facundo':'Bombero','Quest, Estefania':'Bombero','Guercio, Oscar':'Bombero',
+  'Risso, Tobias':'Bombero','Fernandez, Oscar':'Bombero','Leyva, Veronica':'Bombero',
+  'Loseco, Ezequiel':'Bombero','Mancilla, Lucas':'Bombero','Fernandez, Facundo':'Bombero',
+  'Villalba, Mariana':'Bombero','Rosas, Federico':'Bombero','Hipolito, Ailen':'Bombero',
+  'Valenzuela, Joel':'Bombero','Cabanillas, Jonathan':'Bombero','Piedra, Emanuel':'Bombero',
+  'Tito, Bruno':'Bombero','Suarez, Facundo':'Bombero','Lopez, Facundo':'Bombero'
+};
+
+function autoGrado(nombreSel, gradoId){
+  const nombre = nombreSel.value;
+  const gradoEl = document.getElementById(gradoId);
+  if(!gradoEl) return;
+  gradoEl.value = nombre && PERSONAL[nombre] ? PERSONAL[nombre] : '';
+  actualizarPreview();
+}
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc, deleteDoc, doc, onSnapshot, query, orderBy, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
@@ -842,6 +1316,7 @@ let servicios = [];
 let ultimoServicio = 0;
 
 // Exponer funciones al scope global (necesario por onclick en HTML)
+window.autoGrado = autoGrado;
 window.cambiarTab = cambiarTab;
 window.agregarMovil = agregarMovil;
 window.chkOtroMovil = chkOtroMovil;
@@ -935,7 +1410,7 @@ function buildMensaje(){
   const nombreCargo=document.getElementById('nombre-cargo').value.trim();
   const gradoChofer=document.getElementById('grado-chofer').value;
   const nombreChofer=document.getElementById('nombre-chofer').value.trim();
-  const comp=[1,2,3].map(n=>({grado:document.getElementById(`grado-comp${n}`).value,nombre:document.getElementById(`nombre-comp${n}`).value.trim()}));
+  const comp=[1,2,3,4,5].map(n=>({grado:document.getElementById(`grado-comp${n}`).value,nombre:document.getElementById(`nombre-comp${n}`).value.trim()}));
   const folio=document.getElementById('folio').value.trim();
   const libro=document.getElementById('libro').value.trim();
   const extra='';
