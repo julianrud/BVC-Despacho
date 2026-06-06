@@ -1507,11 +1507,26 @@ function renderDashboard(){
   const contenido=document.getElementById('dash-contenido');
   if(!servicios.length){sinDatos.style.display='block';contenido.style.display='none';return;}
   sinDatos.style.display='none';contenido.style.display='block';
-  const total=servicios.length;
+
+  // Deduplicar por número de servicio
+  const vistos=new Set();
+  const serviciosUnicos=servicios.filter(s=>{
+    const key=s.num?String(s.num):String(s.id);
+    if(vistos.has(key)) return false;
+    vistos.add(key); return true;
+  });
+
+  const total=serviciosUnicos.length;
   const tipoMap={},movilMap={},cargoMap={};
-  servicios.forEach(s=>{
+
+  serviciosUnicos.forEach(s=>{
     tipoMap[s.tipo]=(tipoMap[s.tipo]||0)+1;
-    (s.moviles||[]).forEach(m=>{movilMap[m]=(movilMap[m]||0)+1;});
+    (s.moviles||[]).forEach(m=>{
+      if(!m||!m.trim()) return;
+      const norm='Móvil '+m.replace(/^[Mm][óo]vil\s*/,'').trim();
+      if(norm==='Móvil') return;
+      movilMap[norm]=(movilMap[norm]||0)+1;
+    });
     if(s.cargo&&s.cargo!=='—') cargoMap[s.cargo]=(cargoMap[s.cargo]||0)+1;
   });
   document.getElementById('dash-metrics').innerHTML=[
