@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cuartel Bomberos Cañuelas</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--rojo:#d32f2f;--rojo-oscuro:#8b0000;--rojo-vivo:#ff1a1a;--amarillo:#f5c400;--negro:#0a0a0a;--gris-oscuro:#141414;--gris-medio:#1e1e1e;--gris-borde:#2e2e2e;--gris-texto:#888;--blanco:#f5f5f5;--fuente-titulo:'Bebas Neue',sans-serif;--fuente-mono:'IBM Plex Mono',monospace;--fuente-cuerpo:'IBM Plex Sans',sans-serif;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--negro);color:var(--blanco);font-family:var(--fuente-cuerpo);min-height:100vh;overflow-x:hidden;}
+  header{background:linear-gradient(135deg,var(--rojo-oscuro) 0%,var(--rojo) 60%,#ff4444 100%);padding:18px 24px 0;position:relative;overflow:hidden;}
+  header::after{content:'';position:absolute;right:-30px;top:-30px;width:180px;height:180px;border:3px solid rgba(255,255,255,0.08);border-radius:50%;}
+  .header-top{display:flex;align-items:center;gap:16px;padding-bottom:14px;}
+  .header-icon{font-size:40px;line-height:1;}
+  .header-texto h1{font-family:var(--fuente-titulo);font-size:28px;letter-spacing:2px;color:#fff;line-height:1;}
+  .header-texto p{font-family:var(--fuente-mono);font-size:11px;color:rgba(255,255,255,0.7);letter-spacing:1px;margin-top:3px;}
+  .tabs-nav{display:flex;border-top:1px solid rgba(255,255,255,0.15);}
+  .tab-btn{flex:1;background:transparent;border:none;color:rgba(255,255,255,0.55);font-family:var(--fuente-titulo);font-size:17px;letter-spacing:2px;padding:12px 8px;cursor:pointer;border-bottom:3px solid transparent;transition:all 0.2s;}
+  .tab-btn.activa{color:#fff;border-bottom-color:var(--amarillo);}
+  .tab-btn:hover:not(.activa){color:rgba(255,255,255,0.85);}
+  .pagina{display:none;}
+  .pagina.visible{display:block;}
+  .container{padding:20px 16px;max-width:700px;margin:0 auto;}
+  .seccion{background:var(--gris-medio);border:1px solid var(--gris-borde);border-radius:4px;margin-bottom:16px;overflow:hidden;}
+  .seccion-header{background:var(--gris-oscuro);border-bottom:2px solid var(--rojo);padding:10px 16px;font-family:var(--fuente-titulo);font-size:16px;letter-spacing:2px;color:var(--amarillo);display:flex;align-items:center;gap:8px;}
+  .seccion-body{padding:16px;display:flex;flex-direction:column;gap:12px;}
+  label{font-family:var(--fuente-mono);font-size:10px;letter-spacing:1.5px;color:var(--gris-texto);text-transform:uppercase;display:block;margin-bottom:5px;}
+  input[type="text"],input[type="number"],select,textarea{width:100%;background:var(--negro);border:1px solid var(--gris-borde);border-radius:3px;color:var(--blanco);font-family:var(--fuente-cuerpo);font-size:15px;padding:10px 12px;outline:none;transition:border-color 0.2s;-webkit-appearance:none;}
+  input:focus,select:focus,textarea:focus{border-color:var(--rojo);}
+  select option{background:var(--gris-oscuro);}
+  textarea{resize:vertical;min-height:60px;}
+  .fila-dos{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .servicio-row{display:flex;gap:8px;align-items:flex-end;}
+  .servicio-row input{flex:1;}
+  .btn-auto{background:var(--rojo);color:#fff;border:none;border-radius:3px;padding:10px 14px;font-family:var(--fuente-mono);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;letter-spacing:1px;transition:background 0.2s;}
+  .btn-auto:hover{background:var(--rojo-vivo);}
+  #moviles-lista{display:flex;flex-direction:column;gap:8px;}
+  .movil-item{display:flex;align-items:center;gap:8px;background:var(--negro);border:1px solid var(--gris-borde);border-radius:3px;padding:8px 12px;animation:fadeIn 0.2s ease;}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+  .movil-item select{flex:1;padding:6px 10px;font-size:14px;}
+  .movil-item .input-otro{display:none;flex:1;}
+  .movil-item.otro-activo .input-otro{display:block;}
+  .btn-quitar{background:transparent;border:1px solid var(--gris-borde);color:var(--gris-texto);border-radius:3px;width:30px;height:30px;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;flex-shrink:0;}
+  .btn-quitar:hover{border-color:var(--rojo);color:var(--rojo);}
+  .btn-agregar-movil{background:transparent;border:1px dashed var(--gris-borde);color:var(--gris-texto);border-radius:3px;padding:9px;font-family:var(--fuente-mono);font-size:12px;cursor:pointer;width:100%;transition:all 0.2s;letter-spacing:1px;}
+  .btn-agregar-movil:hover{border-color:var(--amarillo);color:var(--amarillo);}
+  #preview-box{background:var(--negro);border:1px solid var(--gris-borde);border-left:4px solid var(--rojo);border-radius:3px;padding:14px 16px;font-family:var(--fuente-mono);font-size:13px;line-height:1.8;color:#ccc;white-space:pre-wrap;min-height:80px;}
+  #preview-box .linea-destacada{color:var(--amarillo);font-weight:600;}
+  .acciones{display:flex;gap:10px;flex-wrap:wrap;}
+  .btn-ws{background:#25D366;color:#fff;border:none;border-radius:4px;padding:14px 20px;font-family:var(--fuente-titulo);font-size:20px;letter-spacing:2px;cursor:pointer;flex:1;display:flex;align-items:center;justify-content:center;gap:8px;transition:background 0.2s,transform 0.1s;min-width:180px;}
+  .btn-ws:hover{background:#1ebe5d;transform:translateY(-1px);}
+  .btn-copiar{background:transparent;color:var(--amarillo);border:1px solid var(--amarillo);border-radius:4px;padding:14px 18px;font-family:var(--fuente-titulo);font-size:20px;letter-spacing:2px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all 0.2s;}
+  .btn-copiar:hover{background:var(--amarillo);color:var(--negro);}
+  #resumen-lista{display:flex;flex-direction:column;gap:8px;max-height:320px;overflow-y:auto;}
+  .resumen-card{background:var(--negro);border:1px solid var(--gris-borde);border-radius:3px;padding:10px 14px;font-size:13px;position:relative;cursor:pointer;transition:border-color 0.2s;}
+  .resumen-card:hover{border-color:var(--rojo);}
+  .resumen-card .num-serv{font-family:var(--fuente-titulo);font-size:22px;color:var(--rojo);letter-spacing:2px;line-height:1;}
+  .resumen-card .tipo-serv{font-family:var(--fuente-mono);font-size:11px;color:var(--amarillo);letter-spacing:1px;text-transform:uppercase;margin:2px 0 4px;}
+  .resumen-card .det{color:#aaa;font-size:12px;line-height:1.5;}
+  .resumen-card .ts{font-family:var(--fuente-mono);font-size:10px;color:var(--gris-texto);margin-top:4px;}
+  .resumen-card .btn-borrar-r{position:absolute;top:8px;right:10px;background:none;border:none;color:var(--gris-texto);cursor:pointer;font-size:16px;transition:color 0.2s;}
+  .resumen-card .btn-borrar-r:hover{color:var(--rojo);}
+  .empty-state{text-align:center;padding:24px;font-family:var(--fuente-mono);font-size:12px;color:var(--gris-texto);letter-spacing:1px;}
+  .btn-limpiar-todo{background:transparent;border:1px solid #333;color:var(--gris-texto);border-radius:3px;padding:8px 14px;font-family:var(--fuente-mono);font-size:11px;cursor:pointer;transition:all 0.2s;width:100%;margin-top:8px;}
+  .btn-limpiar-todo:hover{border-color:var(--rojo);color:var(--rojo);}
+  .dash-metrics{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:20px;}
+  .dash-metric{background:var(--gris-oscuro);border:1px solid var(--gris-borde);border-radius:4px;padding:14px 16px;}
+  .dm-label{font-family:var(--fuente-mono);font-size:10px;letter-spacing:1.5px;color:var(--gris-texto);text-transform:uppercase;margin-bottom:6px;}
+  .dm-val{font-family:var(--fuente-titulo);font-size:34px;letter-spacing:1px;line-height:1;color:var(--blanco);}
+  .dm-val.rojo{color:var(--rojo);}
+  .dm-val.amarillo{color:var(--amarillo);}
+  .dash-titulo{font-family:var(--fuente-mono);font-size:10px;letter-spacing:2px;color:var(--gris-texto);text-transform:uppercase;margin:0 0 8px 0;}
+  .bar-row{margin-bottom:10px;}
+  .bar-label-row{display:flex;justify-content:space-between;margin-bottom:4px;}
+  .bar-label{font-size:13px;color:var(--blanco);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:78%;}
+  .bar-count{font-family:var(--fuente-mono);font-size:13px;font-weight:600;color:var(--amarillo);flex-shrink:0;}
+  .bar-pct{font-weight:400;color:var(--gris-texto);font-size:11px;}
+  .bar-track{background:var(--gris-oscuro);border-radius:3px;height:7px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:3px;}
+  .btn-actualizar-dash{background:transparent;border:1px solid var(--gris-borde);color:var(--gris-texto);border-radius:3px;padding:8px 14px;font-family:var(--fuente-mono);font-size:11px;cursor:pointer;transition:all 0.2s;width:100%;margin-bottom:16px;letter-spacing:1px;}
+  .btn-actualizar-dash:hover{border-color:var(--amarillo);color:var(--amarillo);}
+  ::-webkit-scrollbar{width:5px;}
+  ::-webkit-scrollbar-track{background:var(--gris-oscuro);}
+  ::-webkit-scrollbar-thumb{background:var(--rojo-oscuro);border-radius:3px;}
+  .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(40px);background:var(--amarillo);color:var(--negro);font-family:var(--fuente-mono);font-size:13px;letter-spacing:1px;padding:10px 20px;border-radius:3px;opacity:0;transition:all 0.3s;z-index:999;white-space:nowrap;}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="header-icon">🚒</div>
+    <div class="header-texto">
+      <h1>Bomberos Cañuelas</h1>
+      <p>SISTEMA DE DESPACHO — CUARTEL LOCAL</p>
+    </div>
+  </div>
+  <nav class="tabs-nav">
+    <button class="tab-btn activa" onclick="cambiarTab('despacho',this)">📋 DESPACHO</button>
+    <button class="tab-btn" onclick="cambiarTab('dashboard',this)">📊 DASHBOARD</button>
+  </nav>
+</header>
+
+<!-- DESPACHO -->
+<div id="pagina-despacho" class="pagina visible">
+<div class="container">
+
+  <div class="seccion">
+    <div class="seccion-header">🔢 Número de Servicio</div>
+    <div class="seccion-body">
+      <div>
+        <label>N° de Servicio</label>
+        <div class="servicio-row">
+          <input type="number" id="num-servicio" placeholder="ej. 716" min="1">
+          <button class="btn-auto" onclick="autoServicio()">AUTO +1</button>
+        </div>
+      </div>
+      <div class="fila-dos">
+        <div>
+          <label>Hora del servicio</label>
+          <div style="display:flex;gap:8px;align-items:flex-end;">
+            <input type="text" id="hora-servicio" placeholder="HH:MM" style="flex:1;">
+            <button class="btn-auto" onclick="setHoraAhora()">⏱ AHORA</button>
+          </div>
+        </div>
+        <div>
+          <label>Fecha del servicio</label>
+          <input type="date" id="fecha-servicio">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="seccion">
+    <div class="seccion-header">📒 Folio y Libro</div>
+    <div class="seccion-body">
+      <div class="fila-dos">
+        <div><label>Folio</label><input type="text" id="folio" placeholder="ej. 142"></div>
+        <div><label>Libro</label><input type="text" id="libro" placeholder="ej. 5"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="seccion">
+    <div class="seccion-header">🔥 Tipo de Servicio</div>
+    <div class="seccion-body">
+      <div>
+        <label>Tipo de servicio</label>
+        <select id="tipo-servicio" onchange="chkOtroTipo()">
+          <option value="">— Seleccionar —</option>
+          <optgroup label="01 INCENDIO — EDILICIO">
+            <option>01-1 Vivienda individual</option><option>01-2 Vivienda multifamiliar</option>
+            <option>01-3 Edificio de más de 3 pisos</option><option>01-4 Vivienda precaria</option>
+            <option>01-5 Edificio público</option><option>01-6 Comercio</option>
+            <option>01-7 Galería comercial</option><option>01-8 Oficina</option>
+            <option>01-9 Supermercado mayorista</option><option>01-10 Hoteles</option>
+            <option>01-11 Quincho</option><option>01-12 Gimnasio</option>
+            <option>01-13 Hospital</option><option>01-14 Centro de salud</option>
+            <option>01-15 Clínica/Sanatorio</option><option>01-16 Escuela</option>
+            <option>01-17 Cine</option><option>01-18 Teatro</option>
+            <option>01-19 Estadios</option><option>01-20 Panaderías/Confiterías</option>
+            <option>01-21 Bares/Pub</option><option>01-22 Restaurant</option>
+            <option>01-23 Templos/Iglesias</option><option>01-24 Garages</option>
+            <option>01-25 Depósitos públicos</option><option>01-26 Cuarteles militares</option>
+            <option>01-27 Dependencias policiales</option><option>01-28 Industrias</option>
+            <option>01-29 Laboratorios</option><option>01-30 Plantas nucleares</option>
+            <option>01-31 Talleres</option><option>01-32 Logísticas</option>
+            <option>01-33 Droguerías</option><option>01-34 Farmacias</option>
+            <option>01-35 Viveros</option><option>01-36 Obra en construcción</option>
+            <option>01-37 Obrador</option><option>01-38 Sede sindical</option>
+            <option>01-39 Locales bailables</option><option>01-40 Depósito/Galpón</option>
+            <option>01-41 Hogar de niños/Geriátricos</option><option>01-42 Entidad bancaria</option>
+            <option>01-43 Cajeros automáticos</option><option>01-44 Stud/Caballeriza</option>
+            <option>01-45 Establecimiento agrícola</option><option>01-46 Establecimiento ganadero</option>
+            <option>01-47 Establecimiento avícola</option><option>01-48 Dependencias portuarias</option>
+            <option>01-49 Astilleros</option><option>01-50 Guarderías náuticas</option>
+            <option>01-51 Aeropuertos</option><option>01-52 Aero clubes</option>
+            <option>01-53 Depósitos ferroviarios</option><option>01-54 Molino harinero</option>
+            <option>01-55 Edilicio (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — ELÉCTRICO">
+            <option>01-56 Tablero eléctrico</option><option>01-57 Tendido eléctrico</option>
+            <option>01-58 Usina eléctrica</option><option>01-59 Sub estación eléctrica</option>
+            <option>01-60 Transformador</option><option>01-61 Poste de luz</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — AGRÍCOLA">
+            <option>01-62 Fardos</option><option>01-63 Rollos</option><option>01-64 Silos</option>
+            <option>01-65 Silos bolsa</option><option>01-66 Silos de forrajes</option>
+            <option>01-67 Secadora de silos</option><option>01-68 Tambos</option>
+            <option>01-69 Agrícola (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — VEHICULAR">
+            <option>01-70 Maquinaria vial</option><option>01-71 Maquinaria agrícola</option>
+            <option>01-72 Automóvil</option><option>01-73 Pick up</option>
+            <option>01-74 Micro ómnibus</option><option>01-75 Mini bus</option>
+            <option>01-76 Camión</option><option>01-77 Camión de cargas gral.</option>
+            <option>01-78 Camión cisterna</option><option>01-79 Cargas especiales</option>
+            <option>01-80 Camión militar</option><option>01-81 Casas rodantes</option>
+            <option>01-82 Tractor vehículo utilitario</option><option>01-83 Vehículos agrícolas</option>
+            <option>01-84 Formación ferroviaria</option><option>01-85 Motocicleta</option>
+            <option>01-86 Vehicular (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — NÁUTICO">
+            <option>01-87 Embarcación en gral.</option><option>01-88 Incendio de buques</option>
+            <option>01-89 Náutico (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — AERONAVE">
+            <option>01-90 Avión en gral.</option><option>01-91 Helicópteros</option>
+            <option>01-92 Helicópteros militares</option><option>01-93 Globos aerostáticos</option>
+            <option>01-94 Aeronave (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — HIDROCARBURO">
+            <option>01-95 Oleoducto</option><option>01-96 Gaseoducto</option>
+            <option>01-97 Poliducto</option><option>01-98 Depósito de combustibles</option>
+            <option>01-99 Estación de servicio</option><option>01-100 Planta reguladora de gas</option>
+            <option>01-101 Garrafa/Estación de carga</option><option>01-102 Hidrocarburo (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — MISCELÁNEAS">
+            <option>01-103 Carpa/Gazebo</option><option>01-104 Pirotecnia</option>
+            <option>01-105 Caldera</option><option>01-106 Basural</option>
+            <option>01-107 Contenedor</option><option>01-108 Cesto de basura</option>
+            <option>01-109 Misceláneas (otros)</option>
+          </optgroup>
+          <optgroup label="01 INCENDIO — VARIOS">
+            <option>01-110 Falsa alarma</option><option>01-111 Servicio sin efecto</option>
+            <option>01-112 Varios (otros)</option>
+          </optgroup>
+          <optgroup label="02 AUXILIO — TRASLADO">
+            <option>02-1 Traslado de accidentado</option><option>02-2 Salvamento de accidentado</option>
+            <option>02-3 Parturienta</option><option>02-4 Traslado (otros)</option>
+          </optgroup>
+          <optgroup label="02 AUXILIO — RESCATE">
+            <option>02-5 Rescate de persona</option><option>02-6 Rescate en gral.</option>
+            <option>02-7 Recuperación de cadáver</option><option>02-8 Persona atrapada en ascensor</option>
+            <option>02-9 Rescate (otros)</option>
+          </optgroup>
+          <optgroup label="02 AUXILIO — ACCIDENTE">
+            <option>02-10 Accidente ciclista</option><option>02-11 Accidente motociclista</option>
+            <option>02-12 Accidente vehicular</option><option>02-13 Accidente aéreo</option>
+            <option>02-14 Accidente náutico</option><option>02-15 Accidente ferroviario</option>
+            <option>02-16 Accidente ecuestre</option><option>02-17 Accidente (otros)</option>
+          </optgroup>
+          <optgroup label="02 AUXILIO — CATÁSTROFE">
+            <option>02-18 Derrumbes</option><option>02-19 Inundaciones</option>
+            <option>02-20 Voladuras de techos</option><option>02-21 Catástrofe (otros)</option>
+          </optgroup>
+          <optgroup label="02 AUXILIO — AMENAZA">
+            <option>02-22 Artefacto explosivo</option><option>02-23 Amenaza (otros)</option>
+          </optgroup>
+          <optgroup label="03 ESPECIALES — SERVICIO">
+            <option>03-1 Traslado de enfermo</option><option>03-2 Traslado de incapacitado</option>
+            <option>03-3 Suministro medicamentos</option><option>03-4 Donación sangre</option>
+            <option>03-5 Especiales (otros)</option>
+          </optgroup>
+          <optgroup label="03 ESPECIALES — APOYO">
+            <option>03-6 Apoyo a fuerzas de seguridad</option><option>03-7 Apoyo a centros de salud</option>
+            <option>03-8 Apoyo a municipalidades</option><option>03-9 Apoyo a reparticiones públicas</option>
+            <option>03-10 Apoyo (otros)</option>
+          </optgroup>
+          <optgroup label="03 ESPECIALES — TAREA">
+            <option>03-11 Desagotes</option><option>03-12 Escombramiento</option>
+            <option>03-13 Apuntalamiento</option><option>03-14 Remoción</option>
+            <option>03-15 Remolques</option><option>03-16 Colocación de driza</option>
+            <option>03-17 Búsqueda de personas</option><option>03-18 Búsqueda de animal</option>
+            <option>03-19 Limpieza de calles y rutas</option><option>03-20 Balizamiento</option>
+            <option>03-21 Árbol caído</option><option>03-22 Escape de gas</option>
+            <option>03-23 Tarea (otros)</option><option>03-24 Suministro de agua</option>
+          </optgroup>
+          <optgroup label="04 DESASTRES">
+            <option>04-1 Defensa civil</option><option>04-2 Desastres (otros)</option>
+          </optgroup>
+          <optgroup label="05 COLABORACIÓN — MATERIAL">
+            <option>05-1 Con autobomba</option><option>05-2 Con cisterna</option>
+            <option>05-3 Con escalera mecánica</option><option>05-4 Con hidroelevador</option>
+            <option>05-5 Con ambulancia</option><option>05-6 Con lancha autopropulsada</option>
+            <option>05-7 Con vehículo polvero</option><option>05-8 Con espumígero</option>
+            <option>05-9 Con equipo mat. peligrosos</option><option>05-10 Con transporte personal</option>
+            <option>05-11 Material (otros)</option>
+          </optgroup>
+          <optgroup label="05 COLABORACIÓN — PERSONAL">
+            <option>05-12 Con personal bomberos</option><option>05-13 Con escuadra de comunicaciones</option>
+            <option>05-13 Con escuadra de rescate en alturas</option>
+            <option>05-14 Con escuadra de rescate acuático y buceo</option>
+            <option>05-14 Con escuadra de radioactivos y explosivos</option>
+            <option>05-15 Con escuadra de primeros auxilios</option>
+            <option>05-15 Con escuadra de incendios forestales</option>
+            <option>05-16 Con escuadra de incendio y rescate aeronáut.</option>
+            <option>05-17 Con escuadra de incendio y rescate naval</option>
+            <option>05-18 Personal (otros)</option>
+          </optgroup>
+          <optgroup label="05 COLABORACIÓN — EQUIPO">
+            <option>05-19 Con equipo de salvamento</option><option>05-20 Con equipo de rescate</option>
+            <option>05-21 Con motobomba</option><option>05-22 Con usina móvil</option>
+            <option>05-23 Con generador</option><option>05-24 Con E.R.A.</option>
+            <option>05-25 Con equipo de remoción escombros</option><option>05-26 Con mangas de incendios</option>
+            <option>05-27 Equipo (otros)</option>
+          </optgroup>
+          <optgroup label="06 GUARDIAS — PREVENTIVA">
+            <option>06-1 Guardia de prevención</option><option>06-2 Guardia de emergencia</option>
+            <option>06-3 Descenso de helicóptero</option><option>06-4 Guardia operativa</option>
+            <option>06-5 Preventiva (otros)</option>
+          </optgroup>
+          <optgroup label="06 GUARDIAS — INTERNA">
+            <option>06-6 Guardia de honor</option><option>06-7 Orden interno</option>
+            <option>06-8 Guardia</option><option>06-9 Interna (otros)</option>
+          </optgroup>
+          <optgroup label="10 INCIDENTES QUÍMICOS">
+            <option>10-1 Incendio mat-pel</option><option>10-2 Derrame mat-pel</option>
+            <option>10-3 Explosiones</option><option>10-4 Prevención por mat-pel</option>
+            <option>10-5 Químicos (otros)</option><option>10-6 Escape de gas</option>
+          </optgroup>
+          <optgroup label="11 FORESTAL — PASTIZAL">
+            <option>11-1 Pastizales</option><option>11-2 Matorrales</option>
+            <option>11-3 Campos</option><option>11-4 Pajonales</option>
+            <option>11-5 Bañados</option><option>11-6 Banquinas</option>
+            <option>11-7 Pastizal (otros)</option>
+          </optgroup>
+          <optgroup label="11 FORESTAL — FORESTACIÓN">
+            <option>11-8 Monte</option><option>11-9 Islas</option>
+            <option>11-10 Cerros montañas</option><option>11-11 Reserva natural</option>
+            <option>11-12 Parques nacionales</option><option>11-13 Rastrojo</option>
+            <option>11-14 Sembradíos</option><option>11-15 Forestación (otros)</option>
+          </optgroup>
+          <optgroup label="11 FORESTAL — INTERFACE">
+            <option>11-16 Incendio de interface</option><option>11-17 Interface (otros)</option>
+          </optgroup>
+          <optgroup label="99 OTROS — INTERNO">
+            <option>99-1 Reunión general</option><option>99-2 Capacitación interna</option>
+            <option>99-3 Orden interno</option><option>99-4 Jefatura</option>
+          </optgroup>
+        </select>
+      </div>
+      <div id="otro-tipo-wrap" style="display:none">
+        <label>Especificar tipo</label>
+        <input type="text" id="otro-tipo" placeholder="Describí el tipo de servicio">
+      </div>
+      <div>
+        <label>Dirección / Lugar del incidente</label>
+        <div style="display:flex;gap:8px;align-items:flex-end;">
+          <input type="text" id="direccion" placeholder="ej. Cuba entre Roja y Rodriguez Peña" style="flex:1;">
+          <button class="btn-auto" onclick="verEnMapa()" title="Ver en mapa">🗺️ VER</button>
+        </div>
+        <div id="mapa-preview" style="display:none;margin-top:8px;">
+          <iframe id="mapa-frame" width="100%" height="200" style="border:1px solid var(--gris-borde);border-radius:3px;" allowfullscreen="" loading="lazy"></iframe>
+          <div style="display:flex;gap:8px;margin-top:6px;">
+            <button class="btn-auto" style="flex:1;background:var(--verde, #1D9E75);" onclick="confirmarMapa()">✓ CONFIRMAR UBICACIÓN</button>
+            <button class="btn-auto" style="flex:1;background:var(--gris-oscuro);border:1px solid var(--gris-borde);" onclick="cerrarMapa()">✕ CERRAR</button>
+          </div>
+          <p id="mapa-confirmado" style="display:none;font-family:var(--fuente-mono);font-size:11px;color:#1D9E75;margin-top:6px;letter-spacing:1px;">✓ UBICACIÓN CONFIRMADA</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="seccion">
+    <div class="seccion-header">🚒 Móviles</div>
+    <div class="seccion-body">
+      <div id="moviles-lista"></div>
+      <button class="btn-agregar-movil" onclick="agregarMovil()">+ AGREGAR MÓVIL</button>
+    </div>
+  </div>
+
+  <div class="seccion">
+    <div class="seccion-header">👨‍🚒 Personal a cargo</div>
+    <div class="seccion-body" id="personal-body">
+      <!-- generado por JS -->
+    </div>
+  </div>
+
+  <div class="seccion">
+    <div class="seccion-header">👁 Vista previa del mensaje</div>
+    <div class="seccion-body">
+      <div id="preview-box">Completá los campos para ver el mensaje...</div>
+      <div class="acciones">
+        <button class="btn-ws" onclick="enviarWhatsApp()">📲 ENVIAR POR WHATSAPP</button>
+        <button class="btn-copiar" onclick="copiarMensaje()">📋 COPIAR</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="seccion">
+    <div class="seccion-header">📋 Historial de Servicios</div>
+    <div class="seccion-body">
+      <div id="resumen-lista"></div>
+      <button class="btn-limpiar-todo" onclick="limpiarTodo()">🗑 LIMPIAR HISTORIAL</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="pagina-dashboard" class="pagina">
+<div class="container">
+  <button class="btn-actualizar-dash" onclick="renderDashboard()">↻ ACTUALIZAR DASHBOARD</button>
+  <div id="dash-sin-datos" style="display:none;text-align:center;padding:40px 16px;">
+    <div style="font-size:48px;margin-bottom:12px;">📊</div>
+    <p style="font-family:var(--fuente-mono);font-size:12px;color:var(--gris-texto);letter-spacing:1px;">SIN SERVICIOS REGISTRADOS</p>
+  </div>
+  <div id="dash-contenido">
+    <div class="dash-metrics" id="dash-metrics"></div>
+    <p class="dash-titulo">Tipo de servicio</p>
+    <div class="seccion" style="margin-bottom:16px;">
+      <div class="seccion-body">
+        <div style="position:relative;width:100%;height:220px;"><canvas id="chart-tipo"></canvas></div>
+        <div id="dash-tipo"></div>
+      </div>
+    </div>
+    <p class="dash-titulo">Servicios por móvil</p>
+    <div class="seccion" style="margin-bottom:16px;">
+      <div class="seccion-body">
+        <div style="position:relative;width:100%;height:220px;"><canvas id="chart-moviles"></canvas></div>
+        <div id="dash-moviles"></div>
+      </div>
+    </div>
+    <p class="dash-titulo">Servicios por responsable a cargo</p>
+    <div class="seccion" style="margin-bottom:16px;">
+      <div class="seccion-body">
+        <div style="position:relative;width:100%;height:220px;"><canvas id="chart-cargo"></canvas></div>
+        <div id="dash-cargo"></div>
+      </div>
+    </div>
+    <p class="dash-titulo">Servicios por integrante (total participaciones)</p>
+    <div class="seccion" style="margin-bottom:16px;">
+      <div class="seccion-body" id="dash-integrantes"></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+// ── CONSTANTES ──
+const MOVILES_OPCIONES=['13','28','29','33','34','35','36','Otro'];
+const DASH_COLORS=['#d32f2f','#378ADD','#1D9E75','#f5c400','#D85A30','#D4537E','#7F77DD','#639922'];
+const chartInstances={};
+
+const ROLES=['A cargo','Chofer','Componente 1','Componente 2','Componente 3','Componente 4','Componente 5'];
+const ROLE_IDS=['cargo','chofer','comp1','comp2','comp3','comp4','comp5'];
+
+const PERSONAL={
+  'Coronel, Pablo':'OF. Auxiliar','Gimenez, Jonatan':'OF. Auxiliar','Ortiz, Hernan':'OF. Auxiliar',
+  'Cocini, Maximiliano':'Ayudante Mayor','Vicente, Guillermo':'Ayudante Mayor','Benigni, Jonatan':'Ayudante Mayor',
+  'Larrosa, Maximiliano':'Ayudante Mayor','Geiser, Eduardo':'Ayudante Mayor',
+  'Bonavita, Damian':'Ayudante Principal','Toledo, Emiliano':'Ayudante Principal','Mansilla, Mailen':'Ayudante Principal',
+  'Lopez, Maximiliano':'Ayudante de 1°','Cordovero, Pablo':'Ayudante de 1°','Giacobino, Sebastian':'Ayudante de 1°',
+  'Matrelo, Nicolas':'Ayudante de 1°','Peralta, Jose Luis':'Ayudante de 1°','Ludueña, Osvaldo':'Ayudante de 1°',
+  'Ferrer, Juan Carlos':'Ayudante','Bordon, Jose':'Ayudante','Bugari, Alex':'Ayudante',
+  'Antonio, Agustina':'Subayudante','Maidana, Sebastian':'Subayudante','Sanchez, Tamara':'Subayudante',
+  'Tellechea, Milagros':'Subayudante','Martinez, Silvio':'Subayudante',
+  'Yuli, Luis Alberto':'Bombero','García, Juan Pablo':'Bombero','Amuchastegui, Daniel':'Bombero',
+  'Rosas, Luis':'Bombero','Rosas, Pedro':'Bombero','Jaime, Mauro':'Bombero','Domínguez, Cristian':'Bombero',
+  'Rodríguez, Sebastián':'Bombero','Tellechea, Leonardo':'Bombero','Barragan, Javier':'Bombero',
+  'Bohler, Damian':'Bombero','Ferrandi, Mauro':'Bombero','Velozo, Javier':'Bombero',
+  'Rasquetti, Marcos':'Bombero','Montovio, Mariano':'Bombero','Salerno, Yamila':'Bombero',
+  'Bugari, Dylan':'Bombero','Silva, Jonathan':'Bombero','Roldan, Nicolas':'Bombero',
+  'Piñeiro, Daniel':'Bombero','Brito, Franco':'Bombero','Antilef, Jorge':'Bombero',
+  'Cardiello, Elias':'Bombero','Mujica, Sabrina':'Bombero','Higa, Nestor':'Bombero',
+  'Coronel, Camila':'Bombero','Rivero Lodoli, Jorge':'Bombero','Cordovero, Tomas':'Bombero',
+  'Bordon, Nestor':'Bombero','Lopez, Matias':'Bombero','Monzon, Alejandra':'Bombero',
+  'Guillermo, Daiana':'Bombero','Perez Loayza, Fiamma':'Bombero','Colchado, Lucas':'Bombero',
+  'Smith, Cecilia':'Bombero','Stur, Gaston':'Bombero','Ovelar, Gretel Mayra':'Bombero',
+  'Tojo, Fernando':'Bombero','Avalos, Melania':'Bombero','Rios, Camila':'Bombero',
+  'Diaz, Samira':'Bombero','Mujica, Alexander':'Bombero','Rodriguez, Sol Morena':'Bombero',
+  'Maidana, Facundo':'Bombero','Quest, Estefania':'Bombero','Guercio, Oscar':'Bombero',
+  'Risso, Tobias':'Bombero','Fernandez, Oscar':'Bombero','Leyva, Veronica':'Bombero',
+  'Loseco, Ezequiel':'Bombero','Mancilla, Lucas':'Bombero','Fernandez, Facundo':'Bombero',
+  'Villalba, Mariana':'Bombero','Rosas, Federico':'Bombero','Hipolito, Ailen':'Bombero',
+  'Valenzuela, Joel':'Bombero','Cabanillas, Jonathan':'Bombero','Piedra, Emanuel':'Bombero',
+  'Tito, Bruno':'Bombero','Suarez, Facundo':'Bombero','Lopez, Facundo':'Bombero'
+};
+
+const NOMBRES_OPTIONS = Object.keys(PERSONAL).sort().map(n=>`<option>${n}</option>`).join('');
+
+// ── PERSONAL SECTION ──
+function buildPersonalSection(){
+  const body = document.getElementById('personal-body');
+  body.innerHTML = ROLES.map((rol, i)=>{
+    const rid = ROLE_IDS[i];
+    return `<div class="fila-dos">
+      <div>
+        <label>${rol}</label>
+        <select id="nombre-${rid}" onchange="autoGrado(this,'grado-${rid}')">
+          <option value="">— Seleccionar —</option>${NOMBRES_OPTIONS}
+        </select>
+      </div>
+      <div>
+        <label>Grado</label>
+        <input type="text" id="grado-${rid}" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function autoGrado(sel, gradoId){
+  const el = document.getElementById(gradoId);
+  if(!el) return;
+  el.value = sel.value && PERSONAL[sel.value] ? PERSONAL[sel.value] : '';
+  actualizarPreview();
+}
+
+// ── FIREBASE ──
+firebase.initializeApp({
+  apiKey:"AIzaSyA_X-RBYpJUJWz7vFJz4-i8lX1lNXov6bM",
+  authDomain:"bvc-despacho.firebaseapp.com",
+  projectId:"bvc-despacho",
+  storageBucket:"bvc-despacho.firebasestorage.app",
+  messagingSenderId:"112751546055",
+  appId:"1:112751546055:web:52f292f3ce1ac1a838b8e2"
+});
+const db = firebase.firestore();
+const metaRef = db.collection('meta').doc('contador');
+
+let servicios=[];
+let ultimoServicio=0;
+
+// ── INIT ──
+buildPersonalSection();
+document.addEventListener('input', actualizarPreview);
+document.addEventListener('change', actualizarPreview);
+agregarMovil();
+setHoraAhora();
+
+metaRef.get().then(snap=>{
+  if(snap.exists){ ultimoServicio=snap.data().ultimo||0; if(ultimoServicio>0) document.getElementById('num-servicio').value=ultimoServicio+1; }
+});
+
+db.collection('servicios').orderBy('id','desc').onSnapshot(snapshot=>{
+  servicios=snapshot.docs.map(d=>({...d.data(),_docId:d.id}));
+  renderResumen();
+});
+
+// ── FUNCIONES ──
+function setHoraAhora(){
+  const now=new Date();
+  document.getElementById('hora-servicio').value=`${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+  document.getElementById('fecha-servicio').value=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+  actualizarPreview();
+}
+
+function cambiarTab(tab,btn){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('activa'));
+  btn.classList.add('activa');
+  document.querySelectorAll('.pagina').forEach(p=>p.classList.remove('visible'));
+  document.getElementById('pagina-'+tab).classList.add('visible');
+  if(tab==='dashboard') renderDashboard();
+}
+
+function agregarMovil(){
+  const lista=document.getElementById('moviles-lista');
+  const div=document.createElement('div');
+  div.className='movil-item';
+  div.innerHTML=`<select onchange="chkOtroMovil(this)"><option value="">— Móvil —</option>${MOVILES_OPCIONES.map(m=>`<option value="${m}">Móvil ${m==='Otro'?'Otro':m}</option>`).join('')}</select><input type="text" class="input-otro" placeholder="Número de móvil"><button class="btn-quitar" onclick="quitarMovil(this)">×</button>`;
+  lista.appendChild(div);
+  actualizarPreview();
+}
+function chkOtroMovil(sel){sel.closest('.movil-item').classList.toggle('otro-activo',sel.value==='Otro');actualizarPreview();}
+function quitarMovil(btn){btn.closest('.movil-item').remove();actualizarPreview();}
+function getMoviles(){
+  return [...document.querySelectorAll('.movil-item')].map(item=>{
+    const sel=item.querySelector('select').value;
+    if(sel==='Otro'){const v=item.querySelector('.input-otro').value.trim();return v?'Móvil '+v:null;}
+    return sel?'Móvil '+sel:null;
+  }).filter(Boolean);
+}
+
+function chkOtroTipo(){
+  document.getElementById('otro-tipo-wrap').style.display=document.getElementById('tipo-servicio').value==='Otro'?'block':'none';
+  actualizarPreview();
+}
+
+async function autoServicio(){
+  const snap=await metaRef.get();
+  const ultimo=snap.exists?(snap.data().ultimo||0):0;
+  document.getElementById('num-servicio').value=ultimo+1;
+  actualizarPreview();
+}
+
+function getPersonal(){
+  return ROLE_IDS.map(rid=>({
+    grado:document.getElementById('grado-'+rid)?.value||'',
+    nombre:document.getElementById('nombre-'+rid)?.value.trim()||''
+  }));
+}
+
+function buildMensaje(){
+  const numServ=document.getElementById('num-servicio').value.trim();
+  const hora=document.getElementById('hora-servicio').value.trim();
+  const fechaRaw=document.getElementById('fecha-servicio').value;
+  const fecha=fechaRaw?fechaRaw.split('-').reverse().join('/'):'' ;
+  let tipo=document.getElementById('tipo-servicio').value;
+  if(tipo==='Otro') tipo=document.getElementById('otro-tipo').value.trim();
+  const dir=document.getElementById('direccion').value.trim();
+  const moviles=getMoviles();
+  const folio=document.getElementById('folio').value.trim();
+  const libro=document.getElementById('libro').value.trim();
+  const personal=getPersonal();
+  if(!tipo&&!dir&&moviles.length===0) return null;
+  let lineas=[];
+  lineas.push('🚒 *BOMBEROS VOLUNTARIOS CAÑUELAS*');
+  lineas.push('--------------------');
+  if(fecha||hora) lineas.push(`🕐 *Hora:* ${hora||'-'}  |  📅 *Fecha:* ${fecha||'-'}`);
+  if(moviles.length>0) lineas.push(`🚒 *Movil/es:* ${moviles.join(' | ')}`);
+  if(tipo) lineas.push(`🔥 *Tipo:* ${tipo}`);
+  if(dir){
+    lineas.push(`📍 *Lugar:* ${dir}`);
+    lineas.push(`🗺️ *Mapa:* https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dir+', Cañuelas, Buenos Aires, Argentina')}`);
+  }
+  lineas.push('--------------------');
+  const roleLabels=['A cargo','Chofer','Componente 1','Componente 2','Componente 3','Componente 4','Componente 5'];
+  personal.forEach((p,i)=>{ if(p.grado&&p.nombre) lineas.push(`👤 *${roleLabels[i]}:* ${p.grado} ${p.nombre}`); });
+  if(numServ){ lineas.push('--------------------'); lineas.push(`📋 *Servicio N°* ${numServ}`); }
+  if(folio) lineas.push(`📄 *Folio:* ${folio}`);
+  if(libro) lineas.push(`📒 *Libro:* ${libro}`);
+  return lineas.join('\n');
+}
+
+function actualizarPreview(){
+  const box=document.getElementById('preview-box');
+  const msg=buildMensaje();
+  if(!msg){box.textContent='Completá los campos para ver el mensaje...';return;}
+  box.textContent=msg;
+}
+
+async function enviarWhatsApp(){
+  const msg=buildMensaje();
+  if(!msg){mostrarToast('⚠ Completá al menos tipo de servicio o móvil');return;}
+  // Abrir WhatsApp primero (antes del await para evitar bloqueo del navegador móvil)
+  const url='https://wa.me/?text='+encodeURIComponent(msg);
+  window.location.href=url;
+  // Guardar en Firebase después
+  guardarServicio(msg);
+}
+
+function copiarMensaje(){
+  const msg=buildMensaje();
+  if(!msg){mostrarToast('⚠ Nada para copiar');return;}
+  navigator.clipboard.writeText(msg).then(()=>mostrarToast('✓ Copiado al portapapeles'));
+}
+
+async function guardarServicio(msg){
+  const numServ=parseInt(document.getElementById('num-servicio').value)||null;
+  let tipo=document.getElementById('tipo-servicio').value;
+  if(tipo==='Otro') tipo=document.getElementById('otro-tipo').value.trim();
+  const moviles=getMoviles();
+  const personal=getPersonal();
+  const cargo=personal[0].grado&&personal[0].nombre?`${personal[0].grado} ${personal[0].nombre}`:'—';
+  const chofer=personal[1].grado&&personal[1].nombre?`${personal[1].grado} ${personal[1].nombre}`:'—';
+  const componentes=personal.slice(2).filter(p=>p.grado&&p.nombre).map(p=>`${p.grado} ${p.nombre}`);
+  const reg={
+    id:Date.now(),num:numServ,tipo:tipo||'—',moviles,
+    cargo,chofer,componentes,msg,
+    ts:new Date().toLocaleString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})
+  };
+  try{
+    await db.collection('servicios').add(reg);
+    if(numServ){ await metaRef.set({ultimo:numServ},{merge:true}); ultimoServicio=numServ; }
+    mostrarToast('✓ Servicio registrado y sincronizado');
+  }catch(e){ mostrarToast('⚠ Error: '+e.message); }
+}
+
+function renderResumen(){
+  const cont=document.getElementById('resumen-lista');
+  if(!servicios.length){cont.innerHTML='<div class="empty-state">— SIN SERVICIOS REGISTRADOS —</div>';return;}
+  cont.innerHTML=servicios.map(s=>`
+    <div class="resumen-card" onclick="cargarServicio(${s.id})">
+      <button class="btn-borrar-r" onclick="event.stopPropagation();borrarServicio(${s.id})">×</button>
+      <div class="num-serv">SERV. ${s.num||'—'}</div>
+      <div class="tipo-serv">${s.tipo}</div>
+      <div class="det">${(s.moviles||[]).filter(m=>m&&m.trim()).length?(s.moviles).filter(m=>m&&m.trim()).join(', '):'Sin móviles'}<br>A cargo: ${s.cargo||'—'}</div>
+      <div class="ts">${s.ts}</div>
+    </div>`).join('');
+}
+
+async function borrarServicio(id){
+  const s=servicios.find(x=>x.id===id);
+  if(!s||!s._docId) return;
+  try{ await db.collection('servicios').doc(s._docId).delete(); }catch(e){ mostrarToast('⚠ Error al borrar'); }
+}
+
+function cargarServicio(id){
+  const s=servicios.find(x=>x.id===id);
+  if(!s) return;
+  document.getElementById('preview-box').textContent=s.msg||'';
+  mostrarToast('↑ Mensaje cargado en vista previa');
+}
+
+async function limpiarTodo(){
+  const clave=prompt('🔒 Ingresá la clave de seguridad:');
+  if(clave===null) return;
+  if(clave!=='BVC2026'){mostrarToast('⛔ Clave incorrecta');return;}
+  if(!confirm('¿Confirmar limpieza total del historial?')) return;
+  try{
+    await Promise.all(servicios.filter(s=>s._docId).map(s=>db.collection('servicios').doc(s._docId).delete()));
+    mostrarToast('✓ Historial eliminado');
+  }catch(e){ mostrarToast('⚠ Error al limpiar'); }
+}
+
+// ── DASHBOARD ──
+function crearTorta(id,labels,data,colors){
+  if(chartInstances[id]) chartInstances[id].destroy();
+  const ctx=document.getElementById(id);
+  if(!ctx) return;
+  chartInstances[id]=new Chart(ctx,{
+    type:'doughnut',
+    data:{labels,datasets:[{data,backgroundColor:colors,borderColor:'#141414',borderWidth:3}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return ` ${ctx.label}: ${ctx.parsed} (${Math.round(ctx.parsed/t*100)}%)`;}}}}
+    }
+  });
+}
+
+function renderBars(id,chartId,mapObj,color,total){
+  const el=document.getElementById(id);
+  const entries=Object.entries(mapObj).sort((a,b)=>b[1]-a[1]);
+  if(!entries.length){
+    el.innerHTML='<p style="font-size:13px;color:var(--gris-texto);">Sin datos</p>';
+    if(chartId&&chartInstances[chartId]) chartInstances[chartId].destroy();
+    return;
+  }
+  const max=entries[0][1];
+  const colors=entries.map((_,i)=>DASH_COLORS[i%DASH_COLORS.length]);
+  if(chartId) crearTorta(chartId,entries.map(([l])=>l),entries.map(([,c])=>c),colors);
+  el.innerHTML=entries.map(([label,count],i)=>`
+    <div class="bar-row">
+      <div class="bar-label-row">
+        <span class="bar-label"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${colors[i]};margin-right:6px;vertical-align:middle;"></span>${label}</span>
+        <span class="bar-count">${count} <span class="bar-pct">(${Math.round(count/total*100)}%)</span></span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(count/max*100)}%;background:${colors[i]};"></div></div>
+    </div>`).join('');
+}
+
+function renderDashboard(){
+  const sinDatos=document.getElementById('dash-sin-datos');
+  const contenido=document.getElementById('dash-contenido');
+  if(!servicios.length){sinDatos.style.display='block';contenido.style.display='none';return;}
+  sinDatos.style.display='none';contenido.style.display='block';
+
+  const vistos=new Set();
+  const sv=servicios.filter(s=>{
+    const key=s.num?String(s.num):String(s.id);
+    if(vistos.has(key)) return false;
+    vistos.add(key); return true;
+  });
+  const total=sv.length;
+  const tipoMap={},movilMap={},cargoMap={},integranteMap={};
+
+  sv.forEach(s=>{
+    // Tipo
+    if(s.tipo&&s.tipo!=='—') tipoMap[s.tipo]=(tipoMap[s.tipo]||0)+1;
+    // Móviles — solo los que tienen valor real
+    (s.moviles||[]).forEach(m=>{
+      if(!m||!m.trim()) return;
+      const norm='Móvil '+m.replace(/^[Mm][óo]vil\s*/,'').trim();
+      if(norm==='Móvil'||norm==='Móvil —') return;
+      movilMap[norm]=(movilMap[norm]||0)+1;
+    });
+    // A cargo
+    if(s.cargo&&s.cargo!=='—') cargoMap[s.cargo]=(cargoMap[s.cargo]||0)+1;
+    // Integrantes
+    const part=new Set();
+    if(s.cargo&&s.cargo!=='—') part.add(s.cargo);
+    if(s.chofer&&s.chofer!=='—') part.add(s.chofer);
+    (s.componentes||[]).forEach(c=>{if(c&&c!=='—') part.add(c);});
+    if(!s.chofer&&s.msg){
+      s.msg.split('\n').forEach(l=>{
+        const cm=l.match(/Chofer[:\*\s]+(.+)/i);
+        if(cm) part.add(cm[1].trim().replace(/\*/g,''));
+        const co=l.match(/Componente\s+\d+[:\*\s]+(.+)/i);
+        if(co) part.add(co[1].trim().replace(/\*/g,''));
+      });
+    }
+    part.forEach(p=>{if(p) integranteMap[p]=(integranteMap[p]||0)+1;});
+  });
+
+  document.getElementById('dash-metrics').innerHTML=[
+    {label:'Total servicios',val:total,cls:'rojo'},
+    {label:'Último servicio',val:servicios[0]?.num||'—',cls:'amarillo'},
+    {label:'Tipos distintos',val:Object.keys(tipoMap).length,cls:''},
+    {label:'Móviles usados',val:Object.keys(movilMap).length,cls:''},
+  ].map(c=>`<div class="dash-metric"><div class="dm-label">${c.label}</div><div class="dm-val ${c.cls}">${c.val}</div></div>`).join('');
+
+  const tipoEntries=Object.entries(tipoMap).sort((a,b)=>b[1]-a[1]);
+  if(tipoEntries.length){
+    const tipoColors=tipoEntries.map((_,i)=>DASH_COLORS[i%DASH_COLORS.length]);
+    crearTorta('chart-tipo',tipoEntries.map(([l])=>l),tipoEntries.map(([,c])=>c),tipoColors);
+    const tipoMax=tipoEntries[0][1];
+    document.getElementById('dash-tipo').innerHTML=tipoEntries.map(([label,count],i)=>`
+      <div class="bar-row">
+        <div class="bar-label-row">
+          <span class="bar-label"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${tipoColors[i]};margin-right:6px;vertical-align:middle;"></span>${label}</span>
+          <span class="bar-count">${count} <span class="bar-pct">(${Math.round(count/total*100)}%)</span></span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:${Math.round(count/tipoMax*100)}%;background:${tipoColors[i]};"></div></div>
+      </div>`).join('');
+  }
+
+  const totalMoviles=Object.values(movilMap).reduce((a,b)=>a+b,0);
+  const totalCargo=Object.values(cargoMap).reduce((a,b)=>a+b,0);
+  renderBars('dash-moviles','chart-moviles',movilMap,'#378ADD',totalMoviles);
+  renderBars('dash-cargo','chart-cargo',cargoMap,'#1D9E75',totalCargo);
+
+  const intEntries=Object.entries(integranteMap).sort((a,b)=>b[1]-a[1]);
+  const intMax=intEntries.length?intEntries[0][1]:1;
+  const totalInt=intEntries.reduce((a,[,v])=>a+v,0);
+  const elInt=document.getElementById('dash-integrantes');
+  elInt.innerHTML=intEntries.length?intEntries.map(([label,count])=>`
+    <div class="bar-row">
+      <div class="bar-label-row">
+        <span class="bar-label">${label}</span>
+        <span class="bar-count">${count} <span class="bar-pct">(${Math.round(count/totalInt*100)}%)</span></span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(count/intMax*100)}%;background:#7F77DD;"></div></div>
+    </div>`).join(''):'<p style="font-size:13px;color:var(--gris-texto);">Sin datos</p>';
+}
+
+function verEnMapa(){
+  const dir=document.getElementById('direccion').value.trim();
+  if(!dir){mostrarToast('⚠ Ingresá una dirección primero');return;}
+  const query=encodeURIComponent(dir+', Cañuelas, Buenos Aires, Argentina');
+  const frame=document.getElementById('mapa-frame');
+  frame.src=`https://maps.google.com/maps?q=${query}&output=embed&z=16`;
+  document.getElementById('mapa-preview').style.display='block';
+  document.getElementById('mapa-confirmado').style.display='none';
+}
+
+function confirmarMapa(){
+  document.getElementById('mapa-confirmado').style.display='block';
+  mostrarToast('✓ Ubicación confirmada');
+  actualizarPreview();
+}
+
+function cerrarMapa(){
+  document.getElementById('mapa-preview').style.display='none';
+  document.getElementById('mapa-frame').src='';
+  document.getElementById('mapa-confirmado').style.display='none';
+}
+
+function mostrarToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+</script>
+</body>
+</html>
