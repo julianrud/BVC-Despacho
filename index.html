@@ -122,7 +122,7 @@
           <label>Hora del servicio</label>
           <div style="display:flex;gap:8px;align-items:flex-end;">
             <input type="text" id="hora-servicio" placeholder="HH:MM" style="flex:1;">
-            <button class="btn-auto" onclick="setHoraAhora()" title="Usar hora actual">⏱ AHORA</button>
+            <button class="btn-auto" onclick="setHoraAhora()">⏱ AHORA</button>
           </div>
         </div>
         <div>
@@ -137,14 +137,8 @@
     <div class="seccion-header">📒 Folio y Libro</div>
     <div class="seccion-body">
       <div class="fila-dos">
-        <div>
-          <label>Folio</label>
-          <input type="text" id="folio" placeholder="ej. 142">
-        </div>
-        <div>
-          <label>Libro</label>
-          <input type="text" id="libro" placeholder="ej. 5">
-        </div>
+        <div><label>Folio</label><input type="text" id="folio" placeholder="ej. 142"></div>
+        <div><label>Libro</label><input type="text" id="libro" placeholder="ej. 5"></div>
       </div>
     </div>
   </div>
@@ -157,218 +151,136 @@
         <select id="tipo-servicio" onchange="chkOtroTipo()">
           <option value="">— Seleccionar —</option>
           <optgroup label="01 INCENDIO — EDILICIO">
-            <option>01-1 Vivienda individual</option>
-            <option>01-2 Vivienda multifamiliar</option>
-            <option>01-3 Edificio de más de 3 pisos</option>
-            <option>01-4 Vivienda precaria</option>
-            <option>01-5 Edificio público</option>
-            <option>01-6 Comercio</option>
-            <option>01-7 Galería comercial</option>
-            <option>01-8 Oficina</option>
-            <option>01-9 Supermercado mayorista</option>
-            <option>01-10 Hoteles</option>
-            <option>01-11 Quincho</option>
-            <option>01-12 Gimnasio</option>
-            <option>01-13 Hospital</option>
-            <option>01-14 Centro de salud</option>
-            <option>01-15 Clínica/Sanatorio</option>
-            <option>01-16 Escuela</option>
-            <option>01-17 Cine</option>
-            <option>01-18 Teatro</option>
-            <option>01-19 Estadios</option>
-            <option>01-20 Panaderías/Confiterías</option>
-            <option>01-21 Bares/Pub</option>
-            <option>01-22 Restaurant</option>
-            <option>01-23 Templos/Iglesias</option>
-            <option>01-24 Garages</option>
-            <option>01-25 Depósitos públicos</option>
-            <option>01-26 Cuarteles militares</option>
-            <option>01-27 Dependencias policiales</option>
-            <option>01-28 Industrias</option>
-            <option>01-29 Laboratorios</option>
-            <option>01-30 Plantas nucleares</option>
-            <option>01-31 Talleres</option>
-            <option>01-32 Logísticas</option>
-            <option>01-33 Droguerías</option>
-            <option>01-34 Farmacias</option>
-            <option>01-35 Viveros</option>
-            <option>01-36 Obra en construcción</option>
-            <option>01-37 Obrador</option>
-            <option>01-38 Sede sindical</option>
-            <option>01-39 Locales bailables</option>
-            <option>01-40 Depósito/Galpón</option>
-            <option>01-41 Hogar de niños/Geriátricos</option>
-            <option>01-42 Entidad bancaria</option>
-            <option>01-43 Cajeros automáticos</option>
-            <option>01-44 Stud/Caballeriza</option>
-            <option>01-45 Establecimiento agrícola</option>
-            <option>01-46 Establecimiento ganadero</option>
-            <option>01-47 Establecimiento avícola</option>
-            <option>01-48 Dependencias portuarias</option>
-            <option>01-49 Astilleros</option>
-            <option>01-50 Guarderías náuticas</option>
-            <option>01-51 Aeropuertos</option>
-            <option>01-52 Aero clubes</option>
-            <option>01-53 Depósitos ferroviarios</option>
-            <option>01-54 Molino harinero</option>
+            <option>01-1 Vivienda individual</option><option>01-2 Vivienda multifamiliar</option>
+            <option>01-3 Edificio de más de 3 pisos</option><option>01-4 Vivienda precaria</option>
+            <option>01-5 Edificio público</option><option>01-6 Comercio</option>
+            <option>01-7 Galería comercial</option><option>01-8 Oficina</option>
+            <option>01-9 Supermercado mayorista</option><option>01-10 Hoteles</option>
+            <option>01-11 Quincho</option><option>01-12 Gimnasio</option>
+            <option>01-13 Hospital</option><option>01-14 Centro de salud</option>
+            <option>01-15 Clínica/Sanatorio</option><option>01-16 Escuela</option>
+            <option>01-17 Cine</option><option>01-18 Teatro</option>
+            <option>01-19 Estadios</option><option>01-20 Panaderías/Confiterías</option>
+            <option>01-21 Bares/Pub</option><option>01-22 Restaurant</option>
+            <option>01-23 Templos/Iglesias</option><option>01-24 Garages</option>
+            <option>01-25 Depósitos públicos</option><option>01-26 Cuarteles militares</option>
+            <option>01-27 Dependencias policiales</option><option>01-28 Industrias</option>
+            <option>01-29 Laboratorios</option><option>01-30 Plantas nucleares</option>
+            <option>01-31 Talleres</option><option>01-32 Logísticas</option>
+            <option>01-33 Droguerías</option><option>01-34 Farmacias</option>
+            <option>01-35 Viveros</option><option>01-36 Obra en construcción</option>
+            <option>01-37 Obrador</option><option>01-38 Sede sindical</option>
+            <option>01-39 Locales bailables</option><option>01-40 Depósito/Galpón</option>
+            <option>01-41 Hogar de niños/Geriátricos</option><option>01-42 Entidad bancaria</option>
+            <option>01-43 Cajeros automáticos</option><option>01-44 Stud/Caballeriza</option>
+            <option>01-45 Establecimiento agrícola</option><option>01-46 Establecimiento ganadero</option>
+            <option>01-47 Establecimiento avícola</option><option>01-48 Dependencias portuarias</option>
+            <option>01-49 Astilleros</option><option>01-50 Guarderías náuticas</option>
+            <option>01-51 Aeropuertos</option><option>01-52 Aero clubes</option>
+            <option>01-53 Depósitos ferroviarios</option><option>01-54 Molino harinero</option>
             <option>01-55 Edilicio (otros)</option>
           </optgroup>
           <optgroup label="01 INCENDIO — ELÉCTRICO">
-            <option>01-56 Tablero eléctrico</option>
-            <option>01-57 Tendido eléctrico</option>
-            <option>01-58 Usina eléctrica</option>
-            <option>01-59 Sub estación eléctrica</option>
-            <option>01-60 Transformador</option>
-            <option>01-61 Poste de luz</option>
+            <option>01-56 Tablero eléctrico</option><option>01-57 Tendido eléctrico</option>
+            <option>01-58 Usina eléctrica</option><option>01-59 Sub estación eléctrica</option>
+            <option>01-60 Transformador</option><option>01-61 Poste de luz</option>
           </optgroup>
           <optgroup label="01 INCENDIO — AGRÍCOLA">
-            <option>01-62 Fardos</option>
-            <option>01-63 Rollos</option>
-            <option>01-64 Silos</option>
-            <option>01-65 Silos bolsa</option>
-            <option>01-66 Silos de forrajes</option>
-            <option>01-67 Secadora de silos</option>
-            <option>01-68 Tambos</option>
+            <option>01-62 Fardos</option><option>01-63 Rollos</option><option>01-64 Silos</option>
+            <option>01-65 Silos bolsa</option><option>01-66 Silos de forrajes</option>
+            <option>01-67 Secadora de silos</option><option>01-68 Tambos</option>
             <option>01-69 Agrícola (otros)</option>
           </optgroup>
           <optgroup label="01 INCENDIO — VEHICULAR">
-            <option>01-70 Maquinaria vial</option>
-            <option>01-71 Maquinaria agrícola</option>
-            <option>01-72 Automóvil</option>
-            <option>01-73 Pick up</option>
-            <option>01-74 Micro ómnibus</option>
-            <option>01-75 Mini bus</option>
-            <option>01-76 Camión</option>
-            <option>01-77 Camión de cargas gral.</option>
-            <option>01-78 Camión cisterna</option>
-            <option>01-79 Cargas especiales</option>
-            <option>01-80 Camión militar</option>
-            <option>01-81 Casas rodantes</option>
-            <option>01-82 Tractor vehículo utilitario</option>
-            <option>01-83 Vehículos agrícolas</option>
-            <option>01-84 Formación ferroviaria</option>
-            <option>01-85 Motocicleta</option>
+            <option>01-70 Maquinaria vial</option><option>01-71 Maquinaria agrícola</option>
+            <option>01-72 Automóvil</option><option>01-73 Pick up</option>
+            <option>01-74 Micro ómnibus</option><option>01-75 Mini bus</option>
+            <option>01-76 Camión</option><option>01-77 Camión de cargas gral.</option>
+            <option>01-78 Camión cisterna</option><option>01-79 Cargas especiales</option>
+            <option>01-80 Camión militar</option><option>01-81 Casas rodantes</option>
+            <option>01-82 Tractor vehículo utilitario</option><option>01-83 Vehículos agrícolas</option>
+            <option>01-84 Formación ferroviaria</option><option>01-85 Motocicleta</option>
             <option>01-86 Vehicular (otros)</option>
           </optgroup>
           <optgroup label="01 INCENDIO — NÁUTICO">
-            <option>01-87 Embarcación en gral.</option>
-            <option>01-88 Incendio de buques</option>
+            <option>01-87 Embarcación en gral.</option><option>01-88 Incendio de buques</option>
             <option>01-89 Náutico (otros)</option>
           </optgroup>
           <optgroup label="01 INCENDIO — AERONAVE">
-            <option>01-90 Avión en gral.</option>
-            <option>01-91 Helicópteros</option>
-            <option>01-92 Helicópteros militares</option>
-            <option>01-93 Globos aerostáticos</option>
+            <option>01-90 Avión en gral.</option><option>01-91 Helicópteros</option>
+            <option>01-92 Helicópteros militares</option><option>01-93 Globos aerostáticos</option>
             <option>01-94 Aeronave (otros)</option>
           </optgroup>
           <optgroup label="01 INCENDIO — HIDROCARBURO">
-            <option>01-95 Oleoducto</option>
-            <option>01-96 Gaseoducto</option>
-            <option>01-97 Poliducto</option>
-            <option>01-98 Depósito de combustibles</option>
-            <option>01-99 Estación de servicio</option>
-            <option>01-100 Planta reguladora de gas</option>
-            <option>01-101 Garrafa/Estación de carga</option>
-            <option>01-102 Hidrocarburo (otros)</option>
+            <option>01-95 Oleoducto</option><option>01-96 Gaseoducto</option>
+            <option>01-97 Poliducto</option><option>01-98 Depósito de combustibles</option>
+            <option>01-99 Estación de servicio</option><option>01-100 Planta reguladora de gas</option>
+            <option>01-101 Garrafa/Estación de carga</option><option>01-102 Hidrocarburo (otros)</option>
           </optgroup>
           <optgroup label="01 INCENDIO — MISCELÁNEAS">
-            <option>01-103 Carpa/Gazebo</option>
-            <option>01-104 Pirotecnia</option>
-            <option>01-105 Caldera</option>
-            <option>01-106 Basural</option>
-            <option>01-107 Contenedor</option>
-            <option>01-108 Cesto de basura</option>
+            <option>01-103 Carpa/Gazebo</option><option>01-104 Pirotecnia</option>
+            <option>01-105 Caldera</option><option>01-106 Basural</option>
+            <option>01-107 Contenedor</option><option>01-108 Cesto de basura</option>
             <option>01-109 Misceláneas (otros)</option>
           </optgroup>
           <optgroup label="01 INCENDIO — VARIOS">
-            <option>01-110 Falsa alarma</option>
-            <option>01-111 Servicio sin efecto</option>
+            <option>01-110 Falsa alarma</option><option>01-111 Servicio sin efecto</option>
             <option>01-112 Varios (otros)</option>
           </optgroup>
           <optgroup label="02 AUXILIO — TRASLADO">
-            <option>02-1 Traslado de accidentado</option>
-            <option>02-2 Salvamento de accidentado</option>
-            <option>02-3 Parturienta</option>
-            <option>02-4 Traslado (otros)</option>
+            <option>02-1 Traslado de accidentado</option><option>02-2 Salvamento de accidentado</option>
+            <option>02-3 Parturienta</option><option>02-4 Traslado (otros)</option>
           </optgroup>
           <optgroup label="02 AUXILIO — RESCATE">
-            <option>02-5 Rescate de persona</option>
-            <option>02-6 Rescate en gral.</option>
-            <option>02-7 Recuperación de cadáver</option>
-            <option>02-8 Persona atrapada en ascensor</option>
+            <option>02-5 Rescate de persona</option><option>02-6 Rescate en gral.</option>
+            <option>02-7 Recuperación de cadáver</option><option>02-8 Persona atrapada en ascensor</option>
             <option>02-9 Rescate (otros)</option>
           </optgroup>
           <optgroup label="02 AUXILIO — ACCIDENTE">
-            <option>02-10 Accidente ciclista</option>
-            <option>02-11 Accidente motociclista</option>
-            <option>02-12 Accidente vehicular</option>
-            <option>02-13 Accidente aéreo</option>
-            <option>02-14 Accidente náutico</option>
-            <option>02-15 Accidente ferroviario</option>
-            <option>02-16 Accidente ecuestre</option>
-            <option>02-17 Accidente (otros)</option>
+            <option>02-10 Accidente ciclista</option><option>02-11 Accidente motociclista</option>
+            <option>02-12 Accidente vehicular</option><option>02-13 Accidente aéreo</option>
+            <option>02-14 Accidente náutico</option><option>02-15 Accidente ferroviario</option>
+            <option>02-16 Accidente ecuestre</option><option>02-17 Accidente (otros)</option>
           </optgroup>
           <optgroup label="02 AUXILIO — CATÁSTROFE">
-            <option>02-18 Derrumbes</option>
-            <option>02-19 Inundaciones</option>
-            <option>02-20 Voladuras de techos</option>
-            <option>02-21 Catástrofe (otros)</option>
+            <option>02-18 Derrumbes</option><option>02-19 Inundaciones</option>
+            <option>02-20 Voladuras de techos</option><option>02-21 Catástrofe (otros)</option>
           </optgroup>
           <optgroup label="02 AUXILIO — AMENAZA">
-            <option>02-22 Artefacto explosivo</option>
-            <option>02-23 Amenaza (otros)</option>
+            <option>02-22 Artefacto explosivo</option><option>02-23 Amenaza (otros)</option>
           </optgroup>
           <optgroup label="03 ESPECIALES — SERVICIO">
-            <option>03-1 Traslado de enfermo</option>
-            <option>03-2 Traslado de incapacitado</option>
-            <option>03-3 Suministro medicamentos</option>
-            <option>03-4 Donación sangre</option>
+            <option>03-1 Traslado de enfermo</option><option>03-2 Traslado de incapacitado</option>
+            <option>03-3 Suministro medicamentos</option><option>03-4 Donación sangre</option>
             <option>03-5 Especiales (otros)</option>
           </optgroup>
           <optgroup label="03 ESPECIALES — APOYO">
-            <option>03-6 Apoyo a fuerzas de seguridad</option>
-            <option>03-7 Apoyo a centros de salud</option>
-            <option>03-8 Apoyo a municipalidades</option>
-            <option>03-9 Apoyo a reparticiones públicas</option>
+            <option>03-6 Apoyo a fuerzas de seguridad</option><option>03-7 Apoyo a centros de salud</option>
+            <option>03-8 Apoyo a municipalidades</option><option>03-9 Apoyo a reparticiones públicas</option>
             <option>03-10 Apoyo (otros)</option>
           </optgroup>
           <optgroup label="03 ESPECIALES — TAREA">
-            <option>03-11 Desagotes</option>
-            <option>03-12 Escombramiento</option>
-            <option>03-13 Apuntalamiento</option>
-            <option>03-14 Remoción</option>
-            <option>03-15 Remolques</option>
-            <option>03-16 Colocación de driza</option>
-            <option>03-17 Búsqueda de personas</option>
-            <option>03-18 Búsqueda de animal</option>
-            <option>03-19 Limpieza de calles y rutas</option>
-            <option>03-20 Balizamiento</option>
-            <option>03-21 Árbol caído</option>
-            <option>03-22 Escape de gas</option>
-            <option>03-23 Tarea (otros)</option>
-            <option>03-24 Suministro de agua</option>
+            <option>03-11 Desagotes</option><option>03-12 Escombramiento</option>
+            <option>03-13 Apuntalamiento</option><option>03-14 Remoción</option>
+            <option>03-15 Remolques</option><option>03-16 Colocación de driza</option>
+            <option>03-17 Búsqueda de personas</option><option>03-18 Búsqueda de animal</option>
+            <option>03-19 Limpieza de calles y rutas</option><option>03-20 Balizamiento</option>
+            <option>03-21 Árbol caído</option><option>03-22 Escape de gas</option>
+            <option>03-23 Tarea (otros)</option><option>03-24 Suministro de agua</option>
           </optgroup>
           <optgroup label="04 DESASTRES">
-            <option>04-1 Defensa civil</option>
-            <option>04-2 Desastres (otros)</option>
+            <option>04-1 Defensa civil</option><option>04-2 Desastres (otros)</option>
           </optgroup>
           <optgroup label="05 COLABORACIÓN — MATERIAL">
-            <option>05-1 Con autobomba</option>
-            <option>05-2 Con cisterna</option>
-            <option>05-3 Con escalera mecánica</option>
-            <option>05-4 Con hidroelevador</option>
-            <option>05-5 Con ambulancia</option>
-            <option>05-6 Con lancha autopropulsada</option>
-            <option>05-7 Con vehículo polvero</option>
-            <option>05-8 Con espumígero</option>
-            <option>05-9 Con equipo mat. peligrosos</option>
-            <option>05-10 Con transporte personal</option>
+            <option>05-1 Con autobomba</option><option>05-2 Con cisterna</option>
+            <option>05-3 Con escalera mecánica</option><option>05-4 Con hidroelevador</option>
+            <option>05-5 Con ambulancia</option><option>05-6 Con lancha autopropulsada</option>
+            <option>05-7 Con vehículo polvero</option><option>05-8 Con espumígero</option>
+            <option>05-9 Con equipo mat. peligrosos</option><option>05-10 Con transporte personal</option>
             <option>05-11 Material (otros)</option>
           </optgroup>
           <optgroup label="05 COLABORACIÓN — PERSONAL">
-            <option>05-12 Con personal bomberos</option>
-            <option>05-13 Con escuadra de comunicaciones</option>
+            <option>05-12 Con personal bomberos</option><option>05-13 Con escuadra de comunicaciones</option>
             <option>05-13 Con escuadra de rescate en alturas</option>
             <option>05-14 Con escuadra de rescate acuático y buceo</option>
             <option>05-14 Con escuadra de radioactivos y explosivos</option>
@@ -379,65 +291,44 @@
             <option>05-18 Personal (otros)</option>
           </optgroup>
           <optgroup label="05 COLABORACIÓN — EQUIPO">
-            <option>05-19 Con equipo de salvamento</option>
-            <option>05-20 Con equipo de rescate</option>
-            <option>05-21 Con motobomba</option>
-            <option>05-22 Con usina móvil</option>
-            <option>05-23 Con generador</option>
-            <option>05-24 Con E.R.A.</option>
-            <option>05-25 Con equipo de remoción escombros</option>
-            <option>05-26 Con mangas de incendios</option>
+            <option>05-19 Con equipo de salvamento</option><option>05-20 Con equipo de rescate</option>
+            <option>05-21 Con motobomba</option><option>05-22 Con usina móvil</option>
+            <option>05-23 Con generador</option><option>05-24 Con E.R.A.</option>
+            <option>05-25 Con equipo de remoción escombros</option><option>05-26 Con mangas de incendios</option>
             <option>05-27 Equipo (otros)</option>
           </optgroup>
           <optgroup label="06 GUARDIAS — PREVENTIVA">
-            <option>06-1 Guardia de prevención</option>
-            <option>06-2 Guardia de emergencia</option>
-            <option>06-3 Descenso de helicóptero</option>
-            <option>06-4 Guardia operativa</option>
+            <option>06-1 Guardia de prevención</option><option>06-2 Guardia de emergencia</option>
+            <option>06-3 Descenso de helicóptero</option><option>06-4 Guardia operativa</option>
             <option>06-5 Preventiva (otros)</option>
           </optgroup>
           <optgroup label="06 GUARDIAS — INTERNA">
-            <option>06-6 Guardia de honor</option>
-            <option>06-7 Orden interno</option>
-            <option>06-8 Guardia</option>
-            <option>06-9 Interna (otros)</option>
+            <option>06-6 Guardia de honor</option><option>06-7 Orden interno</option>
+            <option>06-8 Guardia</option><option>06-9 Interna (otros)</option>
           </optgroup>
           <optgroup label="10 INCIDENTES QUÍMICOS">
-            <option>10-1 Incendio mat-pel</option>
-            <option>10-2 Derrame mat-pel</option>
-            <option>10-3 Explosiones</option>
-            <option>10-4 Prevención por mat-pel</option>
-            <option>10-5 Químicos (otros)</option>
-            <option>10-6 Escape de gas</option>
+            <option>10-1 Incendio mat-pel</option><option>10-2 Derrame mat-pel</option>
+            <option>10-3 Explosiones</option><option>10-4 Prevención por mat-pel</option>
+            <option>10-5 Químicos (otros)</option><option>10-6 Escape de gas</option>
           </optgroup>
           <optgroup label="11 FORESTAL — PASTIZAL">
-            <option>11-1 Pastizales</option>
-            <option>11-2 Matorrales</option>
-            <option>11-3 Campos</option>
-            <option>11-4 Pajonales</option>
-            <option>11-5 Bañados</option>
-            <option>11-6 Banquinas</option>
+            <option>11-1 Pastizales</option><option>11-2 Matorrales</option>
+            <option>11-3 Campos</option><option>11-4 Pajonales</option>
+            <option>11-5 Bañados</option><option>11-6 Banquinas</option>
             <option>11-7 Pastizal (otros)</option>
           </optgroup>
           <optgroup label="11 FORESTAL — FORESTACIÓN">
-            <option>11-8 Monte</option>
-            <option>11-9 Islas</option>
-            <option>11-10 Cerros montañas</option>
-            <option>11-11 Reserva natural</option>
-            <option>11-12 Parques nacionales</option>
-            <option>11-13 Rastrojo</option>
-            <option>11-14 Sembradíos</option>
-            <option>11-15 Forestación (otros)</option>
+            <option>11-8 Monte</option><option>11-9 Islas</option>
+            <option>11-10 Cerros montañas</option><option>11-11 Reserva natural</option>
+            <option>11-12 Parques nacionales</option><option>11-13 Rastrojo</option>
+            <option>11-14 Sembradíos</option><option>11-15 Forestación (otros)</option>
           </optgroup>
           <optgroup label="11 FORESTAL — INTERFACE">
-            <option>11-16 Incendio de interface</option>
-            <option>11-17 Interface (otros)</option>
+            <option>11-16 Incendio de interface</option><option>11-17 Interface (otros)</option>
           </optgroup>
           <optgroup label="99 OTROS — INTERNO">
-            <option>99-1 Reunión general</option>
-            <option>99-2 Capacitación interna</option>
-            <option>99-3 Orden interno</option>
-            <option>99-4 Jefatura</option>
+            <option>99-1 Reunión general</option><option>99-2 Capacitación interna</option>
+            <option>99-3 Orden interno</option><option>99-4 Jefatura</option>
           </optgroup>
         </select>
       </div>
@@ -462,693 +353,8 @@
 
   <div class="seccion">
     <div class="seccion-header">👨‍🚒 Personal a cargo</div>
-    <div class="seccion-body">
-      <div class="fila-dos">
-        <div>
-          <label>A cargo</label>
-          <select id="nombre-cargo" onchange="autoGrado(this,'grado-cargo')">
-<option value="">— Seleccionar —</option>
-            <option>Coronel, Pablo</option>
-            <option>Gimenez, Jonatan</option>
-            <option>Ortiz, Hernan</option>
-            <option>Cocini, Maximiliano</option>
-            <option>Vicente, Guillermo</option>
-            <option>Benigni, Jonatan</option>
-            <option>Larrosa, Maximiliano</option>
-            <option>Geiser, Eduardo</option>
-            <option>Bonavita, Damian</option>
-            <option>Toledo, Emiliano</option>
-            <option>Mansilla, Mailen</option>
-            <option>Lopez, Maximiliano</option>
-            <option>Cordovero, Pablo</option>
-            <option>Giacobino, Sebastian</option>
-            <option>Matrelo, Nicolas</option>
-            <option>Peralta, Jose Luis</option>
-            <option>Ludueña, Osvaldo</option>
-            <option>Ferrer, Juan Carlos</option>
-            <option>Bordon, Jose</option>
-            <option>Bugari, Alex</option>
-            <option>Antonio, Agustina</option>
-            <option>Maidana, Sebastian</option>
-            <option>Sanchez, Tamara</option>
-            <option>Tellechea, Milagros</option>
-            <option>Martinez, Silvio</option>
-            <option>Yuli, Luis Alberto</option>
-            <option>García, Juan Pablo</option>
-            <option>Amuchastegui, Daniel</option>
-            <option>Rosas, Luis</option>
-            <option>Rosas, Pedro</option>
-            <option>Jaime, Mauro</option>
-            <option>Domínguez, Cristian</option>
-            <option>Rodríguez, Sebastián</option>
-            <option>Tellechea, Leonardo</option>
-            <option>Barragan, Javier</option>
-            <option>Bohler, Damian</option>
-            <option>Ferrandi, Mauro</option>
-            <option>Velozo, Javier</option>
-            <option>Rasquetti, Marcos</option>
-            <option>Montovio, Mariano</option>
-            <option>Salerno, Yamila</option>
-            <option>Bugari, Dylan</option>
-            <option>Silva, Jonathan</option>
-            <option>Roldan, Nicolas</option>
-            <option>Piñeiro, Daniel</option>
-            <option>Brito, Franco</option>
-            <option>Antilef, Jorge</option>
-            <option>Cardiello, Elias</option>
-            <option>Mujica, Sabrina</option>
-            <option>Higa, Nestor</option>
-            <option>Coronel, Camila</option>
-            <option>Rivero Lodoli, Jorge</option>
-            <option>Cordovero, Tomas</option>
-            <option>Bordon, Nestor</option>
-            <option>Lopez, Matias</option>
-            <option>Monzon, Alejandra</option>
-            <option>Guillermo, Daiana</option>
-            <option>Perez Loayza, Fiamma</option>
-            <option>Colchado, Lucas</option>
-            <option>Smith, Cecilia</option>
-            <option>Stur, Gaston</option>
-            <option>Ovelar, Gretel Mayra</option>
-            <option>Tojo, Fernando</option>
-            <option>Avalos, Melania</option>
-            <option>Rios, Camila</option>
-            <option>Diaz, Samira</option>
-            <option>Mujica, Alexander</option>
-            <option>Rodriguez, Sol Morena</option>
-            <option>Maidana, Facundo</option>
-            <option>Quest, Estefania</option>
-            <option>Guercio, Oscar</option>
-            <option>Risso, Tobias</option>
-            <option>Fernandez, Oscar</option>
-            <option>Leyva, Veronica</option>
-            <option>Loseco, Ezequiel</option>
-            <option>Mancilla, Lucas</option>
-            <option>Fernandez, Facundo</option>
-            <option>Villalba, Mariana</option>
-            <option>Rosas, Federico</option>
-            <option>Hipolito, Ailen</option>
-            <option>Valenzuela, Joel</option>
-            <option>Cabanillas, Jonathan</option>
-            <option>Piedra, Emanuel</option>
-            <option>Tito, Bruno</option>
-            <option>Suarez, Facundo</option>
-            <option>Lopez, Facundo</option>
-          </select>
-        </div>
-        <div>
-          <label>Grado</label>
-          <input type="text" id="grado-cargo" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
-        </div>
-      </div>
-      <div class="fila-dos">
-        <div>
-          <label>Chofer</label>
-          <select id="nombre-chofer" onchange="autoGrado(this,'grado-chofer')">
-<option value="">— Seleccionar —</option>
-            <option>Coronel, Pablo</option>
-            <option>Gimenez, Jonatan</option>
-            <option>Ortiz, Hernan</option>
-            <option>Cocini, Maximiliano</option>
-            <option>Vicente, Guillermo</option>
-            <option>Benigni, Jonatan</option>
-            <option>Larrosa, Maximiliano</option>
-            <option>Geiser, Eduardo</option>
-            <option>Bonavita, Damian</option>
-            <option>Toledo, Emiliano</option>
-            <option>Mansilla, Mailen</option>
-            <option>Lopez, Maximiliano</option>
-            <option>Cordovero, Pablo</option>
-            <option>Giacobino, Sebastian</option>
-            <option>Matrelo, Nicolas</option>
-            <option>Peralta, Jose Luis</option>
-            <option>Ludueña, Osvaldo</option>
-            <option>Ferrer, Juan Carlos</option>
-            <option>Bordon, Jose</option>
-            <option>Bugari, Alex</option>
-            <option>Antonio, Agustina</option>
-            <option>Maidana, Sebastian</option>
-            <option>Sanchez, Tamara</option>
-            <option>Tellechea, Milagros</option>
-            <option>Martinez, Silvio</option>
-            <option>Yuli, Luis Alberto</option>
-            <option>García, Juan Pablo</option>
-            <option>Amuchastegui, Daniel</option>
-            <option>Rosas, Luis</option>
-            <option>Rosas, Pedro</option>
-            <option>Jaime, Mauro</option>
-            <option>Domínguez, Cristian</option>
-            <option>Rodríguez, Sebastián</option>
-            <option>Tellechea, Leonardo</option>
-            <option>Barragan, Javier</option>
-            <option>Bohler, Damian</option>
-            <option>Ferrandi, Mauro</option>
-            <option>Velozo, Javier</option>
-            <option>Rasquetti, Marcos</option>
-            <option>Montovio, Mariano</option>
-            <option>Salerno, Yamila</option>
-            <option>Bugari, Dylan</option>
-            <option>Silva, Jonathan</option>
-            <option>Roldan, Nicolas</option>
-            <option>Piñeiro, Daniel</option>
-            <option>Brito, Franco</option>
-            <option>Antilef, Jorge</option>
-            <option>Cardiello, Elias</option>
-            <option>Mujica, Sabrina</option>
-            <option>Higa, Nestor</option>
-            <option>Coronel, Camila</option>
-            <option>Rivero Lodoli, Jorge</option>
-            <option>Cordovero, Tomas</option>
-            <option>Bordon, Nestor</option>
-            <option>Lopez, Matias</option>
-            <option>Monzon, Alejandra</option>
-            <option>Guillermo, Daiana</option>
-            <option>Perez Loayza, Fiamma</option>
-            <option>Colchado, Lucas</option>
-            <option>Smith, Cecilia</option>
-            <option>Stur, Gaston</option>
-            <option>Ovelar, Gretel Mayra</option>
-            <option>Tojo, Fernando</option>
-            <option>Avalos, Melania</option>
-            <option>Rios, Camila</option>
-            <option>Diaz, Samira</option>
-            <option>Mujica, Alexander</option>
-            <option>Rodriguez, Sol Morena</option>
-            <option>Maidana, Facundo</option>
-            <option>Quest, Estefania</option>
-            <option>Guercio, Oscar</option>
-            <option>Risso, Tobias</option>
-            <option>Fernandez, Oscar</option>
-            <option>Leyva, Veronica</option>
-            <option>Loseco, Ezequiel</option>
-            <option>Mancilla, Lucas</option>
-            <option>Fernandez, Facundo</option>
-            <option>Villalba, Mariana</option>
-            <option>Rosas, Federico</option>
-            <option>Hipolito, Ailen</option>
-            <option>Valenzuela, Joel</option>
-            <option>Cabanillas, Jonathan</option>
-            <option>Piedra, Emanuel</option>
-            <option>Tito, Bruno</option>
-            <option>Suarez, Facundo</option>
-            <option>Lopez, Facundo</option>
-          </select>
-        </div>
-        <div>
-          <label>Grado</label>
-          <input type="text" id="grado-chofer" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
-        </div>
-      </div>
-      <div class="fila-dos">
-        <div>
-          <label>Componente 1</label>
-          <select id="nombre-comp1" onchange="autoGrado(this,'grado-comp1')">
-<option value="">— Seleccionar —</option>
-            <option>Coronel, Pablo</option>
-            <option>Gimenez, Jonatan</option>
-            <option>Ortiz, Hernan</option>
-            <option>Cocini, Maximiliano</option>
-            <option>Vicente, Guillermo</option>
-            <option>Benigni, Jonatan</option>
-            <option>Larrosa, Maximiliano</option>
-            <option>Geiser, Eduardo</option>
-            <option>Bonavita, Damian</option>
-            <option>Toledo, Emiliano</option>
-            <option>Mansilla, Mailen</option>
-            <option>Lopez, Maximiliano</option>
-            <option>Cordovero, Pablo</option>
-            <option>Giacobino, Sebastian</option>
-            <option>Matrelo, Nicolas</option>
-            <option>Peralta, Jose Luis</option>
-            <option>Ludueña, Osvaldo</option>
-            <option>Ferrer, Juan Carlos</option>
-            <option>Bordon, Jose</option>
-            <option>Bugari, Alex</option>
-            <option>Antonio, Agustina</option>
-            <option>Maidana, Sebastian</option>
-            <option>Sanchez, Tamara</option>
-            <option>Tellechea, Milagros</option>
-            <option>Martinez, Silvio</option>
-            <option>Yuli, Luis Alberto</option>
-            <option>García, Juan Pablo</option>
-            <option>Amuchastegui, Daniel</option>
-            <option>Rosas, Luis</option>
-            <option>Rosas, Pedro</option>
-            <option>Jaime, Mauro</option>
-            <option>Domínguez, Cristian</option>
-            <option>Rodríguez, Sebastián</option>
-            <option>Tellechea, Leonardo</option>
-            <option>Barragan, Javier</option>
-            <option>Bohler, Damian</option>
-            <option>Ferrandi, Mauro</option>
-            <option>Velozo, Javier</option>
-            <option>Rasquetti, Marcos</option>
-            <option>Montovio, Mariano</option>
-            <option>Salerno, Yamila</option>
-            <option>Bugari, Dylan</option>
-            <option>Silva, Jonathan</option>
-            <option>Roldan, Nicolas</option>
-            <option>Piñeiro, Daniel</option>
-            <option>Brito, Franco</option>
-            <option>Antilef, Jorge</option>
-            <option>Cardiello, Elias</option>
-            <option>Mujica, Sabrina</option>
-            <option>Higa, Nestor</option>
-            <option>Coronel, Camila</option>
-            <option>Rivero Lodoli, Jorge</option>
-            <option>Cordovero, Tomas</option>
-            <option>Bordon, Nestor</option>
-            <option>Lopez, Matias</option>
-            <option>Monzon, Alejandra</option>
-            <option>Guillermo, Daiana</option>
-            <option>Perez Loayza, Fiamma</option>
-            <option>Colchado, Lucas</option>
-            <option>Smith, Cecilia</option>
-            <option>Stur, Gaston</option>
-            <option>Ovelar, Gretel Mayra</option>
-            <option>Tojo, Fernando</option>
-            <option>Avalos, Melania</option>
-            <option>Rios, Camila</option>
-            <option>Diaz, Samira</option>
-            <option>Mujica, Alexander</option>
-            <option>Rodriguez, Sol Morena</option>
-            <option>Maidana, Facundo</option>
-            <option>Quest, Estefania</option>
-            <option>Guercio, Oscar</option>
-            <option>Risso, Tobias</option>
-            <option>Fernandez, Oscar</option>
-            <option>Leyva, Veronica</option>
-            <option>Loseco, Ezequiel</option>
-            <option>Mancilla, Lucas</option>
-            <option>Fernandez, Facundo</option>
-            <option>Villalba, Mariana</option>
-            <option>Rosas, Federico</option>
-            <option>Hipolito, Ailen</option>
-            <option>Valenzuela, Joel</option>
-            <option>Cabanillas, Jonathan</option>
-            <option>Piedra, Emanuel</option>
-            <option>Tito, Bruno</option>
-            <option>Suarez, Facundo</option>
-            <option>Lopez, Facundo</option>
-          </select>
-        </div>
-        <div>
-          <label>Grado</label>
-          <input type="text" id="grado-comp1" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
-        </div>
-      </div>
-      <div class="fila-dos">
-        <div>
-          <label>Componente 2</label>
-          <select id="nombre-comp2" onchange="autoGrado(this,'grado-comp2')">
-<option value="">— Seleccionar —</option>
-            <option>Coronel, Pablo</option>
-            <option>Gimenez, Jonatan</option>
-            <option>Ortiz, Hernan</option>
-            <option>Cocini, Maximiliano</option>
-            <option>Vicente, Guillermo</option>
-            <option>Benigni, Jonatan</option>
-            <option>Larrosa, Maximiliano</option>
-            <option>Geiser, Eduardo</option>
-            <option>Bonavita, Damian</option>
-            <option>Toledo, Emiliano</option>
-            <option>Mansilla, Mailen</option>
-            <option>Lopez, Maximiliano</option>
-            <option>Cordovero, Pablo</option>
-            <option>Giacobino, Sebastian</option>
-            <option>Matrelo, Nicolas</option>
-            <option>Peralta, Jose Luis</option>
-            <option>Ludueña, Osvaldo</option>
-            <option>Ferrer, Juan Carlos</option>
-            <option>Bordon, Jose</option>
-            <option>Bugari, Alex</option>
-            <option>Antonio, Agustina</option>
-            <option>Maidana, Sebastian</option>
-            <option>Sanchez, Tamara</option>
-            <option>Tellechea, Milagros</option>
-            <option>Martinez, Silvio</option>
-            <option>Yuli, Luis Alberto</option>
-            <option>García, Juan Pablo</option>
-            <option>Amuchastegui, Daniel</option>
-            <option>Rosas, Luis</option>
-            <option>Rosas, Pedro</option>
-            <option>Jaime, Mauro</option>
-            <option>Domínguez, Cristian</option>
-            <option>Rodríguez, Sebastián</option>
-            <option>Tellechea, Leonardo</option>
-            <option>Barragan, Javier</option>
-            <option>Bohler, Damian</option>
-            <option>Ferrandi, Mauro</option>
-            <option>Velozo, Javier</option>
-            <option>Rasquetti, Marcos</option>
-            <option>Montovio, Mariano</option>
-            <option>Salerno, Yamila</option>
-            <option>Bugari, Dylan</option>
-            <option>Silva, Jonathan</option>
-            <option>Roldan, Nicolas</option>
-            <option>Piñeiro, Daniel</option>
-            <option>Brito, Franco</option>
-            <option>Antilef, Jorge</option>
-            <option>Cardiello, Elias</option>
-            <option>Mujica, Sabrina</option>
-            <option>Higa, Nestor</option>
-            <option>Coronel, Camila</option>
-            <option>Rivero Lodoli, Jorge</option>
-            <option>Cordovero, Tomas</option>
-            <option>Bordon, Nestor</option>
-            <option>Lopez, Matias</option>
-            <option>Monzon, Alejandra</option>
-            <option>Guillermo, Daiana</option>
-            <option>Perez Loayza, Fiamma</option>
-            <option>Colchado, Lucas</option>
-            <option>Smith, Cecilia</option>
-            <option>Stur, Gaston</option>
-            <option>Ovelar, Gretel Mayra</option>
-            <option>Tojo, Fernando</option>
-            <option>Avalos, Melania</option>
-            <option>Rios, Camila</option>
-            <option>Diaz, Samira</option>
-            <option>Mujica, Alexander</option>
-            <option>Rodriguez, Sol Morena</option>
-            <option>Maidana, Facundo</option>
-            <option>Quest, Estefania</option>
-            <option>Guercio, Oscar</option>
-            <option>Risso, Tobias</option>
-            <option>Fernandez, Oscar</option>
-            <option>Leyva, Veronica</option>
-            <option>Loseco, Ezequiel</option>
-            <option>Mancilla, Lucas</option>
-            <option>Fernandez, Facundo</option>
-            <option>Villalba, Mariana</option>
-            <option>Rosas, Federico</option>
-            <option>Hipolito, Ailen</option>
-            <option>Valenzuela, Joel</option>
-            <option>Cabanillas, Jonathan</option>
-            <option>Piedra, Emanuel</option>
-            <option>Tito, Bruno</option>
-            <option>Suarez, Facundo</option>
-            <option>Lopez, Facundo</option>
-          </select>
-        </div>
-        <div>
-          <label>Grado</label>
-          <input type="text" id="grado-comp2" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
-        </div>
-      </div>
-      <div class="fila-dos">
-        <div>
-          <label>Componente 3</label>
-          <select id="nombre-comp3" onchange="autoGrado(this,'grado-comp3')">
-<option value="">— Seleccionar —</option>
-            <option>Coronel, Pablo</option>
-            <option>Gimenez, Jonatan</option>
-            <option>Ortiz, Hernan</option>
-            <option>Cocini, Maximiliano</option>
-            <option>Vicente, Guillermo</option>
-            <option>Benigni, Jonatan</option>
-            <option>Larrosa, Maximiliano</option>
-            <option>Geiser, Eduardo</option>
-            <option>Bonavita, Damian</option>
-            <option>Toledo, Emiliano</option>
-            <option>Mansilla, Mailen</option>
-            <option>Lopez, Maximiliano</option>
-            <option>Cordovero, Pablo</option>
-            <option>Giacobino, Sebastian</option>
-            <option>Matrelo, Nicolas</option>
-            <option>Peralta, Jose Luis</option>
-            <option>Ludueña, Osvaldo</option>
-            <option>Ferrer, Juan Carlos</option>
-            <option>Bordon, Jose</option>
-            <option>Bugari, Alex</option>
-            <option>Antonio, Agustina</option>
-            <option>Maidana, Sebastian</option>
-            <option>Sanchez, Tamara</option>
-            <option>Tellechea, Milagros</option>
-            <option>Martinez, Silvio</option>
-            <option>Yuli, Luis Alberto</option>
-            <option>García, Juan Pablo</option>
-            <option>Amuchastegui, Daniel</option>
-            <option>Rosas, Luis</option>
-            <option>Rosas, Pedro</option>
-            <option>Jaime, Mauro</option>
-            <option>Domínguez, Cristian</option>
-            <option>Rodríguez, Sebastián</option>
-            <option>Tellechea, Leonardo</option>
-            <option>Barragan, Javier</option>
-            <option>Bohler, Damian</option>
-            <option>Ferrandi, Mauro</option>
-            <option>Velozo, Javier</option>
-            <option>Rasquetti, Marcos</option>
-            <option>Montovio, Mariano</option>
-            <option>Salerno, Yamila</option>
-            <option>Bugari, Dylan</option>
-            <option>Silva, Jonathan</option>
-            <option>Roldan, Nicolas</option>
-            <option>Piñeiro, Daniel</option>
-            <option>Brito, Franco</option>
-            <option>Antilef, Jorge</option>
-            <option>Cardiello, Elias</option>
-            <option>Mujica, Sabrina</option>
-            <option>Higa, Nestor</option>
-            <option>Coronel, Camila</option>
-            <option>Rivero Lodoli, Jorge</option>
-            <option>Cordovero, Tomas</option>
-            <option>Bordon, Nestor</option>
-            <option>Lopez, Matias</option>
-            <option>Monzon, Alejandra</option>
-            <option>Guillermo, Daiana</option>
-            <option>Perez Loayza, Fiamma</option>
-            <option>Colchado, Lucas</option>
-            <option>Smith, Cecilia</option>
-            <option>Stur, Gaston</option>
-            <option>Ovelar, Gretel Mayra</option>
-            <option>Tojo, Fernando</option>
-            <option>Avalos, Melania</option>
-            <option>Rios, Camila</option>
-            <option>Diaz, Samira</option>
-            <option>Mujica, Alexander</option>
-            <option>Rodriguez, Sol Morena</option>
-            <option>Maidana, Facundo</option>
-            <option>Quest, Estefania</option>
-            <option>Guercio, Oscar</option>
-            <option>Risso, Tobias</option>
-            <option>Fernandez, Oscar</option>
-            <option>Leyva, Veronica</option>
-            <option>Loseco, Ezequiel</option>
-            <option>Mancilla, Lucas</option>
-            <option>Fernandez, Facundo</option>
-            <option>Villalba, Mariana</option>
-            <option>Rosas, Federico</option>
-            <option>Hipolito, Ailen</option>
-            <option>Valenzuela, Joel</option>
-            <option>Cabanillas, Jonathan</option>
-            <option>Piedra, Emanuel</option>
-            <option>Tito, Bruno</option>
-            <option>Suarez, Facundo</option>
-            <option>Lopez, Facundo</option>
-          </select>
-        </div>
-        <div>
-          <label>Grado</label>
-          <input type="text" id="grado-comp3" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
-        </div>
-      </div>
-      <div class="fila-dos">
-        <div>
-          <label>Componente 4</label>
-          <select id="nombre-comp4" onchange="autoGrado(this,'grado-comp4')">
-<option value="">— Seleccionar —</option>
-            <option>Coronel, Pablo</option>
-            <option>Gimenez, Jonatan</option>
-            <option>Ortiz, Hernan</option>
-            <option>Cocini, Maximiliano</option>
-            <option>Vicente, Guillermo</option>
-            <option>Benigni, Jonatan</option>
-            <option>Larrosa, Maximiliano</option>
-            <option>Geiser, Eduardo</option>
-            <option>Bonavita, Damian</option>
-            <option>Toledo, Emiliano</option>
-            <option>Mansilla, Mailen</option>
-            <option>Lopez, Maximiliano</option>
-            <option>Cordovero, Pablo</option>
-            <option>Giacobino, Sebastian</option>
-            <option>Matrelo, Nicolas</option>
-            <option>Peralta, Jose Luis</option>
-            <option>Ludueña, Osvaldo</option>
-            <option>Ferrer, Juan Carlos</option>
-            <option>Bordon, Jose</option>
-            <option>Bugari, Alex</option>
-            <option>Antonio, Agustina</option>
-            <option>Maidana, Sebastian</option>
-            <option>Sanchez, Tamara</option>
-            <option>Tellechea, Milagros</option>
-            <option>Martinez, Silvio</option>
-            <option>Yuli, Luis Alberto</option>
-            <option>García, Juan Pablo</option>
-            <option>Amuchastegui, Daniel</option>
-            <option>Rosas, Luis</option>
-            <option>Rosas, Pedro</option>
-            <option>Jaime, Mauro</option>
-            <option>Domínguez, Cristian</option>
-            <option>Rodríguez, Sebastián</option>
-            <option>Tellechea, Leonardo</option>
-            <option>Barragan, Javier</option>
-            <option>Bohler, Damian</option>
-            <option>Ferrandi, Mauro</option>
-            <option>Velozo, Javier</option>
-            <option>Rasquetti, Marcos</option>
-            <option>Montovio, Mariano</option>
-            <option>Salerno, Yamila</option>
-            <option>Bugari, Dylan</option>
-            <option>Silva, Jonathan</option>
-            <option>Roldan, Nicolas</option>
-            <option>Piñeiro, Daniel</option>
-            <option>Brito, Franco</option>
-            <option>Antilef, Jorge</option>
-            <option>Cardiello, Elias</option>
-            <option>Mujica, Sabrina</option>
-            <option>Higa, Nestor</option>
-            <option>Coronel, Camila</option>
-            <option>Rivero Lodoli, Jorge</option>
-            <option>Cordovero, Tomas</option>
-            <option>Bordon, Nestor</option>
-            <option>Lopez, Matias</option>
-            <option>Monzon, Alejandra</option>
-            <option>Guillermo, Daiana</option>
-            <option>Perez Loayza, Fiamma</option>
-            <option>Colchado, Lucas</option>
-            <option>Smith, Cecilia</option>
-            <option>Stur, Gaston</option>
-            <option>Ovelar, Gretel Mayra</option>
-            <option>Tojo, Fernando</option>
-            <option>Avalos, Melania</option>
-            <option>Rios, Camila</option>
-            <option>Diaz, Samira</option>
-            <option>Mujica, Alexander</option>
-            <option>Rodriguez, Sol Morena</option>
-            <option>Maidana, Facundo</option>
-            <option>Quest, Estefania</option>
-            <option>Guercio, Oscar</option>
-            <option>Risso, Tobias</option>
-            <option>Fernandez, Oscar</option>
-            <option>Leyva, Veronica</option>
-            <option>Loseco, Ezequiel</option>
-            <option>Mancilla, Lucas</option>
-            <option>Fernandez, Facundo</option>
-            <option>Villalba, Mariana</option>
-            <option>Rosas, Federico</option>
-            <option>Hipolito, Ailen</option>
-            <option>Valenzuela, Joel</option>
-            <option>Cabanillas, Jonathan</option>
-            <option>Piedra, Emanuel</option>
-            <option>Tito, Bruno</option>
-            <option>Suarez, Facundo</option>
-            <option>Lopez, Facundo</option>
-          </select>
-        </div>
-        <div>
-          <label>Grado</label>
-          <input type="text" id="grado-comp4" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
-        </div>
-      </div>
-      <div class="fila-dos">
-        <div>
-          <label>Componente 5</label>
-          <select id="nombre-comp5" onchange="autoGrado(this,'grado-comp5')">
-<option value="">— Seleccionar —</option>
-            <option>Coronel, Pablo</option>
-            <option>Gimenez, Jonatan</option>
-            <option>Ortiz, Hernan</option>
-            <option>Cocini, Maximiliano</option>
-            <option>Vicente, Guillermo</option>
-            <option>Benigni, Jonatan</option>
-            <option>Larrosa, Maximiliano</option>
-            <option>Geiser, Eduardo</option>
-            <option>Bonavita, Damian</option>
-            <option>Toledo, Emiliano</option>
-            <option>Mansilla, Mailen</option>
-            <option>Lopez, Maximiliano</option>
-            <option>Cordovero, Pablo</option>
-            <option>Giacobino, Sebastian</option>
-            <option>Matrelo, Nicolas</option>
-            <option>Peralta, Jose Luis</option>
-            <option>Ludueña, Osvaldo</option>
-            <option>Ferrer, Juan Carlos</option>
-            <option>Bordon, Jose</option>
-            <option>Bugari, Alex</option>
-            <option>Antonio, Agustina</option>
-            <option>Maidana, Sebastian</option>
-            <option>Sanchez, Tamara</option>
-            <option>Tellechea, Milagros</option>
-            <option>Martinez, Silvio</option>
-            <option>Yuli, Luis Alberto</option>
-            <option>García, Juan Pablo</option>
-            <option>Amuchastegui, Daniel</option>
-            <option>Rosas, Luis</option>
-            <option>Rosas, Pedro</option>
-            <option>Jaime, Mauro</option>
-            <option>Domínguez, Cristian</option>
-            <option>Rodríguez, Sebastián</option>
-            <option>Tellechea, Leonardo</option>
-            <option>Barragan, Javier</option>
-            <option>Bohler, Damian</option>
-            <option>Ferrandi, Mauro</option>
-            <option>Velozo, Javier</option>
-            <option>Rasquetti, Marcos</option>
-            <option>Montovio, Mariano</option>
-            <option>Salerno, Yamila</option>
-            <option>Bugari, Dylan</option>
-            <option>Silva, Jonathan</option>
-            <option>Roldan, Nicolas</option>
-            <option>Piñeiro, Daniel</option>
-            <option>Brito, Franco</option>
-            <option>Antilef, Jorge</option>
-            <option>Cardiello, Elias</option>
-            <option>Mujica, Sabrina</option>
-            <option>Higa, Nestor</option>
-            <option>Coronel, Camila</option>
-            <option>Rivero Lodoli, Jorge</option>
-            <option>Cordovero, Tomas</option>
-            <option>Bordon, Nestor</option>
-            <option>Lopez, Matias</option>
-            <option>Monzon, Alejandra</option>
-            <option>Guillermo, Daiana</option>
-            <option>Perez Loayza, Fiamma</option>
-            <option>Colchado, Lucas</option>
-            <option>Smith, Cecilia</option>
-            <option>Stur, Gaston</option>
-            <option>Ovelar, Gretel Mayra</option>
-            <option>Tojo, Fernando</option>
-            <option>Avalos, Melania</option>
-            <option>Rios, Camila</option>
-            <option>Diaz, Samira</option>
-            <option>Mujica, Alexander</option>
-            <option>Rodriguez, Sol Morena</option>
-            <option>Maidana, Facundo</option>
-            <option>Quest, Estefania</option>
-            <option>Guercio, Oscar</option>
-            <option>Risso, Tobias</option>
-            <option>Fernandez, Oscar</option>
-            <option>Leyva, Veronica</option>
-            <option>Loseco, Ezequiel</option>
-            <option>Mancilla, Lucas</option>
-            <option>Fernandez, Facundo</option>
-            <option>Villalba, Mariana</option>
-            <option>Rosas, Federico</option>
-            <option>Hipolito, Ailen</option>
-            <option>Valenzuela, Joel</option>
-            <option>Cabanillas, Jonathan</option>
-            <option>Piedra, Emanuel</option>
-            <option>Tito, Bruno</option>
-            <option>Suarez, Facundo</option>
-            <option>Lopez, Facundo</option>
-          </select>
-        </div>
-        <div>
-          <label>Grado</label>
-          <input type="text" id="grado-comp5" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
-        </div>
-      </div>
+    <div class="seccion-body" id="personal-body">
+      <!-- generado por JS -->
     </div>
   </div>
 
@@ -1177,48 +383,39 @@
 <!-- DASHBOARD -->
 <div id="pagina-dashboard" class="pagina">
 <div class="container">
-
   <button class="btn-actualizar-dash" onclick="renderDashboard()">↻ ACTUALIZAR DASHBOARD</button>
-
   <div id="dash-sin-datos" style="display:none;text-align:center;padding:40px 16px;">
     <div style="font-size:48px;margin-bottom:12px;">📊</div>
     <p style="font-family:var(--fuente-mono);font-size:12px;color:var(--gris-texto);letter-spacing:1px;">SIN SERVICIOS REGISTRADOS</p>
-    <p style="font-size:13px;color:var(--gris-texto);margin-top:8px;">Cargá servicios desde la pestaña Despacho.</p>
   </div>
-
   <div id="dash-contenido">
     <div class="dash-metrics" id="dash-metrics"></div>
-
     <p class="dash-titulo">Tipo de servicio</p>
     <div class="seccion" style="margin-bottom:16px;">
       <div class="seccion-body">
-        <div style="position:relative;width:100%;height:220px;"><canvas id="chart-tipo" role="img" aria-label="Torta tipos de servicio">Tipos de servicio.</canvas></div>
+        <div style="position:relative;width:100%;height:220px;"><canvas id="chart-tipo"></canvas></div>
         <div id="dash-tipo"></div>
       </div>
     </div>
-
     <p class="dash-titulo">Servicios por móvil</p>
     <div class="seccion" style="margin-bottom:16px;">
       <div class="seccion-body">
-        <div style="position:relative;width:100%;height:220px;"><canvas id="chart-moviles" role="img" aria-label="Torta por móvil">Por móvil.</canvas></div>
+        <div style="position:relative;width:100%;height:220px;"><canvas id="chart-moviles"></canvas></div>
         <div id="dash-moviles"></div>
       </div>
     </div>
-
     <p class="dash-titulo">Servicios por responsable a cargo</p>
     <div class="seccion" style="margin-bottom:16px;">
       <div class="seccion-body">
-        <div style="position:relative;width:100%;height:220px;"><canvas id="chart-cargo" role="img" aria-label="Torta por responsable">Por responsable.</canvas></div>
+        <div style="position:relative;width:100%;height:220px;"><canvas id="chart-cargo"></canvas></div>
         <div id="dash-cargo"></div>
       </div>
     </div>
-
     <p class="dash-titulo">Servicios por integrante (total participaciones)</p>
     <div class="seccion" style="margin-bottom:16px;">
       <div class="seccion-body" id="dash-integrantes"></div>
     </div>
   </div>
-
 </div>
 </div>
 
@@ -1228,45 +425,15 @@
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <script>
+// ── CONSTANTES ──
 const MOVILES_OPCIONES=['13','28','29','33','34','35','36','Otro'];
 const DASH_COLORS=['#d32f2f','#378ADD','#1D9E75','#f5c400','#D85A30','#D4537E','#7F77DD','#639922'];
 const chartInstances={};
 
-function crearTorta(id, labels, data, colors){
-  if(chartInstances[id]){ chartInstances[id].destroy(); }
-  const ctx=document.getElementById(id);
-  if(!ctx) return;
-  chartInstances[id]=new Chart(ctx,{
-    type:'doughnut',
-    data:{
-      labels,
-      datasets:[{data,backgroundColor:colors,borderColor:'#141414',borderWidth:3,hoverBorderWidth:2}]
-    },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      cutout:'55%',
-      plugins:{
-        legend:{display:false},
-        tooltip:{
-          backgroundColor:'#1e1e1e',
-          borderColor:'#2e2e2e',
-          borderWidth:1,
-          titleColor:'#f5c400',
-          bodyColor:'#f5f5f5',
-          padding:10,
-          callbacks:{
-            label:ctx=>{
-              const total=ctx.dataset.data.reduce((a,b)=>a+b,0);
-              return ` ${ctx.label}: ${ctx.parsed} (${Math.round(ctx.parsed/total*100)}%)`;
-            }
-          }
-        }
-      }
-    }
-  });
-}
+const ROLES=['A cargo','Chofer','Componente 1','Componente 2','Componente 3','Componente 4','Componente 5'];
+const ROLE_IDS=['cargo','chofer','comp1','comp2','comp3','comp4','comp5'];
 
-const PERSONAL = {
+const PERSONAL={
   'Coronel, Pablo':'OF. Auxiliar','Gimenez, Jonatan':'OF. Auxiliar','Ortiz, Hernan':'OF. Auxiliar',
   'Cocini, Maximiliano':'Ayudante Mayor','Vicente, Guillermo':'Ayudante Mayor','Benigni, Jonatan':'Ayudante Mayor',
   'Larrosa, Maximiliano':'Ayudante Mayor','Geiser, Eduardo':'Ayudante Mayor',
@@ -1298,58 +465,71 @@ const PERSONAL = {
   'Tito, Bruno':'Bombero','Suarez, Facundo':'Bombero','Lopez, Facundo':'Bombero'
 };
 
-function autoGrado(nombreSel, gradoId){
-  const nombre = nombreSel.value;
-  const gradoEl = document.getElementById(gradoId);
-  if(!gradoEl) return;
-  gradoEl.value = nombre && PERSONAL[nombre] ? PERSONAL[nombre] : '';
+const NOMBRES_OPTIONS = Object.keys(PERSONAL).sort().map(n=>`<option>${n}</option>`).join('');
+
+// ── PERSONAL SECTION ──
+function buildPersonalSection(){
+  const body = document.getElementById('personal-body');
+  body.innerHTML = ROLES.map((rol, i)=>{
+    const rid = ROLE_IDS[i];
+    return `<div class="fila-dos">
+      <div>
+        <label>${rol}</label>
+        <select id="nombre-${rid}" onchange="autoGrado(this,'grado-${rid}')">
+          <option value="">— Seleccionar —</option>${NOMBRES_OPTIONS}
+        </select>
+      </div>
+      <div>
+        <label>Grado</label>
+        <input type="text" id="grado-${rid}" readonly placeholder="— auto —" style="background:var(--gris-oscuro);color:var(--amarillo);cursor:default;font-family:var(--fuente-mono);font-size:13px;">
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function autoGrado(sel, gradoId){
+  const el = document.getElementById(gradoId);
+  if(!el) return;
+  el.value = sel.value && PERSONAL[sel.value] ? PERSONAL[sel.value] : '';
   actualizarPreview();
 }
-const firebaseConfig = {
-  apiKey: "AIzaSyA_X-RBYpJUJWz7vFJz4-i8lX1lNXov6bM",
-  authDomain: "bvc-despacho.firebaseapp.com",
-  projectId: "bvc-despacho",
-  storageBucket: "bvc-despacho.firebasestorage.app",
-  messagingSenderId: "112751546055",
-  appId: "1:112751546055:web:52f292f3ce1ac1a838b8e2"
-};
-firebase.initializeApp(firebaseConfig);
+
+// ── FIREBASE ──
+firebase.initializeApp({
+  apiKey:"AIzaSyA_X-RBYpJUJWz7vFJz4-i8lX1lNXov6bM",
+  authDomain:"bvc-despacho.firebaseapp.com",
+  projectId:"bvc-despacho",
+  storageBucket:"bvc-despacho.firebasestorage.app",
+  messagingSenderId:"112751546055",
+  appId:"1:112751546055:web:52f292f3ce1ac1a838b8e2"
+});
 const db = firebase.firestore();
+const metaRef = db.collection('meta').doc('contador');
 
-let servicios = [];
-let ultimoServicio = 0;
+let servicios=[];
+let ultimoServicio=0;
 
-// Funciones disponibles globalmente (script normal)
-
+// ── INIT ──
+buildPersonalSection();
 document.addEventListener('input', actualizarPreview);
 document.addEventListener('change', actualizarPreview);
 agregarMovil();
 setHoraAhora();
 
-// Cargar último número
-const metaRef = db.collection('meta').doc('contador');
-metaRef.get().then(snap => {
-  if(snap.exists){
-    ultimoServicio = snap.data().ultimo || 0;
-    if(ultimoServicio > 0) document.getElementById('num-servicio').value = ultimoServicio + 1;
-  }
+metaRef.get().then(snap=>{
+  if(snap.exists){ ultimoServicio=snap.data().ultimo||0; if(ultimoServicio>0) document.getElementById('num-servicio').value=ultimoServicio+1; }
 });
 
-// Escuchar servicios en tiempo real
-db.collection('servicios').orderBy('id', 'desc').onSnapshot((snapshot) => {
-  servicios = snapshot.docs.map(d => ({...d.data(), _docId: d.id}));
+db.collection('servicios').orderBy('id','desc').onSnapshot(snapshot=>{
+  servicios=snapshot.docs.map(d=>({...d.data(),_docId:d.id}));
   renderResumen();
 });
 
+// ── FUNCIONES ──
 function setHoraAhora(){
   const now=new Date();
-  const hh=String(now.getHours()).padStart(2,'0');
-  const mm=String(now.getMinutes()).padStart(2,'0');
-  document.getElementById('hora-servicio').value=`${hh}:${mm}`;
-  const yyyy=now.getFullYear();
-  const mo=String(now.getMonth()+1).padStart(2,'0');
-  const dd=String(now.getDate()).padStart(2,'0');
-  document.getElementById('fecha-servicio').value=`${yyyy}-${mo}-${dd}`;
+  document.getElementById('hora-servicio').value=`${String(now.getHours()).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
+  document.getElementById('fecha-servicio').value=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
   actualizarPreview();
 }
 
@@ -1378,31 +558,38 @@ function getMoviles(){
     return sel?'Móvil '+sel:null;
   }).filter(Boolean);
 }
-function chkOtroTipo(){document.getElementById('otro-tipo-wrap').style.display=document.getElementById('tipo-servicio').value==='Otro'?'block':'none';actualizarPreview();}
-async function autoServicio(){
-  const snap = await getDoc(metaRef);
-  const ultimo = snap.exists() ? (snap.data().ultimo || 0) : 0;
-  document.getElementById('num-servicio').value = ultimo + 1;
+
+function chkOtroTipo(){
+  document.getElementById('otro-tipo-wrap').style.display=document.getElementById('tipo-servicio').value==='Otro'?'block':'none';
   actualizarPreview();
+}
+
+async function autoServicio(){
+  const snap=await metaRef.get();
+  const ultimo=snap.exists?(snap.data().ultimo||0):0;
+  document.getElementById('num-servicio').value=ultimo+1;
+  actualizarPreview();
+}
+
+function getPersonal(){
+  return ROLE_IDS.map(rid=>({
+    grado:document.getElementById('grado-'+rid)?.value||'',
+    nombre:document.getElementById('nombre-'+rid)?.value.trim()||''
+  }));
 }
 
 function buildMensaje(){
   const numServ=document.getElementById('num-servicio').value.trim();
   const hora=document.getElementById('hora-servicio').value.trim();
   const fechaRaw=document.getElementById('fecha-servicio').value;
-  const fecha=fechaRaw ? fechaRaw.split('-').reverse().join('/') : '';
+  const fecha=fechaRaw?fechaRaw.split('-').reverse().join('/'):'' ;
   let tipo=document.getElementById('tipo-servicio').value;
   if(tipo==='Otro') tipo=document.getElementById('otro-tipo').value.trim();
   const dir=document.getElementById('direccion').value.trim();
   const moviles=getMoviles();
-  const gradoCargo=document.getElementById('grado-cargo').value;
-  const nombreCargo=document.getElementById('nombre-cargo').value.trim();
-  const gradoChofer=document.getElementById('grado-chofer').value;
-  const nombreChofer=document.getElementById('nombre-chofer').value.trim();
-  const comp=[1,2,3,4,5].map(n=>({grado:document.getElementById(`grado-comp${n}`).value,nombre:document.getElementById(`nombre-comp${n}`).value.trim()}));
   const folio=document.getElementById('folio').value.trim();
   const libro=document.getElementById('libro').value.trim();
-  const extra='';
+  const personal=getPersonal();
   if(!tipo&&!dir&&moviles.length===0) return null;
   let lineas=[];
   lineas.push('🚒 *BOMBEROS VOLUNTARIOS CAÑUELAS*');
@@ -1410,16 +597,14 @@ function buildMensaje(){
   if(fecha||hora) lineas.push(`🕐 *Hora:* ${hora||'-'}  |  📅 *Fecha:* ${fecha||'-'}`);
   if(moviles.length>0) lineas.push(`🚒 *Movil/es:* ${moviles.join(' | ')}`);
   if(tipo) lineas.push(`🔥 *Tipo:* ${tipo}`);
-  if(dir) lineas.push(`📍 *Lugar:* ${dir}`);
   if(dir){
-    const mapsUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(dir+', Cañuelas, Buenos Aires, Argentina');
-    lineas.push(`🗺️ *Mapa:* ${mapsUrl}`);
+    lineas.push(`📍 *Lugar:* ${dir}`);
+    lineas.push(`🗺️ *Mapa:* https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(dir+', Cañuelas, Buenos Aires, Argentina')}`);
   }
   lineas.push('--------------------');
-  if(gradoCargo&&nombreCargo) lineas.push(`👤 *A cargo:* ${gradoCargo} ${nombreCargo}`);
-  if(gradoChofer&&nombreChofer) lineas.push(`🚗 *Chofer:* ${gradoChofer} ${nombreChofer}`);
-  comp.forEach((c,i)=>{if(c.grado&&c.nombre) lineas.push(`👥 *Componente ${i+1}:* ${c.grado} ${c.nombre}`);});
-  if(numServ){lineas.push('--------------------');lineas.push(`📋 *Servicio N°* ${numServ}`);}
+  const roleLabels=['A cargo','Chofer','Componente 1','Componente 2','Componente 3','Componente 4','Componente 5'];
+  personal.forEach((p,i)=>{ if(p.grado&&p.nombre) lineas.push(`👤 *${roleLabels[i]}:* ${p.grado} ${p.nombre}`); });
+  if(numServ){ lineas.push('--------------------'); lineas.push(`📋 *Servicio N°* ${numServ}`); }
   if(folio) lineas.push(`📄 *Folio:* ${folio}`);
   if(libro) lineas.push(`📒 *Libro:* ${libro}`);
   return lineas.join('\n');
@@ -1429,7 +614,7 @@ function actualizarPreview(){
   const box=document.getElementById('preview-box');
   const msg=buildMensaje();
   if(!msg){box.textContent='Completá los campos para ver el mensaje...';return;}
-  box.innerHTML=msg.split('\n').map((l,i,arr)=>i===arr.length-1&&l.startsWith('Servicio')?`<span class="linea-destacada">${l}</span>`:l).join('\n');
+  box.textContent=msg;
 }
 
 async function enviarWhatsApp(){
@@ -1439,68 +624,103 @@ async function enviarWhatsApp(){
   await guardarServicio(msg);
   window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
 }
+
 function copiarMensaje(){
   const msg=buildMensaje();
   if(!msg){mostrarToast('⚠ Nada para copiar');return;}
   navigator.clipboard.writeText(msg).then(()=>mostrarToast('✓ Copiado al portapapeles'));
 }
+
 async function guardarServicio(msg){
   const numServ=parseInt(document.getElementById('num-servicio').value)||null;
   let tipo=document.getElementById('tipo-servicio').value;
   if(tipo==='Otro') tipo=document.getElementById('otro-tipo').value.trim();
   const moviles=getMoviles();
-  const gradoCargo=document.getElementById('grado-cargo').value;
-  const nombreCargo=document.getElementById('nombre-cargo').value.trim();
-  const gradoChofer=document.getElementById('grado-chofer').value;
-  const nombreChofer=document.getElementById('nombre-chofer').value.trim();
-  const componentes=[1,2,3,4,5].map(n=>{
-    const g=document.getElementById(`grado-comp${n}`).value;
-    const nm=document.getElementById(`nombre-comp${n}`).value.trim();
-    return g&&nm?`${g} ${nm}`:'—';
-  }).filter(c=>c!=='—');
-  const reg={id:Date.now(),num:numServ,tipo:tipo||'—',moviles,
-    cargo:gradoCargo&&nombreCargo?`${gradoCargo} ${nombreCargo}`:'—',
-    chofer:gradoChofer&&nombreChofer?`${gradoChofer} ${nombreChofer}`:'—',
-    componentes,
-    msg,ts:new Date().toLocaleString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})};
-  try {
+  const personal=getPersonal();
+  const cargo=personal[0].grado&&personal[0].nombre?`${personal[0].grado} ${personal[0].nombre}`:'—';
+  const chofer=personal[1].grado&&personal[1].nombre?`${personal[1].grado} ${personal[1].nombre}`:'—';
+  const componentes=personal.slice(2).filter(p=>p.grado&&p.nombre).map(p=>`${p.grado} ${p.nombre}`);
+  const reg={
+    id:Date.now(),num:numServ,tipo:tipo||'—',moviles,
+    cargo,chofer,componentes,msg,
+    ts:new Date().toLocaleString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})
+  };
+  try{
     await db.collection('servicios').add(reg);
-    if(numServ){
-      await metaRef.set({ultimo: numServ}, {merge: true});
-      ultimoServicio = numServ;
-    }
+    if(numServ){ await metaRef.set({ultimo:numServ},{merge:true}); ultimoServicio=numServ; }
     mostrarToast('✓ Servicio registrado y sincronizado');
-  } catch(e){
-    mostrarToast('⚠ Error al guardar: '+e.message);
-  }
+  }catch(e){ mostrarToast('⚠ Error: '+e.message); }
 }
+
 function renderResumen(){
   const cont=document.getElementById('resumen-lista');
   if(!servicios.length){cont.innerHTML='<div class="empty-state">— SIN SERVICIOS REGISTRADOS —</div>';return;}
-  cont.innerHTML=servicios.map(s=>`<div class="resumen-card" onclick="cargarServicio(${s.id})"><button class="btn-borrar-r" onclick="event.stopPropagation();borrarServicio(${s.id})">×</button><div class="num-serv">SERV. ${s.num||'—'}</div><div class="tipo-serv">${s.tipo}</div><div class="det">${s.moviles.length?s.moviles.join(', '):'Sin móviles'}<br>A cargo: ${s.cargo}</div><div class="ts">${s.ts}</div></div>`).join('');
+  cont.innerHTML=servicios.map(s=>`
+    <div class="resumen-card" onclick="cargarServicio(${s.id})">
+      <button class="btn-borrar-r" onclick="event.stopPropagation();borrarServicio(${s.id})">×</button>
+      <div class="num-serv">SERV. ${s.num||'—'}</div>
+      <div class="tipo-serv">${s.tipo}</div>
+      <div class="det">${(s.moviles||[]).filter(m=>m&&m.trim()).length?(s.moviles).filter(m=>m&&m.trim()).join(', '):'Sin móviles'}<br>A cargo: ${s.cargo||'—'}</div>
+      <div class="ts">${s.ts}</div>
+    </div>`).join('');
 }
+
 async function borrarServicio(id){
   const s=servicios.find(x=>x.id===id);
   if(!s||!s._docId) return;
-  try { await db.collection('servicios').doc(s._docId).delete(); } catch(e){ mostrarToast('⚠ Error al borrar'); }
+  try{ await db.collection('servicios').doc(s._docId).delete(); }catch(e){ mostrarToast('⚠ Error al borrar'); }
 }
+
 function cargarServicio(id){
-  const s=servicios.find(x=>x.id===id);if(!s)return;
-  document.getElementById('preview-box').innerHTML=s.msg.split('\n').map((l,i,arr)=>i===arr.length-1&&l.startsWith('Servicio')?`<span class="linea-destacada">${l}</span>`:l).join('\n');
+  const s=servicios.find(x=>x.id===id);
+  if(!s) return;
+  document.getElementById('preview-box').textContent=s.msg||'';
   mostrarToast('↑ Mensaje cargado en vista previa');
 }
+
 async function limpiarTodo(){
-  const clave = prompt('🔒 Ingresá la clave de seguridad para limpiar el historial:');
-  if(clave === null) return;
-  if(clave !== 'BVC2026'){
-    mostrarToast('⛔ Clave incorrecta');
+  const clave=prompt('🔒 Ingresá la clave de seguridad:');
+  if(clave===null) return;
+  if(clave!=='BVC2026'){mostrarToast('⛔ Clave incorrecta');return;}
+  if(!confirm('¿Confirmar limpieza total del historial?')) return;
+  try{
+    await Promise.all(servicios.filter(s=>s._docId).map(s=>db.collection('servicios').doc(s._docId).delete()));
+    mostrarToast('✓ Historial eliminado');
+  }catch(e){ mostrarToast('⚠ Error al limpiar'); }
+}
+
+// ── DASHBOARD ──
+function crearTorta(id,labels,data,colors){
+  if(chartInstances[id]) chartInstances[id].destroy();
+  const ctx=document.getElementById(id);
+  if(!ctx) return;
+  chartInstances[id]=new Chart(ctx,{
+    type:'doughnut',
+    data:{labels,datasets:[{data,backgroundColor:colors,borderColor:'#141414',borderWidth:3}]},
+    options:{responsive:true,maintainAspectRatio:false,cutout:'55%',plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>{const t=ctx.dataset.data.reduce((a,b)=>a+b,0);return ` ${ctx.label}: ${ctx.parsed} (${Math.round(ctx.parsed/t*100)}%)`;}}}}
+    }
+  });
+}
+
+function renderBars(id,chartId,mapObj,color,total){
+  const el=document.getElementById(id);
+  const entries=Object.entries(mapObj).sort((a,b)=>b[1]-a[1]);
+  if(!entries.length){
+    el.innerHTML='<p style="font-size:13px;color:var(--gris-texto);">Sin datos</p>';
+    if(chartId&&chartInstances[chartId]) chartInstances[chartId].destroy();
     return;
   }
-  if(!confirm('¿Confirmar limpieza total del historial?')) return;
-  try {
-    await Promise.all(servicios.filter(s=>s._docId).map(s=>deleteDoc(doc(db,'servicios',s._docId))));
-    mostrarToast('✓ Historial eliminado');
-  } catch(e){ mostrarToast('⚠ Error al limpiar'); }
+  const max=entries[0][1];
+  const colors=entries.map((_,i)=>DASH_COLORS[i%DASH_COLORS.length]);
+  if(chartId) crearTorta(chartId,entries.map(([l])=>l),entries.map(([,c])=>c),colors);
+  el.innerHTML=entries.map(([label,count],i)=>`
+    <div class="bar-row">
+      <div class="bar-label-row">
+        <span class="bar-label"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${colors[i]};margin-right:6px;vertical-align:middle;"></span>${label}</span>
+        <span class="bar-count">${count} <span class="bar-pct">(${Math.round(count/total*100)}%)</span></span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(count/max*100)}%;background:${colors[i]};"></div></div>
+    </div>`).join('');
 }
 
 function renderDashboard(){
@@ -1509,96 +729,88 @@ function renderDashboard(){
   if(!servicios.length){sinDatos.style.display='block';contenido.style.display='none';return;}
   sinDatos.style.display='none';contenido.style.display='block';
 
-  // Deduplicar por número de servicio
   const vistos=new Set();
-  const serviciosUnicos=servicios.filter(s=>{
+  const sv=servicios.filter(s=>{
     const key=s.num?String(s.num):String(s.id);
     if(vistos.has(key)) return false;
     vistos.add(key); return true;
   });
-  const total=serviciosUnicos.length;
-  const tipoMap={},movilMap={},cargoMap={};
+  const total=sv.length;
+  const tipoMap={},movilMap={},cargoMap={},integranteMap={};
 
-  serviciosUnicos.forEach(s=>{
-    tipoMap[s.tipo]=(tipoMap[s.tipo]||0)+1;
+  sv.forEach(s=>{
+    // Tipo
+    if(s.tipo&&s.tipo!=='—') tipoMap[s.tipo]=(tipoMap[s.tipo]||0)+1;
+    // Móviles — solo los que tienen valor real
     (s.moviles||[]).forEach(m=>{
       if(!m||!m.trim()) return;
       const norm='Móvil '+m.replace(/^[Mm][óo]vil\s*/,'').trim();
-      if(norm==='Móvil') return;
+      if(norm==='Móvil'||norm==='Móvil —') return;
       movilMap[norm]=(movilMap[norm]||0)+1;
     });
+    // A cargo
     if(s.cargo&&s.cargo!=='—') cargoMap[s.cargo]=(cargoMap[s.cargo]||0)+1;
+    // Integrantes
+    const part=new Set();
+    if(s.cargo&&s.cargo!=='—') part.add(s.cargo);
+    if(s.chofer&&s.chofer!=='—') part.add(s.chofer);
+    (s.componentes||[]).forEach(c=>{if(c&&c!=='—') part.add(c);});
+    if(!s.chofer&&s.msg){
+      s.msg.split('\n').forEach(l=>{
+        const cm=l.match(/Chofer[:\*\s]+(.+)/i);
+        if(cm) part.add(cm[1].trim().replace(/\*/g,''));
+        const co=l.match(/Componente\s+\d+[:\*\s]+(.+)/i);
+        if(co) part.add(co[1].trim().replace(/\*/g,''));
+      });
+    }
+    part.forEach(p=>{if(p) integranteMap[p]=(integranteMap[p]||0)+1;});
   });
+
   document.getElementById('dash-metrics').innerHTML=[
     {label:'Total servicios',val:total,cls:'rojo'},
     {label:'Último servicio',val:servicios[0]?.num||'—',cls:'amarillo'},
     {label:'Tipos distintos',val:Object.keys(tipoMap).length,cls:''},
     {label:'Móviles usados',val:Object.keys(movilMap).length,cls:''},
   ].map(c=>`<div class="dash-metric"><div class="dm-label">${c.label}</div><div class="dm-val ${c.cls}">${c.val}</div></div>`).join('');
+
   const tipoEntries=Object.entries(tipoMap).sort((a,b)=>b[1]-a[1]);
-  const tipoMax=tipoEntries[0][1];
-  const tipoLabels=tipoEntries.map(([l])=>l);
-  const tipoData=tipoEntries.map(([,c])=>c);
-  const tipoColors=tipoLabels.map((_,i)=>DASH_COLORS[i%DASH_COLORS.length]);
-  crearTorta('chart-tipo',tipoLabels,tipoData,tipoColors);
-  document.getElementById('dash-tipo').innerHTML=tipoEntries.map(([label,count],i)=>`<div class="bar-row"><div class="bar-label-row"><span class="bar-label"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${tipoColors[i]};margin-right:6px;vertical-align:middle;"></span>${label}</span><span class="bar-count">${count} <span class="bar-pct">(${Math.round(count/total*100)}%)</span></span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.round(count/tipoMax*100)}%;background:${tipoColors[i]};"></div></div></div>`).join('');
+  if(tipoEntries.length){
+    const tipoColors=tipoEntries.map((_,i)=>DASH_COLORS[i%DASH_COLORS.length]);
+    crearTorta('chart-tipo',tipoEntries.map(([l])=>l),tipoEntries.map(([,c])=>c),tipoColors);
+    const tipoMax=tipoEntries[0][1];
+    document.getElementById('dash-tipo').innerHTML=tipoEntries.map(([label,count],i)=>`
+      <div class="bar-row">
+        <div class="bar-label-row">
+          <span class="bar-label"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${tipoColors[i]};margin-right:6px;vertical-align:middle;"></span>${label}</span>
+          <span class="bar-count">${count} <span class="bar-pct">(${Math.round(count/total*100)}%)</span></span>
+        </div>
+        <div class="bar-track"><div class="bar-fill" style="width:${Math.round(count/tipoMax*100)}%;background:${tipoColors[i]};"></div></div>
+      </div>`).join('');
+  }
+
   const totalMoviles=Object.values(movilMap).reduce((a,b)=>a+b,0);
   const totalCargo=Object.values(cargoMap).reduce((a,b)=>a+b,0);
   renderBars('dash-moviles','chart-moviles',movilMap,'#378ADD',totalMoviles);
   renderBars('dash-cargo','chart-cargo',cargoMap,'#1D9E75',totalCargo);
 
-  // Servicios por integrante (todas las participaciones)
-  const integranteMap={};
-  serviciosUnicos.forEach(s=>{
-    const participantes=new Set();
-
-    // Campos nuevos
-    if(s.cargo&&s.cargo!=='—') participantes.add(s.cargo);
-    if(s.chofer&&s.chofer!=='—') participantes.add(s.chofer);
-    if(s.componentes) s.componentes.filter(c=>c&&c!=='—').forEach(c=>participantes.add(c));
-
-    // Si no hay chofer/componentes guardados, parsear el msg
-    if(!s.chofer && s.msg){
-      const lines = s.msg.split('\n');
-      lines.forEach(l => {
-        // 🚗 *Chofer:* Bombero Cordovero, Tomas
-        const choferMatch = l.match(/Chofer[:\*\s]+(.+)/i);
-        if(choferMatch) participantes.add(choferMatch[1].trim().replace(/\*/g,''));
-        // 👤 *Componente N:* Bombero Garcia, Juan
-        const compMatch = l.match(/Componente\s+\d+[:\*\s]+(.+)/i);
-        if(compMatch) participantes.add(compMatch[1].trim().replace(/\*/g,''));
-      });
-    }
-
-    participantes.forEach(p=>{ if(p) integranteMap[p]=(integranteMap[p]||0)+1; });
-  });
-  const elInt=document.getElementById('dash-integrantes');
   const intEntries=Object.entries(integranteMap).sort((a,b)=>b[1]-a[1]);
   const intMax=intEntries.length?intEntries[0][1]:1;
   const totalInt=intEntries.reduce((a,[,v])=>a+v,0);
-  if(!intEntries.length){elInt.innerHTML='<p style="font-size:13px;color:var(--gris-texto);">Sin datos</p>';return;}
-  elInt.innerHTML=intEntries.map(([label,count])=>`
+  const elInt=document.getElementById('dash-integrantes');
+  elInt.innerHTML=intEntries.length?intEntries.map(([label,count])=>`
     <div class="bar-row">
       <div class="bar-label-row">
         <span class="bar-label">${label}</span>
         <span class="bar-count">${count} <span class="bar-pct">(${Math.round(count/totalInt*100)}%)</span></span>
       </div>
       <div class="bar-track"><div class="bar-fill" style="width:${Math.round(count/intMax*100)}%;background:#7F77DD;"></div></div>
-    </div>`).join('');
-function renderBars(id,chartId,mapObj,baseColor,total){
-  const el=document.getElementById(id);
-  const entries=Object.entries(mapObj).sort((a,b)=>b[1]-a[1]);
-  if(!entries.length){
-    el.innerHTML='<p style="font-size:13px;color:var(--gris-texto);">Sin datos</p>';
-    if(chartInstances[chartId]){chartInstances[chartId].destroy();}
-    return;
-  }
-  const max=entries[0][1];
-  const colors=entries.map((_,i)=>DASH_COLORS[i%DASH_COLORS.length]);
-  crearTorta(chartId,entries.map(([l])=>l),entries.map(([,c])=>c),colors);
-  el.innerHTML=entries.map(([label,count],i)=>`<div class="bar-row"><div class="bar-label-row"><span class="bar-label"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:${colors[i]};margin-right:6px;vertical-align:middle;"></span>${label}</span><span class="bar-count">${count} <span class="bar-pct">(${Math.round(count/total*100)}%)</span></span></div><div class="bar-track"><div class="bar-fill" style="width:${Math.round(count/max*100)}%;background:${colors[i]};"></div></div></div>`).join('');
+    </div>`).join(''):'<p style="font-size:13px;color:var(--gris-texto);">Sin datos</p>';
 }
-function mostrarToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500);}
+
+function mostrarToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
 }
 </script>
 </body>
