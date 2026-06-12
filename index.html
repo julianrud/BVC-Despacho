@@ -447,7 +447,14 @@
       </div>
       <div>
         <label>Dirección / Lugar del incidente</label>
-        <input type="text" id="direccion" placeholder="ej. Puerto Argentino entre Derqui y Paso, B° La Balanza">
+        <input type="text" id="direccion" placeholder="ej. Puerto Argentino entre Derqui y Paso, B° La Balanza" onblur="calcularDistancia()">
+      </div>
+      <div>
+        <label>Distancia desde el cuartel</label>
+        <div style="display:flex;gap:8px;align-items:flex-end;">
+          <input type="text" id="distancia" readonly placeholder="— calcular —" style="flex:1;background:var(--gris-oscuro);color:var(--amarillo);font-family:var(--fuente-mono);font-size:13px;cursor:default;">
+          <button class="btn-auto" onclick="calcularDistancia()" title="Calcular distancia">📍 CALCULAR</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1212,6 +1219,11 @@
         <div id="dash-cargo"></div>
       </div>
     </div>
+
+    <p class="dash-titulo">Servicios por integrante (total participaciones)</p>
+    <div class="seccion" style="margin-bottom:16px;">
+      <div class="seccion-body" id="dash-integrantes"></div>
+    </div>
   </div>
 
 </div>
@@ -1260,7 +1272,42 @@ function crearTorta(id, labels, data, colors){
     }
   });
 }
-// ── DICCIONARIO GRADOS ──
+// ── DISTANCIA ──
+const ORS_KEY = 'eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjJhYWRjOWRhY2QxMTQyNzQ5MWU4ZGU5NGUyOWM4MjhkIiwiaCI6Im11cm11cjY0In0=';
+const CUARTEL_COORDS = [-58.7372, -35.0531]; // Av. San Martín 743, Cañuelas [lng, lat]
+
+async function calcularDistancia(){
+  const dir = document.getElementById('direccion').value.trim();
+  if(!dir){ return; }
+  const distEl = document.getElementById('distancia');
+  distEl.value = '⏳ Calculando...';
+  try {
+    // Geocodificar dirección destino
+    const geoUrl = `https://api.openrouteservice.org/geocode/search?api_key=${ORS_KEY}&text=${encodeURIComponent(dir+', Cañuelas, Buenos Aires, Argentina')}&size=1`;
+    const geoRes = await fetch(geoUrl);
+    const geoData = await geoRes.json();
+    if(!geoData.features||!geoData.features.length){ distEl.value = '⚠ Dirección no encontrada'; return; }
+    const destCoords = geoData.features[0].geometry.coordinates; // [lng, lat]
+
+    // Calcular ruta
+    const routeUrl = 'https://api.openrouteservice.org/v2/directions/driving-car';
+    const routeRes = await fetch(routeUrl, {
+      method: 'POST',
+      headers: { 'Authorization': ORS_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ coordinates: [CUARTEL_COORDS, destCoords] })
+    });
+    const routeData = await routeRes.json();
+    if(!routeData.routes||!routeData.routes.length){ distEl.value = '⚠ No se pudo calcular'; return; }
+    const metros = routeData.routes[0].summary.distance;
+    const duracionSeg = routeData.routes[0].summary.duration;
+    const km = (metros/1000).toFixed(1);
+    const min = Math.round(duracionSeg/60);
+    distEl.value = `${km} km — aprox. ${min} min`;
+    actualizarPreview();
+  } catch(e){
+    distEl.value = '⚠ Error al calcular';
+  }
+}
 const PERSONAL = {
   'Coronel, Pablo':'OF. Auxiliar','Gimenez, Jonatan':'OF. Auxiliar','Ortiz, Hernan':'OF. Auxiliar',
   'Cocini, Maximiliano':'Ayudante Mayor','Vicente, Guillermo':'Ayudante Mayor','Benigni, Jonatan':'Ayudante Mayor',
@@ -1400,21 +1447,23 @@ function buildMensaje(){
   const extra='';
   if(!tipo&&!dir&&moviles.length===0) return null;
   let lineas=[];
-  lineas.push('🚒 *BOMBEROS CAÑUELAS*');
-  lineas.push('━━━━━━━━━━━━━━━━━━━━');
-  if(fecha||hora) lineas.push(`🕐 *Hora:* ${hora||'—'}  📅 *Fecha:* ${fecha||'—'}`);
-  if(moviles.length>0) lineas.push(`🚨 *Móvil/es:* ${moviles.join(' — ')}`);
+  lineas.push('🚒 *BOMBEROS VOLUNTARIOS CAÑUELAS*');
+  lineas.push('--------------------');
+  if(fecha||hora) lineas.push(`🕐 *Hora:* ${hora||'-'}  |  📅 *Fecha:* ${fecha||'-'}`);
+  if(moviles.length>0) lineas.push(`🚒 *Movil/es:* ${moviles.join(' | ')}`);
   if(tipo) lineas.push(`🔥 *Tipo:* ${tipo}`);
   if(dir) lineas.push(`📍 *Lugar:* ${dir}`);
+  const distancia=document.getElementById('distancia').value.trim();
+  if(distancia&&distancia!=='— calcular —') lineas.push(`📏 *Distancia:* ${distancia}`);
   if(dir){
     const mapsUrl='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(dir+', Cañuelas, Buenos Aires, Argentina');
-    lineas.push(`🗺 *Mapa:* ${mapsUrl}`);
+    lineas.push(`🗺️ *Mapa:* ${mapsUrl}`);
   }
-  lineas.push('━━━━━━━━━━━━━━━━━━━━');
-  if(gradoCargo&&nombreCargo) lineas.push(`👨‍🚒 *A cargo:* ${gradoCargo} ${nombreCargo}`);
+  lineas.push('--------------------');
+  if(gradoCargo&&nombreCargo) lineas.push(`👤 *A cargo:* ${gradoCargo} ${nombreCargo}`);
   if(gradoChofer&&nombreChofer) lineas.push(`🚗 *Chofer:* ${gradoChofer} ${nombreChofer}`);
-  comp.forEach((c,i)=>{if(c.grado&&c.nombre) lineas.push(`👤 *Componente ${i+1}:* ${c.grado} ${c.nombre}`);});
-  if(numServ){lineas.push('━━━━━━━━━━━━━━━━━━━━');lineas.push(`📋 *Servicio N° ${numServ}*`);}
+  comp.forEach((c,i)=>{if(c.grado&&c.nombre) lineas.push(`👥 *Componente ${i+1}:* ${c.grado} ${c.nombre}`);});
+  if(numServ){lineas.push('--------------------');lineas.push(`📋 *Servicio N°* ${numServ}`);}
   if(folio) lineas.push(`📄 *Folio:* ${folio}`);
   if(libro) lineas.push(`📒 *Libro:* ${libro}`);
   return lineas.join('\n');
@@ -1446,7 +1495,19 @@ async function guardarServicio(msg){
   const moviles=getMoviles();
   const gradoCargo=document.getElementById('grado-cargo').value;
   const nombreCargo=document.getElementById('nombre-cargo').value.trim();
-  const reg={id:Date.now(),num:numServ,tipo:tipo||'—',moviles,cargo:gradoCargo&&nombreCargo?`${gradoCargo} ${nombreCargo}`:'—',msg,ts:new Date().toLocaleString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})};
+  const gradoChofer=document.getElementById('grado-chofer').value;
+  const nombreChofer=document.getElementById('nombre-chofer').value.trim();
+  const componentes=[1,2,3,4,5].map(n=>{
+    const g=document.getElementById(`grado-comp${n}`).value;
+    const nm=document.getElementById(`nombre-comp${n}`).value.trim();
+    return g&&nm?`${g} ${nm}`:'—';
+  }).filter(c=>c!=='—');
+  const distancia=document.getElementById('distancia').value.trim();
+  const reg={id:Date.now(),num:numServ,tipo:tipo||'—',moviles,
+    cargo:gradoCargo&&nombreCargo?`${gradoCargo} ${nombreCargo}`:'—',
+    chofer:gradoChofer&&nombreChofer?`${gradoChofer} ${nombreChofer}`:'—',
+    componentes, distancia:distancia||'—',
+    msg,ts:new Date().toLocaleString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})};
   try {
     await db.collection('servicios').add(reg);
     if(numServ){
@@ -1530,7 +1591,45 @@ function renderDashboard(){
   const totalCargo=Object.values(cargoMap).reduce((a,b)=>a+b,0);
   renderBars('dash-moviles','chart-moviles',movilMap,'#378ADD',totalMoviles);
   renderBars('dash-cargo','chart-cargo',cargoMap,'#1D9E75',totalCargo);
-}
+
+  // Servicios por integrante (todas las participaciones)
+  const integranteMap={};
+  serviciosUnicos.forEach(s=>{
+    const participantes=new Set();
+
+    // Campos nuevos
+    if(s.cargo&&s.cargo!=='—') participantes.add(s.cargo);
+    if(s.chofer&&s.chofer!=='—') participantes.add(s.chofer);
+    if(s.componentes) s.componentes.filter(c=>c&&c!=='—').forEach(c=>participantes.add(c));
+
+    // Si no hay chofer/componentes guardados, parsear el msg
+    if(!s.chofer && s.msg){
+      const lines = s.msg.split('\n');
+      lines.forEach(l => {
+        // 🚗 *Chofer:* Bombero Cordovero, Tomas
+        const choferMatch = l.match(/Chofer[:\*\s]+(.+)/i);
+        if(choferMatch) participantes.add(choferMatch[1].trim().replace(/\*/g,''));
+        // 👤 *Componente N:* Bombero Garcia, Juan
+        const compMatch = l.match(/Componente\s+\d+[:\*\s]+(.+)/i);
+        if(compMatch) participantes.add(compMatch[1].trim().replace(/\*/g,''));
+      });
+    }
+
+    participantes.forEach(p=>{ if(p) integranteMap[p]=(integranteMap[p]||0)+1; });
+  });
+  const elInt=document.getElementById('dash-integrantes');
+  const intEntries=Object.entries(integranteMap).sort((a,b)=>b[1]-a[1]);
+  const intMax=intEntries.length?intEntries[0][1]:1;
+  const totalInt=intEntries.reduce((a,[,v])=>a+v,0);
+  if(!intEntries.length){elInt.innerHTML='<p style="font-size:13px;color:var(--gris-texto);">Sin datos</p>';return;}
+  elInt.innerHTML=intEntries.map(([label,count])=>`
+    <div class="bar-row">
+      <div class="bar-label-row">
+        <span class="bar-label">${label}</span>
+        <span class="bar-count">${count} <span class="bar-pct">(${Math.round(count/totalInt*100)}%)</span></span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:${Math.round(count/intMax*100)}%;background:#7F77DD;"></div></div>
+    </div>`).join('');
 function renderBars(id,chartId,mapObj,baseColor,total){
   const el=document.getElementById(id);
   const entries=Object.entries(mapObj).sort((a,b)=>b[1]-a[1]);
