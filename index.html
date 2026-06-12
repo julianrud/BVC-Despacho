@@ -620,9 +620,11 @@ function actualizarPreview(){
 async function enviarWhatsApp(){
   const msg=buildMensaje();
   if(!msg){mostrarToast('⚠ Completá al menos tipo de servicio o móvil');return;}
-  mostrarToast('⏳ Guardando...');
-  await guardarServicio(msg);
-  window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
+  // Abrir WhatsApp primero (antes del await para evitar bloqueo del navegador móvil)
+  const url='https://wa.me/?text='+encodeURIComponent(msg);
+  window.location.href=url;
+  // Guardar en Firebase después
+  guardarServicio(msg);
 }
 
 function copiarMensaje(){
