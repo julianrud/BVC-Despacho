@@ -338,7 +338,19 @@
       </div>
       <div>
         <label>Dirección / Lugar del incidente</label>
-        <input type="text" id="direccion" placeholder="ej. Puerto Argentino entre Derqui y Paso, B° La Balanza">
+        <div style="display:flex;gap:8px;align-items:flex-end;">
+          <input type="text" id="direccion" placeholder="ej. Cuba entre Roja y Rodriguez Peña" style="flex:1;">
+          <button class="btn-auto" onclick="verEnMapa()">🗺️ VER</button>
+        </div>
+        <div id="mapa-preview" style="display:none;margin-top:8px;">
+          <iframe id="mapa-frame" width="100%" height="200" style="border:1px solid var(--gris-borde);border-radius:3px;" allowfullscreen="" loading="lazy"></iframe>
+          <div style="display:flex;gap:8px;margin-top:6px;">
+            <button class="btn-auto" style="flex:1;background:#1D9E75;" onclick="confirmarMapa()">✓ CONFIRMAR</button>
+            <button class="btn-auto" style="flex:1;background:#378ADD;" onclick="abrirEnMaps()">🔍 ABRIR EN MAPS</button>
+            <button class="btn-auto" style="flex:1;background:var(--gris-oscuro);border:1px solid var(--gris-borde);" onclick="cerrarMapa()">✕ CERRAR</button>
+          </div>
+          <p id="mapa-confirmado" style="display:none;font-family:var(--fuente-mono);font-size:11px;color:#1D9E75;margin-top:6px;letter-spacing:1px;">✓ UBICACIÓN CONFIRMADA</p>
+        </div>
       </div>
     </div>
   </div>
@@ -620,10 +632,14 @@ function actualizarPreview(){
 async function enviarWhatsApp(){
   const msg=buildMensaje();
   if(!msg){mostrarToast('⚠ Completá al menos tipo de servicio o móvil');return;}
-  // Abrir WhatsApp primero (antes del await para evitar bloqueo del navegador móvil)
   const url='https://wa.me/?text='+encodeURIComponent(msg);
-  window.location.href=url;
-  // Guardar en Firebase después
+  // En celular: abre la app. En PC: abre en nueva pestaña
+  const esCelular=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  if(esCelular){
+    window.location.href=url;
+  } else {
+    window.open(url,'_blank');
+  }
   guardarServicio(msg);
 }
 
@@ -657,7 +673,9 @@ async function guardarServicio(msg){
 function renderResumen(){
   const cont=document.getElementById('resumen-lista');
   if(!servicios.length){cont.innerHTML='<div class="empty-state">— SIN SERVICIOS REGISTRADOS —</div>';return;}
-  cont.innerHTML=servicios.map(s=>`
+  // Ordenar por número de servicio descendente
+  const ordenados=[...servicios].sort((a,b)=>(b.num||0)-(a.num||0));
+  cont.innerHTML=ordenados.map(s=>`
     <div class="resumen-card" onclick="cargarServicio(${s.id})">
       <button class="btn-borrar-r" onclick="event.stopPropagation();borrarServicio(${s.id})">×</button>
       <div class="num-serv">SERV. ${s.num||'—'}</div>
@@ -807,6 +825,34 @@ function renderDashboard(){
       </div>
       <div class="bar-track"><div class="bar-fill" style="width:${Math.round(count/intMax*100)}%;background:#7F77DD;"></div></div>
     </div>`).join(''):'<p style="font-size:13px;color:var(--gris-texto);">Sin datos</p>';
+}
+
+function verEnMapa(){
+  const dir=document.getElementById('direccion').value.trim();
+  if(!dir){mostrarToast('⚠ Ingresá una dirección primero');return;}
+  const query=encodeURIComponent(dir+', Cañuelas, Buenos Aires, Argentina');
+  document.getElementById('mapa-frame').src=`https://maps.google.com/maps?q=${query}&output=embed&z=16`;
+  document.getElementById('mapa-preview').style.display='block';
+  document.getElementById('mapa-confirmado').style.display='none';
+}
+
+function confirmarMapa(){
+  document.getElementById('mapa-confirmado').style.display='block';
+  mostrarToast('✓ Ubicación confirmada');
+  actualizarPreview();
+}
+
+function abrirEnMaps(){
+  const dir=document.getElementById('direccion').value.trim();
+  if(!dir) return;
+  const query=encodeURIComponent(dir+', Cañuelas, Buenos Aires, Argentina');
+  window.open(`https://www.google.com/maps/search/?api=1&query=${query}`,'_blank');
+}
+
+function cerrarMapa(){
+  document.getElementById('mapa-preview').style.display='none';
+  document.getElementById('mapa-frame').src='';
+  document.getElementById('mapa-confirmado').style.display='none';
 }
 
 function mostrarToast(msg){
