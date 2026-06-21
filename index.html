@@ -377,6 +377,7 @@
       <div class="acciones">
         <button class="btn-ws" onclick="enviarWhatsApp()">📲 ENVIAR POR WHATSAPP</button>
         <button class="btn-copiar" onclick="copiarMensaje()">📋 COPIAR</button>
+        <button class="btn-copiar" style="background:var(--rojo);color:#fff;border-color:var(--rojo);" onclick="soloGuardar()">💾 GUARDAR</button>
       </div>
     </div>
   </div>
@@ -641,6 +642,13 @@ async function enviarWhatsApp(){
     window.open(url,'_blank');
   }
   guardarServicio(msg);
+}
+
+async function soloGuardar(){
+  const msg=buildMensaje();
+  if(!msg){mostrarToast('⚠ Completá al menos tipo de servicio o móvil');return;}
+  mostrarToast('⏳ Guardando...');
+  await guardarServicio(msg);
 }
 
 function copiarMensaje(){
