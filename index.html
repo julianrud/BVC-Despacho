@@ -632,8 +632,8 @@ function actualizarPreview(){
 async function enviarWhatsApp(){
   const msg=buildMensaje();
   if(!msg){mostrarToast('⚠ Completá al menos tipo de servicio o móvil');return;}
-  const url='https://wa.me/?text='+encodeURIComponent(msg);
-  // En celular: abre la app. En PC: abre en nueva pestaña
+  // Usar api.whatsapp.com para mejor soporte de emojis y unicode
+  const url='https://api.whatsapp.com/send?text='+encodeURIComponent(msg);
   const esCelular=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   if(esCelular){
     window.location.href=url;
