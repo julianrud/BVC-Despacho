@@ -306,6 +306,70 @@
             <option>06-6 Guardia de honor</option><option>06-7 Orden interno</option>
             <option>06-8 Guardia</option><option>06-9 Interna (otros)</option>
           </optgroup>
+          <optgroup label="07 COMANDO — CAPACITACIÓN">
+            <option>07-1 Reunión del consejo zonal capacitación</option>
+            <option>07-2 Reunión del consejo regional capacitación</option>
+            <option>07-3 Reunión del consejo provincial capacitación</option>
+            <option>07-4 Viaje de un instructor</option>
+            <option>07-5 Capacitación (otros)</option>
+          </optgroup>
+          <optgroup label="07 COMANDO — ÉTICA">
+            <option>07-6 Reunión del consejo de ética regional</option>
+            <option>07-7 Reunión del consejo de ética provincial</option>
+            <option>07-8 Reunión de tribunal de bomberos</option>
+            <option>07-9 Ética (otros)</option>
+          </optgroup>
+          <optgroup label="07 COMANDO — REUNIÓN">
+            <option>07-10 Reunión con el consejo nacional</option>
+            <option>07-11 Reunión con la F.A.B.V.P.B.A</option>
+            <option>07-12 Reunión de consejo regional</option>
+            <option>07-13 Reunión (otros)</option>
+          </optgroup>
+          <optgroup label="07 COMANDO — GENERAL">
+            <option>07-14 Reunión general</option>
+            <option>07-15 Reunión c/otras depend. o instituciones</option>
+            <option>07-16 General (otros)</option>
+          </optgroup>
+          <optgroup label="08 TÉCNICO — INFORME">
+            <option>08-1 Asesoramiento técnico a particular</option>
+            <option>08-2 Inspecc. en materiales o instr. c/incendios</option>
+            <option>08-3 Verificación de planos contra incendios</option>
+            <option>08-4 Pericias de servicios prestados</option>
+            <option>08-5 Informes técnicos</option>
+            <option>08-6 Simulacros</option>
+            <option>08-7 Informe (otros)</option>
+          </optgroup>
+          <optgroup label="08 TÉCNICO — CAPACITACIÓN">
+            <option>08-8 Visitas guiadas al cuartel</option>
+            <option>08-9 Viaje de instructores a dictar clases</option>
+            <option>08-10 Viaje de integrantes de mesa examinadora</option>
+            <option>08-11 Constitución de mesa examinadora</option>
+            <option>08-12 Práctica o curso con otras instituciones</option>
+            <option>08-13 Conferencia bomberil</option>
+            <option>08-14 Capacitación (otros)</option>
+          </optgroup>
+          <optgroup label="08 TÉCNICO — CONGRESO">
+            <option>08-15 Congreso policial bomberos</option>
+            <option>08-16 Congreso nacional bomberos</option>
+            <option>08-17 Congreso (otros)</option>
+          </optgroup>
+          <optgroup label="09 CEREMONIAL — INTERNO">
+            <option>09-1 Desfile de personal</option>
+            <option>09-2 Festejo aniversario de la institución</option>
+            <option>09-3 Festejo día del bombero</option>
+            <option>09-4 Delegación por acto o/inst. bomberiles</option>
+            <option>09-5 Formación por honores fúnebres</option>
+            <option>09-6 Recepción de visita bomberil a la institución</option>
+            <option>09-7 Actos p/presentación de unidades o materiales</option>
+            <option>09-8 Interno (otros)</option>
+          </optgroup>
+          <optgroup label="09 CEREMONIAL — EXTERNO">
+            <option>09-9 Formación por fecha patria</option>
+            <option>09-10 Delegación por acto patrio</option>
+            <option>09-11 Delegación por acto de otras instituciones</option>
+            <option>09-12 Delegación por actos patronales o locales</option>
+            <option>09-13 Externo (otros)</option>
+          </optgroup>
           <optgroup label="10 INCIDENTES QUÍMICOS">
             <option>10-1 Incendio mat-pel</option><option>10-2 Derrame mat-pel</option>
             <option>10-3 Explosiones</option><option>10-4 Prevención por mat-pel</option>
@@ -427,6 +491,14 @@
     <p class="dash-titulo">Servicios por integrante (total participaciones)</p>
     <div class="seccion" style="margin-bottom:16px;">
       <div class="seccion-body" id="dash-integrantes"></div>
+    </div>
+
+    <p class="dash-titulo">⚠ Servicios sin registrar</p>
+    <div class="seccion" style="margin-bottom:16px;">
+      <div class="seccion-body">
+        <div id="dash-faltantes-info" style="font-family:var(--fuente-mono);font-size:11px;color:var(--gris-texto);margin-bottom:10px;"></div>
+        <div id="dash-faltantes-lista"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -764,16 +836,30 @@ function renderDashboard(){
     vistos.add(key); return true;
   });
   const total=sv.length;
+
+  // Total real por rango de números
+  const nums=sv.map(s=>s.num).filter(n=>n&&!isNaN(n)).map(Number).sort((a,b)=>a-b);
+  const primerNum=nums.length?nums[0]:null;
+  const ultimoNum=nums.length?nums[nums.length-1]:null;
+  const totalReal=primerNum&&ultimoNum?ultimoNum-primerNum+1:total;
+  const cantFaltantes=totalReal-total;
+  const faltantes=[];
+  if(primerNum&&ultimoNum){
+    for(let i=primerNum;i<=ultimoNum;i++){
+      if(!nums.includes(i)) faltantes.push(i);
+    }
+  }
   const tipoMap={},movilMap={},cargoMap={},integranteMap={};
 
   sv.forEach(s=>{
     // Tipo
     if(s.tipo&&s.tipo!=='—') tipoMap[s.tipo]=(tipoMap[s.tipo]||0)+1;
-    // Móviles — solo los que tienen valor real
+    // Móviles — solo los que tienen número válido
     (s.moviles||[]).forEach(m=>{
-      if(!m||!m.trim()) return;
-      const norm='Móvil '+m.replace(/^[Mm][óo]vil\s*/,'').trim();
-      if(norm==='Móvil'||norm==='Móvil —') return;
+      if(!m||!m.trim()||m==='—') return;
+      const cleaned=m.replace(/^[Mm][oó]vil\s*/i,'').trim();
+      if(!cleaned||!/^\d+$/.test(cleaned)) return;
+      const norm='Móvil '+cleaned;
       movilMap[norm]=(movilMap[norm]||0)+1;
     });
     // A cargo
@@ -795,11 +881,24 @@ function renderDashboard(){
   });
 
   document.getElementById('dash-metrics').innerHTML=[
-    {label:'Total servicios',val:total,cls:'rojo'},
-    {label:'Último servicio',val:servicios[0]?.num||'—',cls:'amarillo'},
-    {label:'Tipos distintos',val:Object.keys(tipoMap).length,cls:''},
-    {label:'Móviles usados',val:Object.keys(movilMap).length,cls:''},
+    {label:'Total servicios',val:totalReal,cls:'rojo'},
+    {label:'Registrados',val:`${total} / ${totalReal}`,cls:'amarillo'},
+    {label:'Sin cargar',val:cantFaltantes,cls:cantFaltantes>0?'rojo':''},
+    {label:'Último servicio',val:servicios[0]?.num||'—',cls:''},
   ].map(c=>`<div class="dash-metric"><div class="dm-label">${c.label}</div><div class="dm-val ${c.cls}">${c.val}</div></div>`).join('');
+
+  // Faltantes
+  const infoEl=document.getElementById('dash-faltantes-info');
+  const listaEl=document.getElementById('dash-faltantes-lista');
+  if(faltantes.length===0){
+    infoEl.textContent=primerNum?`Rango ${primerNum}–${ultimoNum} · Todos los servicios están registrados ✓`:'Sin datos suficientes';
+    infoEl.style.color='#1D9E75';
+    listaEl.innerHTML='';
+  } else {
+    infoEl.textContent=`Rango ${primerNum}–${ultimoNum} · Faltan ${cantFaltantes} servicios sin cargar:`;
+    infoEl.style.color='var(--gris-texto)';
+    listaEl.innerHTML=`<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;">${faltantes.map(n=>`<span style="background:var(--gris-oscuro);border:1px solid var(--rojo);border-radius:3px;padding:3px 10px;font-family:var(--fuente-mono);font-size:12px;color:var(--rojo);">${n}</span>`).join('')}</div>`;
+  }
 
   const tipoEntries=Object.entries(tipoMap).sort((a,b)=>b[1]-a[1]);
   if(tipoEntries.length){
