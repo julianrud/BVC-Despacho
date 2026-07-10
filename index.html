@@ -738,10 +738,19 @@ async function guardarServicio(msg){
   const cargo=personal[0].grado&&personal[0].nombre?`${personal[0].grado} ${personal[0].nombre}`:'—';
   const chofer=personal[1].grado&&personal[1].nombre?`${personal[1].grado} ${personal[1].nombre}`:'—';
   const componentes=personal.slice(2).filter(p=>p.grado&&p.nombre).map(p=>`${p.grado} ${p.nombre}`);
+  const horaForm=document.getElementById('hora-servicio').value.trim();
+  const fechaForm=document.getElementById('fecha-servicio').value;
+  let tsServicio;
+  if(horaForm&&fechaForm){
+    const [a,m,d]=fechaForm.split('-');
+    tsServicio=`${d}/${m}/${a}, ${horaForm}`;
+  } else {
+    tsServicio=new Date().toLocaleString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  }
   const reg={
     id:Date.now(),num:numServ,tipo:tipo||'—',moviles,
     cargo,chofer,componentes,msg,
-    ts:new Date().toLocaleString('es-AR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})
+    ts:tsServicio
   };
   try{
     await db.collection('servicios').add(reg);
@@ -766,9 +775,12 @@ function renderResumen(){
 }
 
 async function borrarServicio(id){
+  const clave=prompt('🔒 Ingresá la clave para borrar este servicio:');
+  if(clave===null) return;
+  if(clave!=='BVC2026'){mostrarToast('⛔ Clave incorrecta');return;}
   const s=servicios.find(x=>x.id===id);
   if(!s||!s._docId) return;
-  try{ await db.collection('servicios').doc(s._docId).delete(); }catch(e){ mostrarToast('⚠ Error al borrar'); }
+  try{ await db.collection('servicios').doc(s._docId).delete(); mostrarToast('✓ Servicio eliminado'); }catch(e){ mostrarToast('⚠ Error al borrar'); }
 }
 
 function cargarServicio(id){
